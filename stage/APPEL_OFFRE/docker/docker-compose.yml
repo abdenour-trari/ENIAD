@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  appels-offres:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_DEBUG=1
+      - PYTHONUNBUFFERED=1

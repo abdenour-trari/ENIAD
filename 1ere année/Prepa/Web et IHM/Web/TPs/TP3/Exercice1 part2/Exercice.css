@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  justify-items: center;
+}
+
+.rectangles {
+  background-color: rgb(75, 181, 243);
+  height: 300px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.rectangles div {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  transition: all 0.1s ease-in-out;
+}
+
+.rectangles .red {
+  background-color: red;
+  left: 0;
+  top: 0;
+  transform-origin: top left;
+}
+.rectangles .green {
+  background-color: green;
+  right: 0;
+  top: 0;
+  transform-origin: top right;
+}
+.rectangles .blue {
+  background-color: blue;
+  left: 0;
+  bottom: 0;
+  transform-origin: bottom left;
+}
+.rectangles .yellow {
+  background-color: yellow;
+  right: 0;
+  bottom: 0;
+  transform-origin: bottom right;
+}
+
+.rectangles:hover .red {
+  transform: rotate(90deg);
+}
+.rectangles:hover .green {
+  transform: rotate(-90deg);
+}
+.rectangles:hover .blue {
+  transform: rotate(-90deg);
+}
+.rectangles:hover .yellow {
+  transform: rotate(90deg);
+}

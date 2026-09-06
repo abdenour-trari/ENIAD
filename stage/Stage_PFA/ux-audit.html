@@ -1,0 +1,3932 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Audit UX de l'application Jiblina — Rapport détaillé des 40 problèmes identifiés et solutions proposées." />
+  <title>Jiblina — Audit UX & Problèmes Identifiés</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================
+       DESIGN SYSTEM — TOKENS & RESET
+       ============================================ */
+    :root {
+      /* Core palette */
+      --bg-body: #0b0f1a;
+      --bg-surface: #111827;
+      --bg-card: #1a2236;
+      --bg-card-hover: #1f2a42;
+      --bg-glass: rgba(17, 24, 39, 0.65);
+
+      /* Accent */
+      --accent-emerald: #10b981;
+      --accent-emerald-dim: rgba(16, 185, 129, 0.15);
+      --accent-orange: #f97316;
+      --accent-orange-dim: rgba(249, 115, 22, 0.15);
+      --accent-red: #ef4444;
+      --accent-red-dim: rgba(239, 68, 68, 0.12);
+      --accent-blue: #3b82f6;
+      --accent-blue-dim: rgba(59, 130, 246, 0.12);
+      --accent-purple: #a855f7;
+      --accent-purple-dim: rgba(168, 85, 247, 0.12);
+      --accent-amber: #f59e0b;
+      --accent-amber-dim: rgba(245, 158, 11, 0.12);
+
+      /* Text */
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+
+      /* Borders */
+      --border-subtle: rgba(148, 163, 184, 0.08);
+      --border-card: rgba(148, 163, 184, 0.12);
+      --border-glow-emerald: rgba(16, 185, 129, 0.25);
+
+      /* Shadows */
+      --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.5);
+      --shadow-glow: 0 0 40px rgba(16, 185, 129, 0.08);
+
+      /* Radius */
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+
+      /* Font */
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-emerald) var(--bg-surface);
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-body);
+      color: var(--text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ============================================
+       SCROLLBAR
+       ============================================ */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-body); }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--accent-emerald), var(--accent-blue));
+      border-radius: 10px;
+    }
+
+    /* ============================================
+       HERO SECTION
+       ============================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 4rem 2rem;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(16, 185, 129, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 40% at 10% 90%, rgba(168, 85, 247, 0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: var(--accent-emerald-dim);
+      border: 1px solid var(--border-glow-emerald);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-emerald);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--accent-emerald);
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1.1;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 0.8s ease-out 0.15s both;
+    }
+
+    .hero h1 .gradient-text {
+      background: linear-gradient(135deg, var(--accent-emerald) 0%, var(--accent-blue) 50%, var(--accent-purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      max-width: 640px;
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      margin-top: 1.5rem;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 3rem;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 0.8s ease-out 0.45s both;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent-emerald), var(--accent-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-stat-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      animation: bounce-scroll 2.5s ease-in-out infinite;
+    }
+
+    .hero-scroll-indicator svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--text-muted);
+    }
+
+    @keyframes bounce-scroll {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================
+       TABLE OF CONTENTS (NAV)
+       ============================================ */
+    .toc-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-glass);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0 1rem;
+    }
+
+    .toc-nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .toc-nav-inner::-webkit-scrollbar { display: none; }
+
+    .toc-nav-brand {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--accent-emerald);
+      margin-right: 2rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+      padding: 1rem 0;
+    }
+
+    .toc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 1rem 0.85rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: all 0.25s ease;
+    }
+
+    .toc-link:hover {
+      color: var(--text-primary);
+      border-bottom-color: var(--accent-emerald);
+    }
+
+    /* ============================================
+       MAIN CONTAINER
+       ============================================ */
+    .main-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ============================================
+       CATEGORY SECTION
+       ============================================ */
+    .category-section {
+      padding: 5rem 0 3rem;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .category-image-wrapper {
+      width: 200px;
+      height: 200px;
+      flex-shrink: 0;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-card);
+      background: var(--bg-card);
+      box-shadow: var(--shadow-card);
+    }
+
+    .category-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .category-emoji-fallback {
+      width: 200px;
+      height: 200px;
+      flex-shrink: 0;
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      border: 1px solid var(--border-card);
+      box-shadow: var(--shadow-card);
+    }
+
+    .category-meta {
+      flex: 1;
+    }
+
+    .category-letter {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent-emerald);
+      background: var(--accent-emerald-dim);
+      border: 1px solid var(--border-glow-emerald);
+      padding: 4px 12px;
+      border-radius: 100px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .category-title {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .category-description {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      max-width: 560px;
+    }
+
+    .category-problem-count {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      padding: 5px 14px;
+      border-radius: 100px;
+    }
+
+    /* ============================================
+       PROBLEM CARD
+       ============================================ */
+    .problem-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 1.25rem;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+
+    .problem-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      border-radius: 4px 0 0 4px;
+    }
+
+    .problem-card[data-severity="critique"]::before { background: var(--accent-red); }
+    .problem-card[data-severity="majeur"]::before { background: var(--accent-orange); }
+    .problem-card[data-severity="modéré"]::before { background: var(--accent-amber); }
+    .problem-card[data-severity="mineur"]::before { background: var(--accent-blue); }
+
+    .problem-card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(148, 163, 184, 0.18);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .problem-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .problem-number {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent-emerald);
+      background: var(--accent-emerald-dim);
+      border: 1px solid var(--border-glow-emerald);
+      padding: 3px 12px;
+      border-radius: 6px;
+    }
+
+    .severity-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 4px 14px;
+      border-radius: 100px;
+    }
+
+    .severity-badge.critique {
+      color: var(--accent-red);
+      background: var(--accent-red-dim);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+    }
+
+    .severity-badge.majeur {
+      color: var(--accent-orange);
+      background: var(--accent-orange-dim);
+      border: 1px solid rgba(249, 115, 22, 0.25);
+    }
+
+    .severity-badge.modere {
+      color: var(--accent-amber);
+      background: var(--accent-amber-dim);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+    }
+
+    .severity-badge.mineur {
+      color: var(--accent-blue);
+      background: var(--accent-blue-dim);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+    }
+
+    .problem-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.3px;
+    }
+
+    .problem-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .detail-block {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.1rem;
+    }
+
+    .detail-block-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.6rem;
+    }
+
+    .detail-block-label.cas { color: var(--accent-blue); }
+    .detail-block-label.impact { color: var(--accent-red); }
+    .detail-block-label.solution { color: var(--accent-emerald); }
+
+    .detail-block p, .detail-block ul {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .detail-block ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .detail-block ul li {
+      position: relative;
+      padding-left: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .detail-block ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent-emerald);
+      font-weight: 600;
+    }
+
+    /* ============================================
+       DIVIDER
+       ============================================ */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-card), transparent);
+      margin: 1rem 0;
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .report-footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border-subtle);
+      margin-top: 4rem;
+    }
+
+    .report-footer p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .report-footer .footer-brand {
+      font-weight: 800;
+      color: var(--accent-emerald);
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ============================================
+       SUMMARY STATS BAR
+       ============================================ */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .stat-card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-card-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+    }
+
+    .stat-card-value.critique { color: var(--accent-red); }
+    .stat-card-value.majeur { color: var(--accent-orange); }
+    .stat-card-value.modere { color: var(--accent-amber); }
+    .stat-card-value.mineur { color: var(--accent-blue); }
+
+    .stat-card-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 900px) {
+      .category-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .problem-detail-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .stats-bar {
+        grid-template-columns: 1fr;
+      }
+
+      .category-image-wrapper,
+      .category-emoji-fallback {
+        width: 140px;
+        height: 140px;
+      }
+
+      .problem-card {
+        padding: 1.25rem;
+      }
+    }
+
+    /* ============================================
+       ANIMATIONS — SCROLL REVEAL
+       ============================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================
+       PROPOSALS SECTION — NEW UX FEATURES
+       ============================================ */
+    .proposals-hero {
+      position: relative;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      overflow: hidden;
+    }
+
+    .proposals-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(168, 85, 247, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .proposals-hero h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .proposals-hero h2 .gradient-text-purple {
+      background: linear-gradient(135deg, var(--accent-purple) 0%, #ec4899 50%, var(--accent-orange) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .proposals-hero p {
+      max-width: 640px;
+      margin: 0 auto;
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .proposal-count-bar {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .proposal-count-item {
+      text-align: center;
+    }
+
+    .proposal-count-value {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent-purple), #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .proposal-count-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Proposal Card */
+    .proposal-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 2rem;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .proposal-card:hover {
+      border-color: rgba(168, 85, 247, 0.25);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(168, 85, 247, 0.08);
+    }
+
+    .proposal-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .proposal-card-image {
+      width: 180px;
+      height: 180px;
+      flex-shrink: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .proposal-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .proposal-card-meta {
+      flex: 1;
+    }
+
+    .proposal-number {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent-purple);
+      background: var(--accent-purple-dim);
+      border: 1px solid rgba(168, 85, 247, 0.25);
+      padding: 3px 12px;
+      border-radius: 6px;
+      margin-right: 8px;
+    }
+
+    .proposal-type-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 3px 12px;
+      border-radius: 100px;
+    }
+
+    .proposal-type-badge.social {
+      color: #ec4899;
+      background: rgba(236, 72, 153, 0.12);
+      border: 1px solid rgba(236, 72, 153, 0.25);
+    }
+
+    .proposal-type-badge.gamification {
+      color: var(--accent-purple);
+      background: var(--accent-purple-dim);
+      border: 1px solid rgba(168, 85, 247, 0.25);
+    }
+
+    .proposal-type-badge.discovery {
+      color: var(--accent-orange);
+      background: var(--accent-orange-dim);
+      border: 1px solid rgba(249, 115, 22, 0.25);
+    }
+
+    .proposal-type-badge.simplicity {
+      color: var(--accent-emerald);
+      background: var(--accent-emerald-dim);
+      border: 1px solid var(--border-glow-emerald);
+    }
+
+    .proposal-type-badge.personalization {
+      color: var(--accent-blue);
+      background: var(--accent-blue-dim);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+    }
+
+    .proposal-type-badge.experience {
+      color: var(--accent-amber);
+      background: var(--accent-amber-dim);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+    }
+
+    .proposal-card-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-top: 0.75rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.3px;
+    }
+
+    .proposal-card-description {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* Interactive Demo Container */
+    .demo-container {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      padding: 2rem;
+    }
+
+    .demo-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--accent-purple);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* — Live Feed Demo — */
+    .live-feed {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .live-feed-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+      animation: feedSlideIn 0.6s ease-out both;
+    }
+
+    .live-feed-item:nth-child(1) { animation-delay: 0.1s; }
+    .live-feed-item:nth-child(2) { animation-delay: 0.4s; }
+    .live-feed-item:nth-child(3) { animation-delay: 0.7s; }
+    .live-feed-item:nth-child(4) { animation-delay: 1.0s; }
+
+    @keyframes feedSlideIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .feed-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .feed-text {
+      flex: 1;
+      font-size: 0.85rem;
+    }
+
+    .feed-name { font-weight: 700; color: var(--text-primary); }
+    .feed-action { color: var(--text-secondary); }
+    .feed-food { color: var(--accent-emerald); font-weight: 600; }
+    .feed-searching { color: var(--accent-amber); font-style: italic; }
+
+    .feed-reactions {
+      display: flex;
+      gap: 4px;
+    }
+
+    .feed-reaction {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .feed-reaction:hover {
+      background: var(--accent-purple-dim);
+      border-color: rgba(168, 85, 247, 0.3);
+      transform: scale(1.1);
+    }
+
+    /* — Progress Demo — */
+    .progress-demo {
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .progress-dots {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .progress-dot {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: all 0.5s ease;
+    }
+
+    .progress-dot.filled {
+      background: var(--accent-emerald);
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.4);
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+
+    .progress-dot.empty {
+      background: var(--bg-card);
+      border: 2px dashed var(--text-muted);
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { box-shadow: 0 0 16px rgba(16, 185, 129, 0.4); }
+      50% { box-shadow: 0 0 24px rgba(16, 185, 129, 0.7); }
+    }
+
+    .progress-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .progress-text strong {
+      color: var(--accent-emerald);
+    }
+
+    .progress-cta {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-orange);
+      animation: ctaBlink 2s ease-in-out infinite;
+    }
+
+    @keyframes ctaBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* — Swipe Demo — */
+    .swipe-demo {
+      max-width: 340px;
+      margin: 0 auto;
+      position: relative;
+      height: 240px;
+    }
+
+    .swipe-card-demo {
+      position: absolute;
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .swipe-card-demo.back-card {
+      transform: scale(0.92) translateY(12px);
+      opacity: 0.5;
+      z-index: 1;
+    }
+
+    .swipe-card-demo.front-card {
+      z-index: 2;
+      animation: swipeRight 4s ease-in-out infinite;
+    }
+
+    @keyframes swipeRight {
+      0%, 40% { transform: translateX(0) rotate(0deg); opacity: 1; }
+      55% { transform: translateX(120px) rotate(8deg); opacity: 0.6; }
+      56% { transform: translateX(-120px) rotate(-5deg); opacity: 0; }
+      70% { transform: translateX(0) rotate(0deg); opacity: 0; }
+      85% { transform: translateX(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateX(0) rotate(0deg); opacity: 1; }
+    }
+
+    .swipe-food-emoji { font-size: 3rem; margin-bottom: 0.5rem; }
+    .swipe-food-name { font-size: 1.1rem; font-weight: 700; }
+    .swipe-food-price { color: var(--accent-emerald); font-weight: 600; font-size: 0.95rem; }
+    .swipe-food-time { color: var(--text-muted); font-size: 0.8rem; margin-top: 4px; }
+
+    .swipe-actions {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 0.75rem;
+    }
+
+    .swipe-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      border: 2px solid;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .swipe-btn.dislike {
+      border-color: rgba(239, 68, 68, 0.3);
+      color: var(--accent-red);
+    }
+
+    .swipe-btn.like {
+      border-color: var(--border-glow-emerald);
+      color: var(--accent-emerald);
+    }
+
+    .swipe-btn:hover { transform: scale(1.15); }
+
+    /* — Roulette Demo — */
+    .roulette-demo {
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .roulette-wheel {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      background: conic-gradient(
+        var(--accent-emerald) 0deg 72deg,
+        var(--accent-orange) 72deg 144deg,
+        var(--accent-purple) 144deg 216deg,
+        var(--accent-blue) 216deg 288deg,
+        #ec4899 288deg 360deg
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: rouletteSpin 6s cubic-bezier(0.2, 0.8, 0.3, 1) infinite;
+      box-shadow: 0 0 24px rgba(168, 85, 247, 0.2);
+    }
+
+    .roulette-wheel::after {
+      content: '';
+      width: 60px;
+      height: 60px;
+      background: var(--bg-card);
+      border-radius: 50%;
+      position: absolute;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes rouletteSpin {
+      0% { transform: rotate(0deg); }
+      70% { transform: rotate(1440deg); }
+      100% { transform: rotate(1440deg); }
+    }
+
+    .roulette-pointer {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.5rem;
+      z-index: 3;
+    }
+
+    .vote-results {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 1rem;
+    }
+
+    .vote-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .vote-label {
+      width: 120px;
+      text-align: right;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .vote-bar-bg {
+      flex: 1;
+      height: 24px;
+      background: var(--bg-card);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .vote-bar-fill {
+      height: 100%;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: white;
+      transition: width 1.5s ease-out;
+    }
+
+    /* — Tracking Demo — */
+    .tracking-demo {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .tracking-step {
+      display: flex;
+      gap: 16px;
+      position: relative;
+    }
+
+    .tracking-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 28px;
+      flex-shrink: 0;
+    }
+
+    .tracking-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    .tracking-dot.done {
+      background: var(--accent-emerald);
+      color: white;
+    }
+
+    .tracking-dot.active {
+      background: var(--accent-orange);
+      color: white;
+      animation: dotPulse 1.5s ease-in-out infinite;
+    }
+
+    .tracking-dot.pending {
+      background: var(--bg-card);
+      border: 2px solid var(--text-muted);
+      color: var(--text-muted);
+    }
+
+    .tracking-connector {
+      width: 2px;
+      flex: 1;
+      min-height: 24px;
+      margin: 4px 0;
+    }
+
+    .tracking-connector.done { background: var(--accent-emerald); }
+    .tracking-connector.pending { background: var(--text-muted); opacity: 0.3; }
+
+    .tracking-content {
+      padding-bottom: 20px;
+      flex: 1;
+    }
+
+    .tracking-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 2px;
+    }
+
+    .tracking-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* — Badge Demo — */
+    .badges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .badge-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .badge-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card);
+      border-color: rgba(168, 85, 247, 0.25);
+    }
+
+    .badge-icon { font-size: 2.2rem; margin-bottom: 0.5rem; }
+    .badge-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 2px; }
+    .badge-desc { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* — Share Buttons Demo — */
+    .share-buttons-demo {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .share-btn-demo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+    }
+
+    .share-btn-demo:hover { transform: translateY(-2px); box-shadow: var(--shadow-card); }
+    .share-btn-demo.whatsapp { background: #25D366; }
+    .share-btn-demo.messenger { background: #0084FF; }
+    .share-btn-demo.instagram { background: linear-gradient(135deg, #833AB4, #E1306C, #F77737); }
+    .share-btn-demo.copy-link { background: var(--bg-card); border: 1px solid var(--border-card); color: var(--text-primary); }
+
+    /* — Countdown Demo — */
+    .countdown-demo {
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .countdown-digits {
+      font-family: var(--font-mono);
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+      background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.75rem;
+    }
+
+    .countdown-message {
+      font-size: 0.9rem;
+      color: var(--accent-orange);
+      font-weight: 600;
+      animation: ctaBlink 2.5s ease-in-out infinite;
+    }
+
+    /* — Micro-copy Demo — */
+    .microcopy-demo {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 460px;
+      margin: 0 auto;
+    }
+
+    .microcopy-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .microcopy-before {
+      flex: 1;
+      padding: 10px 14px;
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.15);
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    .microcopy-arrow {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      padding-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .microcopy-after {
+      flex: 1;
+      padding: 10px 14px;
+      background: var(--accent-emerald-dim);
+      border: 1px solid var(--border-glow-emerald);
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      color: var(--accent-emerald);
+      font-weight: 500;
+    }
+
+    /* — Dual Mode Demo — */
+    .dual-mode-demo {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .mode-card {
+      flex: 1;
+      background: var(--bg-card);
+      border: 2px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .mode-card:hover {
+      border-color: var(--accent-purple);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(168, 85, 247, 0.1);
+    }
+
+    .mode-card-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .mode-card-title { font-weight: 800; font-size: 1rem; margin-bottom: 0.25rem; }
+    .mode-card-desc { font-size: 0.78rem; color: var(--text-muted); }
+
+    /* — Steps Demo — */
+    .steps-demo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
+
+    .step-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      border: 2px solid var(--accent-emerald);
+      background: var(--accent-emerald-dim);
+    }
+
+    .step-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .step-arrow {
+      font-size: 1.5rem;
+      color: var(--accent-emerald);
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .proposal-card-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .swipe-demo { height: 260px; }
+
+      .dual-mode-demo {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================
+       HERO
+       ============================================ -->
+  <section class="hero" id="top">
+    <div class="hero-grid"></div>
+    <div class="hero-badge">
+      <span></span>Rapport d'Audit UX
+    </div>
+    <h1>
+      Analyse UX de<br />
+      <span class="gradient-text">Jiblina App</span>
+    </h1>
+    <p class="hero-subtitle">
+      Identification exhaustive des problèmes d'expérience utilisateur, des cas limites et des risques
+      pouvant impacter la fluidité, la confiance et la rétention des utilisateurs.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-value">40</div>
+        <div class="hero-stat-label">Problèmes identifiés</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">14</div>
+        <div class="hero-stat-label">Catégories</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">40</div>
+        <div class="hero-stat-label">Solutions proposées</div>
+      </div>
+    </div>
+    <div class="hero-scroll-indicator">
+      <span>Défiler</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+        <path d="M12 5v14M5 12l7 7 7-7" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ============================================
+       STICKY NAV
+       ============================================ -->
+  <nav class="toc-nav">
+    <div class="toc-nav-inner">
+      <div class="toc-nav-brand">🍕 Jiblina</div>
+      <a class="toc-link" href="#auth">🔐 Auth</a>
+      <a class="toc-link" href="#restaurant">🍽️ Restaurants</a>
+      <a class="toc-link" href="#search">🔍 Recherche</a>
+      <a class="toc-link" href="#cart">🛒 Panier</a>
+      <a class="toc-link" href="#payment">💳 Paiement</a>
+      <a class="toc-link" href="#delivery">🚐 Campus</a>
+      <a class="toc-link" href="#notifications">🔔 Notifs</a>
+      <a class="toc-link" href="#loyalty">⭐ Fidélité</a>
+      <a class="toc-link" href="#performance">⚡ Perf</a>
+      <a class="toc-link" href="#accessibility">♿ Accès</a>
+      <a class="toc-link" href="#security">🛡️ Sécurité</a>
+      <a class="toc-link" href="#group-order">👥 Groupes</a>
+      <a class="toc-link" href="#architecture">🏗️ Archi</a>
+      <a class="toc-link" href="#business">💼 Métier</a>
+      <a class="toc-link" href="#proposals" style="color: var(--accent-purple); font-weight: 700;">🚀 Propositions UX</a>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       MAIN CONTENT
+       ============================================ -->
+  <main class="main-container">
+
+    <!-- SEVERITY SUMMARY -->
+    <div class="stats-bar reveal">
+      <div class="stat-card">
+        <div class="stat-card-icon">🔴</div>
+        <div class="stat-card-value critique">12</div>
+        <div class="stat-card-label">Critique</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon">🟠</div>
+        <div class="stat-card-value majeur">11</div>
+        <div class="stat-card-label">Majeur</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon">🟡</div>
+        <div class="stat-card-value modere">10</div>
+        <div class="stat-card-label">Modéré</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon">🔵</div>
+        <div class="stat-card-value mineur">7</div>
+        <div class="stat-card-label">Mineur</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- =====================================================
+         A. AUTHENTIFICATION
+         ===================================================== -->
+    <section class="category-section reveal" id="auth">
+      <div class="category-header">
+        <div class="category-image-wrapper">
+          <img src="ux-audit-assets/auth.png" alt="Illustration Authentification" loading="lazy" />
+        </div>
+        <div class="category-meta">
+          <span class="category-letter">Section A</span>
+          <h2 class="category-title">Authentification</h2>
+          <p class="category-description">
+            Les flux de connexion et d'inscription sont la première impression de l'utilisateur. Tout friction ici impacte directement le taux de conversion.
+          </p>
+          <span class="category-problem-count">🐛 2 problèmes identifiés</span>
+        </div>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="problem-card reveal" data-severity="critique">
+        <div class="problem-top-row">
+          <span class="problem-number">#01</span>
+          <span class="severity-badge critique">Critique</span>
+        </div>
+        <h3 class="problem-title">Plusieurs comptes avec le même numéro de téléphone</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Un utilisateur peut créer plusieurs comptes avec le même numéro de téléphone ou la même adresse email, sans aucune vérification de doublon.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Fraude et multiplication de comptes fictifs</li>
+              <li>Abus systématique des promotions et coupons de bienvenue</li>
+              <li>Données utilisateurs polluées</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Vérification OTP par SMS obligatoire</li>
+              <li>Vérification email avec lien de confirmation</li>
+              <li>Blocage côté serveur des doublons (numéro / email)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="problem-card reveal" data-severity="majeur">
+        <div class="problem-top-row">
+          <span class="problem-number">#02</span>
+          <span class="severity-badge majeur">Majeur</span>
+        </div>
+        <h3 class="problem-title">Déconnexion pendant un paiement</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Le token d'authentification expire ou la session se termine alors que l'utilisateur est en plein processus de checkout.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Paiement interrompu brutalement</li>
+              <li>Perte du contenu du panier</li>
+              <li>Frustration extrême de l'utilisateur</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Refresh Token automatique en arrière-plan</li>
+              <li>Sauvegarder l'état du panier dans AsyncStorage avant toute déconnexion</li>
+              <li>Restaurer le panier après reconnexion</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- =====================================================
+         B. RESTAURANTS
+         ===================================================== -->
+    <section class="category-section reveal" id="restaurant">
+      <div class="category-header">
+        <div class="category-image-wrapper">
+          <img src="ux-audit-assets/restaurant.png" alt="Illustration Restaurants" loading="lazy" />
+        </div>
+        <div class="category-meta">
+          <span class="category-letter">Section B</span>
+          <h2 class="category-title">Restaurants</h2>
+          <p class="category-description">
+            L'état du restaurant (ouvert/fermé, temps de livraison) doit être fiable et mis à jour en temps réel pour éviter toute commande impossible.
+          </p>
+          <span class="category-problem-count">🐛 2 problèmes identifiés</span>
+        </div>
+      </div>
+
+      <!-- Problem 3 -->
+      <div class="problem-card reveal" data-severity="critique">
+        <div class="problem-top-row">
+          <span class="problem-number">#03</span>
+          <span class="severity-badge critique">Critique</span>
+        </div>
+        <h3 class="problem-title">Restaurant fermé pendant la commande</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Le restaurant ferme ses portes pendant que les utilisateurs composent leur commande. Ils ne sont pas informés en temps réel du changement de statut.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Commande impossible au moment de la validation</li>
+              <li>Temps perdu pour l'utilisateur</li>
+              <li>Perte de confiance envers l'application</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Vérification automatique du statut du restaurant juste avant le paiement</li>
+              <li>Notification immédiate Push si le restaurant change de statut</li>
+              <li>Proposition automatique de restaurants similaires ouverts</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 4 -->
+      <div class="problem-card reveal" data-severity="majeur">
+        <div class="problem-top-row">
+          <span class="problem-number">#04</span>
+          <span class="severity-badge majeur">Majeur</span>
+        </div>
+        <h3 class="problem-title">Temps de livraison qui augmente après paiement</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>L'utilisateur voit un temps estimé de "20 min" affiché avant le paiement. Après avoir payé, le temps passe à 45 minutes sans avertissement.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Frustration majeure de l'utilisateur</li>
+              <li>Impression de publicité mensongère</li>
+              <li>Augmentation du taux de plaintes</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Mise à jour en temps réel du temps de livraison sur l'écran de tracking</li>
+              <li>Si le délai change fortement avant le paiement : afficher un écran de confirmation intermédiaire</li>
+              <li>Possibilité d'annuler gratuitement si le délai dépasse un seuil</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- =====================================================
+         C. RECHERCHE
+         ===================================================== -->
+    <section class="category-section reveal" id="search">
+      <div class="category-header">
+        <div class="category-image-wrapper">
+          <img src="ux-audit-assets/search.png" alt="Illustration Recherche" loading="lazy" />
+        </div>
+        <div class="category-meta">
+          <span class="category-letter">Section C</span>
+          <h2 class="category-title">Recherche & Filtres</h2>
+          <p class="category-description">
+            Un système de recherche fiable est essentiel. Des résultats obsolètes ou un filtrage incorrect détruisent la confiance de l'utilisateur.
+          </p>
+          <span class="category-problem-count">🐛 2 problèmes identifiés</span>
+        </div>
+      </div>
+
+      <!-- Problem 5 -->
+      <div class="problem-card reveal" data-severity="modéré">
+        <div class="problem-top-row">
+          <span class="problem-number">#05</span>
+          <span class="severity-badge modere">Modéré</span>
+        </div>
+        <h3 class="problem-title">Résultats de recherche obsolètes</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Un plat est affiché dans les résultats de recherche alors qu'il n'est plus disponible au restaurant. L'utilisateur le sélectionne et découvre l'erreur trop tard.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Choix impossible au moment de l'ajout au panier</li>
+              <li>Expérience utilisateur frustrante</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Actualiser les données de disponibilité à chaque ouverture de la fiche restaurant</li>
+              <li>Afficher un badge "Indisponible" en gris sur les plats épuisés</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 6 -->
+      <div class="problem-card reveal" data-severity="majeur">
+        <div class="problem-top-row">
+          <span class="problem-number">#06</span>
+          <span class="severity-badge majeur">Majeur</span>
+        </div>
+        <h3 class="problem-title">Mauvais filtrage (Végétarien, Sans Gluten)</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Le filtre "Végétarien" ou "Sans Gluten" retourne des plats incorrects qui ne correspondent pas au régime sélectionné.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Risque sanitaire réel (allergies)</li>
+              <li>Non-respect des convictions religieuses ou alimentaires</li>
+              <li>Responsabilité juridique potentielle</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Validation stricte des tags côté back-end</li>
+              <li>Processus de vérification avec les restaurants partenaires</li>
+              <li>Icônes visuelles claires pour chaque régime</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- =====================================================
+         D. PANIER
+         ===================================================== -->
+    <section class="category-section reveal" id="cart">
+      <div class="category-header">
+        <div class="category-image-wrapper">
+          <img src="ux-audit-assets/cart.png" alt="Illustration Panier" loading="lazy" />
+        </div>
+        <div class="category-meta">
+          <span class="category-letter">Section D</span>
+          <h2 class="category-title">Panier</h2>
+          <p class="category-description">
+            Le panier est le point de convergence avant le paiement. Toute incohérence (produit retiré, prix modifié) crée un sentiment de méfiance.
+          </p>
+          <span class="category-problem-count">🐛 2 problèmes identifiés</span>
+        </div>
+      </div>
+
+      <!-- Problem 7 -->
+      <div class="problem-card reveal" data-severity="majeur">
+        <div class="problem-top-row">
+          <span class="problem-number">#07</span>
+          <span class="severity-badge majeur">Majeur</span>
+        </div>
+        <h3 class="problem-title">Produit supprimé par le restaurant</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Le restaurant retire un plat de son menu pendant que l'utilisateur l'a encore dans son panier. Le panier devient invalide sans explication.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Le panier se bloque ou affiche des erreurs</li>
+              <li>L'utilisateur ne comprend pas pourquoi il ne peut pas valider</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Suppression automatique de l'article indisponible du panier</li>
+              <li>Notification claire avec proposition d'un plat similaire</li>
+              <li>Recalcul immédiat du total</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 8 -->
+      <div class="problem-card reveal" data-severity="majeur">
+        <div class="problem-top-row">
+          <span class="problem-number">#08</span>
+          <span class="severity-badge majeur">Majeur</span>
+        </div>
+        <h3 class="problem-title">Prix modifié sans avertissement</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Le prix d'un plat passe de 65 DH à 72 DH pendant que l'utilisateur a le produit dans son panier, sans qu'il ne soit informé.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Mauvaise surprise au moment du paiement</li>
+              <li>Sentiment d'arnaque</li>
+              <li>Abandon de panier</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Afficher une alerte visuelle avant le paiement avec l'ancien et le nouveau prix</li>
+              <li>Mettre en surbrillance le changement de prix dans le panier</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- =====================================================
+         E. PAIEMENT
+         ===================================================== -->
+    <section class="category-section reveal" id="payment">
+      <div class="category-header">
+        <div class="category-image-wrapper">
+          <img src="ux-audit-assets/payment.png" alt="Illustration Paiement" loading="lazy" />
+        </div>
+        <div class="category-meta">
+          <span class="category-letter">Section E</span>
+          <h2 class="category-title">Paiement</h2>
+          <p class="category-description">
+            Le paiement est le moment le plus sensible du parcours. Toute erreur ici a un impact direct sur l'argent de l'utilisateur et la réputation de l'application.
+          </p>
+          <span class="category-problem-count">🐛 3 problèmes identifiés</span>
+        </div>
+      </div>
+
+      <!-- Problem 9 -->
+      <div class="problem-card reveal" data-severity="critique">
+        <div class="problem-top-row">
+          <span class="problem-number">#09</span>
+          <span class="severity-badge critique">Critique</span>
+        </div>
+        <h3 class="problem-title">Double paiement</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>L'utilisateur clique plusieurs fois sur le bouton "Payer" à cause d'un temps de réponse lent, ce qui déclenche deux transactions distinctes.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>L'utilisateur est débité deux fois</li>
+              <li>Processus de remboursement compliqué</li>
+              <li>Perte de confiance immédiate</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Désactiver le bouton immédiatement après le premier clic</li>
+              <li>Afficher un spinner de chargement</li>
+              <li>Implémenter l'idempotence côté serveur (même requête = même résultat)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 10 -->
+      <div class="problem-card reveal" data-severity="critique">
+        <div class="problem-top-row">
+          <span class="problem-number">#10</span>
+          <span class="severity-badge critique">Critique</span>
+        </div>
+        <h3 class="problem-title">Paiement accepté mais commande non créée</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Le paiement réussit côté passerelle bancaire, mais le serveur de l'application tombe en panne avant de créer la commande correspondante.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>L'utilisateur est débité sans recevoir de commande</li>
+              <li>Pas de preuve de commande dans l'historique</li>
+              <li>Nécessité d'un remboursement manuel</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Transaction atomique : paiement + création de commande dans la même opération</li>
+              <li>Système de reprise automatique (retry + webhook)</li>
+              <li>Écran "Vérification en cours…" avec suivi de la réconciliation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 11 -->
+      <div class="problem-card reveal" data-severity="critique">
+        <div class="problem-top-row">
+          <span class="problem-number">#11</span>
+          <span class="severity-badge critique">Critique</span>
+        </div>
+        <h3 class="problem-title">Paiement refusé après validation du groupe</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Dans une commande groupée, tous les membres ont payé sauf un dont le paiement est refusé. La commande est bloquée pour tout le monde.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Blocage de l'ensemble du groupe</li>
+              <li>Frustration collective</li>
+              <li>Perte de la réduction de groupe</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Définir un délai de remplacement (ex: 5 min pour trouver un remplaçant)</li>
+              <li>Proposer à l'hôte de couvrir la part restante</li>
+              <li>Permettre de poursuivre sans le membre défaillant (avec recalcul de la réduction)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- =====================================================
+         F. LIVRAISON PAR CAMIONNETTE VERS LE CAMPUS
+         ===================================================== -->
+    <section class="category-section reveal" id="delivery">
+      <div class="category-header">
+        <div class="category-image-wrapper">
+          <img src="ux-audit-assets/delivery.png" alt="Illustration Livraison Campus" loading="lazy" />
+        </div>
+        <div class="category-meta">
+          <span class="category-letter">Section F</span>
+          <h2 class="category-title">Livraison par Camionnette vers le Campus</h2>
+          <p class="category-description">
+            Toutes les commandes sont regroupées et livrées par une seule camionnette vers le campus de l'école. Ce modèle mutualisé introduit des problèmes de coordination, de distribution et de traçabilité spécifiques.
+          </p>
+          <span class="category-problem-count">🐛 4 problèmes identifiés</span>
+        </div>
+      </div>
+
+      <!-- Problem 12 -->
+      <div class="problem-card reveal" data-severity="critique">
+        <div class="problem-top-row">
+          <span class="problem-number">#12</span>
+          <span class="severity-badge critique">Critique</span>
+        </div>
+        <h3 class="problem-title">Synchronisation du créneau de collecte entre restaurants</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>La camionnette doit collecter les commandes de plusieurs restaurants avant de partir vers le campus. Si un restaurant prend du retard dans la préparation, la camionnette attend et toutes les autres commandes (déjà prêtes) refroidissent ou arrivent en retard.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Un seul restaurant en retard pénalise tous les groupes</li>
+              <li>Repas froids pour les commandes prêtes depuis longtemps</li>
+              <li>Heure d'arrivée au campus imprévisible</li>
+              <li>Frustration collective des étudiants qui attendent</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Définir un horaire de départ fixe : la camionnette part à l'heure prévue, avec ou sans les commandes en retard</li>
+              <li>Notifier les groupes impactés immédiatement si un restaurant est en retard</li>
+              <li>Proposer un remboursement ou un report pour les commandes non collectées à temps</li>
+              <li>Afficher un statut en temps réel "Collecte en cours chez Restaurant X (3/5)"</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 13 -->
+      <div class="problem-card reveal" data-severity="critique">
+        <div class="problem-top-row">
+          <span class="problem-number">#13</span>
+          <span class="severity-badge critique">Critique</span>
+        </div>
+        <h3 class="problem-title">Confusion lors de la distribution au campus</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>La camionnette arrive au campus avec 30+ commandes de différents groupes. Il n'y a pas de système clair pour identifier quel sac appartient à quel groupe ou quel étudiant. Plusieurs personnes se présentent en même temps pour récupérer leur commande.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Échanges de commandes entre groupes (mauvais sac distribué)</li>
+              <li>Files d'attente chaotiques au point de distribution</li>
+              <li>Articles manquants ou attribués à la mauvaise personne</li>
+              <li>Expérience stressante au lieu d'un moment convivial</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Attribuer un code de retrait unique par groupe (ex: code QR ou code à 4 chiffres)</li>
+              <li>Étiqueter chaque sac avec le nom du groupe + numéro de commande</li>
+              <li>Notification Push "La camionnette est arrivée — présentez le code : <strong>J7K2</strong>"</li>
+              <li>Désigner un seul responsable de récupération par groupe (l'hôte)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 14 -->
+      <div class="problem-card reveal" data-severity="majeur">
+        <div class="problem-top-row">
+          <span class="problem-number">#14</span>
+          <span class="severity-badge majeur">Majeur</span>
+        </div>
+        <h3 class="problem-title">Tracking limité — Seul l'hôte voit la position de la camionnette</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>L'écran de suivi montre la position de la camionnette en temps réel, mais uniquement pour l'hôte du groupe. Les autres membres du groupe (les étudiants qui attendent leur repas) n'ont aucune visibilité et demandent sans cesse "C'est pour quand ?".</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>L'hôte est harcelé de messages par les membres du groupe</li>
+              <li>Les membres ne savent pas quand descendre pour récupérer la commande</li>
+              <li>Mauvaise expérience pour tous les participants sauf l'hôte</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Partager le lien de tracking avec tous les membres du groupe</li>
+              <li>Envoyer des notifications d'étapes collectives : "Camionnette en route", "Arrivée dans 5 min", "Arrivée au point de distribution"</li>
+              <li>Afficher un ETA (Estimated Time of Arrival) mis à jour en temps réel pour chaque membre</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 15-bis (nouveau) -->
+      <div class="problem-card reveal" data-severity="majeur">
+        <div class="problem-top-row">
+          <span class="problem-number">#14b</span>
+          <span class="severity-badge majeur">Majeur</span>
+        </div>
+        <h3 class="problem-title">Retard de la camionnette impactant tous les groupes simultanément</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>La camionnette est bloquée dans les embouteillages, tombe en panne, ou subit un retard imprévu. Comme toutes les commandes sont dans un seul véhicule, un retard impacte simultanément tous les groupes du campus (potentiellement 10+ groupes).</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Retard massif affectant des dizaines d'étudiants en même temps</li>
+              <li>Avalanche de plaintes et de demandes de remboursement</li>
+              <li>Repas froids pour l'ensemble des commandes</li>
+              <li>Risque de perdre la confiance de toute la base utilisateur du campus</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Notification proactive groupée à tous les utilisateurs concernés avec l'ETA mis à jour</li>
+              <li>Offrir un bon de compensation automatique si le retard dépasse un seuil (ex: 20 min)</li>
+              <li>Prévoir un plan B : deuxième camionnette ou partenaire de livraison de secours</li>
+              <li>Afficher un statut global "Livraison campus retardée — Nouvelle heure estimée : 13h15"</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- =====================================================
+         G. NOTIFICATIONS
+         ===================================================== -->
+    <section class="category-section reveal" id="notifications">
+      <div class="category-header">
+        <div class="category-image-wrapper">
+          <img src="ux-audit-assets/notification.png" alt="Illustration Notifications" loading="lazy" />
+        </div>
+        <div class="category-meta">
+          <span class="category-letter">Section G</span>
+          <h2 class="category-title">Notifications</h2>
+          <p class="category-description">
+            Les notifications sont un outil puissant s'il est bien dosé. Trop de notifications spamment l'utilisateur ; pas assez, il est désinformé.
+          </p>
+          <span class="category-problem-count">🐛 2 problèmes identifiés</span>
+        </div>
+      </div>
+
+      <!-- Problem 15 -->
+      <div class="problem-card reveal" data-severity="modéré">
+        <div class="problem-top-row">
+          <span class="problem-number">#15</span>
+          <span class="severity-badge modere">Modéré</span>
+        </div>
+        <h3 class="problem-title">Trop de notifications (Spam)</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Dans une commande groupée de 10 personnes, chaque modification (ajout/retrait de plat) envoie une notification Push à tous les membres du groupe.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>L'utilisateur reçoit des dizaines de notifications en quelques minutes</li>
+              <li>Désactivation des notifications Push par l'utilisateur</li>
+              <li>Les notifications importantes sont noyées</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Regrouper les notifications par lot (ex: "3 personnes ont modifié leur commande")</li>
+              <li>Définir des niveaux de priorité (critique / info)</li>
+              <li>Offrir des préférences de notification par type</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 16 -->
+      <div class="problem-card reveal" data-severity="modéré">
+        <div class="problem-top-row">
+          <span class="problem-number">#16</span>
+          <span class="severity-badge modere">Modéré</span>
+        </div>
+        <h3 class="problem-title">Notifications perdues</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Les notifications Push ne sont pas reçues car l'utilisateur a fermé l'app, est en mode avion, ou le service Push est instable.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>L'utilisateur manque des informations critiques (livreur arrivé, groupe validé…)</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Synchronisation des notifications manquées au retour dans l'application</li>
+              <li>Centre de notifications in-app avec historique complet</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- =====================================================
+         H. FIDÉLITÉ
+         ===================================================== -->
+    <section class="category-section reveal" id="loyalty">
+      <div class="category-header">
+        <div class="category-image-wrapper">
+          <img src="ux-audit-assets/loyalty.png" alt="Illustration Fidélité" loading="lazy" />
+        </div>
+        <div class="category-meta">
+          <span class="category-letter">Section H</span>
+          <h2 class="category-title">Programme de Fidélité</h2>
+          <p class="category-description">
+            Le programme de fidélité est un levier de rétention. Son abus ou son manque de transparence peut toutefois se retourner contre l'application.
+          </p>
+          <span class="category-problem-count">🐛 2 problèmes identifiés</span>
+        </div>
+      </div>
+
+      <!-- Problem 17 -->
+      <div class="problem-card reveal" data-severity="critique">
+        <div class="problem-top-row">
+          <span class="problem-number">#17</span>
+          <span class="severity-badge critique">Critique</span>
+        </div>
+        <h3 class="problem-title">Utilisation abusive des coupons</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Un utilisateur crée de faux comptes pour profiter plusieurs fois des coupons de bienvenue ou des offres promotionnelles limitées à un seul usage.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Pertes financières pour l'entreprise</li>
+              <li>Dévaluation du programme de fidélité</li>
+              <li>Injustice envers les utilisateurs légitimes</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Limiter les coupons par appareil (device fingerprint)</li>
+              <li>Limiter par numéro de téléphone vérifié</li>
+              <li>Détection de patterns frauduleux (même adresse, même carte bancaire)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 18 -->
+      <div class="problem-card reveal" data-severity="modéré">
+        <div class="problem-top-row">
+          <span class="problem-number">#18</span>
+          <span class="severity-badge modere">Modéré</span>
+        </div>
+        <h3 class="problem-title">Points expirés sans avertissement</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Les points de fidélité expirent après une certaine période, mais l'utilisateur n'est pas averti avant leur expiration.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Perte de points accumulés</li>
+              <li>Sentiment d'injustice et frustration</li>
+              <li>Désengagement du programme de fidélité</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Notification Push quelques jours avant l'expiration</li>
+              <li>Afficher la date d'expiration dans l'onglet fidélité</li>
+              <li>Proposer une action rapide pour utiliser les points (ex: "Utilisez vos 150 pts avant le 15 août")</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- =====================================================
+         I. PERFORMANCE
+         ===================================================== -->
+    <section class="category-section reveal" id="performance">
+      <div class="category-header">
+        <div class="category-image-wrapper">
+          <img src="ux-audit-assets/performance.png" alt="Illustration Performance" loading="lazy" />
+        </div>
+        <div class="category-meta">
+          <span class="category-letter">Section I</span>
+          <h2 class="category-title">Performance</h2>
+          <p class="category-description">
+            Une application lente est une application abandonnée. Chaque seconde de chargement supplémentaire augmente le taux d'abandon de 7%.
+          </p>
+          <span class="category-problem-count">🐛 2 problèmes identifiés</span>
+        </div>
+      </div>
+
+      <!-- Problem 19 -->
+      <div class="problem-card reveal" data-severity="modéré">
+        <div class="problem-top-row">
+          <span class="problem-number">#19</span>
+          <span class="severity-badge modere">Modéré</span>
+        </div>
+        <h3 class="problem-title">Images trop lourdes</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Les images de plats et de restaurants sont en haute résolution non compressée, ce qui ralentit considérablement le chargement de la page d'accueil.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Chargement lent, surtout en 3G/4G faible</li>
+              <li>Consommation excessive de données mobiles</li>
+              <li>Augmentation du taux de rebond</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Compression automatique des images (WebP)</li>
+              <li>Mise en cache locale agressive</li>
+              <li>Chargement progressif (blur placeholder → image nette)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 20 -->
+      <div class="problem-card reveal" data-severity="modéré">
+        <div class="problem-top-row">
+          <span class="problem-number">#20</span>
+          <span class="severity-badge modere">Modéré</span>
+        </div>
+        <h3 class="problem-title">Trop de requêtes API simultanées</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>L'écran d'accueil déclenche simultanément de nombreuses requêtes API (restaurants, catégories, promotions, groupes…), ce qui surcharge le réseau.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Application lente et interface gelée</li>
+              <li>Surcharge du serveur back-end</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Pagination des résultats</li>
+              <li>Cache intelligent avec invalidation</li>
+              <li>Lazy loading des sections hors écran</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- =====================================================
+         J. ACCESSIBILITÉ
+         ===================================================== -->
+    <section class="category-section reveal" id="accessibility">
+      <div class="category-header">
+        <div class="category-image-wrapper">
+          <img src="ux-audit-assets/accessibility.png" alt="Illustration Accessibilité" loading="lazy" />
+        </div>
+        <div class="category-meta">
+          <span class="category-letter">Section J</span>
+          <h2 class="category-title">Accessibilité</h2>
+          <p class="category-description">
+            Une application accessible est une application inclusive. 15% de la population mondiale vit avec un handicap.
+          </p>
+          <span class="category-problem-count">🐛 3 problèmes identifiés</span>
+        </div>
+      </div>
+
+      <!-- Problem 21 -->
+      <div class="problem-card reveal" data-severity="mineur">
+        <div class="problem-top-row">
+          <span class="problem-number">#21</span>
+          <span class="severity-badge mineur">Mineur</span>
+        </div>
+        <h3 class="problem-title">Contraste insuffisant</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Certains textes (surtout les textes secondaires en gris clair) n'offrent pas un contraste suffisant avec le fond, rendant la lecture difficile.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Texte illisible pour les personnes malvoyantes</li>
+              <li>Fatigue oculaire en plein soleil</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Respecter les normes WCAG 2.1 (ratio minimum 4.5:1 pour le texte)</li>
+              <li>Auditer tous les composants avec un outil de vérification de contraste</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 22 -->
+      <div class="problem-card reveal" data-severity="mineur">
+        <div class="problem-top-row">
+          <span class="problem-number">#22</span>
+          <span class="severity-badge mineur">Mineur</span>
+        </div>
+        <h3 class="problem-title">Taille des textes non adaptative</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>L'utilisateur active le zoom système sur son téléphone (paramètres d'accessibilité), mais les textes de l'application ne s'agrandissent pas.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Texte trop petit pour les personnes avec une faible acuité visuelle</li>
+              <li>Non-conformité aux guidelines d'accessibilité iOS/Android</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Supporter le zoom système (Dynamic Type sur iOS, fontScale sur Android)</li>
+              <li>Utiliser des unités relatives plutôt que des tailles fixes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 23 -->
+      <div class="problem-card reveal" data-severity="mineur">
+        <div class="problem-top-row">
+          <span class="problem-number">#23</span>
+          <span class="severity-badge mineur">Mineur</span>
+        </div>
+        <h3 class="problem-title">Navigation au lecteur d'écran</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>L'application n'est pas compatible avec les lecteurs d'écran (VoiceOver / TalkBack). Les éléments interactifs ne sont pas correctement labellisés.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Application inutilisable pour les personnes aveugles ou malvoyantes</li>
+              <li>Non-conformité aux obligations légales d'accessibilité</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Ajouter des labels accessibilityLabel et accessibilityHint sur tous les éléments interactifs</li>
+              <li>Tester avec VoiceOver (iOS) et TalkBack (Android)</li>
+              <li>Assurer un ordre de navigation logique</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- =====================================================
+         K. SÉCURITÉ
+         ===================================================== -->
+    <section class="category-section reveal" id="security">
+      <div class="category-header">
+        <div class="category-image-wrapper">
+          <img src="ux-audit-assets/security.png" alt="Illustration Sécurité" loading="lazy" />
+        </div>
+        <div class="category-meta">
+          <span class="category-letter">Section K</span>
+          <h2 class="category-title">Sécurité</h2>
+          <p class="category-description">
+            Les failles de sécurité dans une application de livraison avec paiement en ligne peuvent avoir des conséquences financières et juridiques graves.
+          </p>
+          <span class="category-problem-count">🐛 3 problèmes identifiés</span>
+        </div>
+      </div>
+
+      <!-- Problem 24 -->
+      <div class="problem-card reveal" data-severity="critique">
+        <div class="problem-top-row">
+          <span class="problem-number">#24</span>
+          <span class="severity-badge critique">Critique</span>
+        </div>
+        <h3 class="problem-title">Lien d'invitation partagé publiquement</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Le lien d'invitation à un groupe est partagé sur les réseaux sociaux. Des personnes inconnues rejoignent le groupe et peuvent perturber la commande.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Intrusion de personnes inconnues dans le groupe</li>
+              <li>Modifications frauduleuses de la commande</li>
+              <li>Risque de harcèlement ou d'abus</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Expiration automatique du lien après un délai configurable</li>
+              <li>Code d'invitation complémentaire (lien + code PIN)</li>
+              <li>Validation obligatoire par l'hôte avant admission</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 25 -->
+      <div class="problem-card reveal" data-severity="critique">
+        <div class="problem-top-row">
+          <span class="problem-number">#25</span>
+          <span class="severity-badge critique">Critique</span>
+        </div>
+        <h3 class="problem-title">Modification frauduleuse des quantités</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Un utilisateur malveillant intercepte les requêtes API et modifie les quantités ou les prix des articles dans sa commande côté client.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Perte financière directe</li>
+              <li>Commandes avec des prix falsifiés</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Validation stricte de toutes les données côté serveur</li>
+              <li>Ne jamais faire confiance aux prix envoyés par le client</li>
+              <li>Recalcul systématique du total côté back-end</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 26 -->
+      <div class="problem-card reveal" data-severity="critique">
+        <div class="problem-top-row">
+          <span class="problem-number">#26</span>
+          <span class="severity-badge critique">Critique</span>
+        </div>
+        <h3 class="problem-title">Injection dans les commentaires</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Un utilisateur injecte du code malveillant (HTML, JavaScript, SQL) dans les champs de commentaires ou les notes de livraison.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Faille XSS (Cross-Site Scripting)</li>
+              <li>Accès non autorisé aux données d'autres utilisateurs</li>
+              <li>Compromission de la base de données</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Nettoyage (sanitization) de toutes les entrées utilisateur</li>
+              <li>Échappement des caractères spéciaux avant affichage</li>
+              <li>Utilisation de requêtes paramétrées (prepared statements)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- =====================================================
+         L. COMMANDES GROUPÉES
+         ===================================================== -->
+    <section class="category-section reveal" id="group-order">
+      <div class="category-header">
+        <div class="category-image-wrapper">
+          <img src="ux-audit-assets/group-order.png" alt="Illustration Commandes Groupées" loading="lazy" />
+        </div>
+        <div class="category-meta">
+          <span class="category-letter">Section L</span>
+          <h2 class="category-title">Cas Spécifiques aux Commandes Groupées</h2>
+          <p class="category-description">
+            Les commandes groupées sont la fonctionnalité phare de Jiblina. Leur complexité inhérente (multi-utilisateurs, temps réel) génère de nombreux cas limites.
+          </p>
+          <span class="category-problem-count">🐛 6 problèmes identifiés</span>
+        </div>
+      </div>
+
+      <!-- Problem 27 -->
+      <div class="problem-card reveal" data-severity="majeur">
+        <div class="problem-top-row">
+          <span class="problem-number">#27</span>
+          <span class="severity-badge majeur">Majeur</span>
+        </div>
+        <h3 class="problem-title">Deux personnes choisissent exactement le même plat</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Deux participants commandent chacun un "Burger Classic". Le restaurant prépare les deux burgers mais ne sait pas lequel appartient à qui.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Confusion lors de la distribution au sein du groupe</li>
+              <li>Customisations (sauce, cuisson) attribuées à la mauvaise personne</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Associer chaque article au prénom du participant sur le bon de commande</li>
+              <li>Étiquetage individualisé côté restaurant</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 28 -->
+      <div class="problem-card reveal" data-severity="critique">
+        <div class="problem-top-row">
+          <span class="problem-number">#28</span>
+          <span class="severity-badge critique">Critique</span>
+        </div>
+        <h3 class="problem-title">Départ volontaire de l'hôte</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>L'hôte (créateur) du groupe quitte volontairement le groupe avant que le paiement ne soit validé. Le groupe se retrouve sans administrateur.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Le groupe est orphelin, personne ne peut valider la commande</li>
+              <li>Les choix de tous les membres sont perdus</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Transfert automatique du rôle d'hôte au deuxième membre le plus ancien</li>
+              <li>Notification à tous les membres du changement d'hôte</li>
+              <li>Confirmation obligatoire avant le départ de l'hôte</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 29 -->
+      <div class="problem-card reveal" data-severity="majeur">
+        <div class="problem-top-row">
+          <span class="problem-number">#29</span>
+          <span class="severity-badge majeur">Majeur</span>
+        </div>
+        <h3 class="problem-title">L'hôte perd sa connexion internet</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>L'hôte du groupe perd sa connexion internet pendant un moment critique (validation, paiement). Les autres membres attendent sans savoir ce qui se passe.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Blocage de tout le groupe</li>
+              <li>Incertitude et frustration collective</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Élection automatique d'un nouvel hôte temporaire après un timeout</li>
+              <li>Restauration du rôle d'hôte original quand il se reconnecte</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 30 -->
+      <div class="problem-card reveal" data-severity="modéré">
+        <div class="problem-top-row">
+          <span class="problem-number">#30</span>
+          <span class="severity-badge modere">Modéré</span>
+        </div>
+        <h3 class="problem-title">Groupe trop important (30+ personnes)</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>30 personnes ou plus rejoignent un même groupe. L'interface devient impossible à gérer : la liste des membres, des plats et le récapitulatif sont illisibles.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Interface surchargée et inutilisable</li>
+              <li>Performance dégradée</li>
+              <li>Temps de coordination excessif</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Définir un nombre maximum de participants (ex: 15)</li>
+              <li>Pagination ou regroupement des participants</li>
+              <li>Vue résumée avec expansion au clic</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 31 -->
+      <div class="problem-card reveal" data-severity="critique">
+        <div class="problem-top-row">
+          <span class="problem-number">#31</span>
+          <span class="severity-badge critique">Critique</span>
+        </div>
+        <h3 class="problem-title">Modifications simultanées de la commande</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Deux participants modifient la commande groupée exactement au même moment. Leurs changements entrent en conflit et l'un des deux peut être perdu.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Perte de données d'un participant</li>
+              <li>Commande incorrecte envoyée au restaurant</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Gestion des conflits en temps réel (optimistic locking)</li>
+              <li>Versioning des modifications</li>
+              <li>Chaque participant ne peut modifier que ses propres articles</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 32 -->
+      <div class="problem-card reveal" data-severity="mineur">
+        <div class="problem-top-row">
+          <span class="problem-number">#32</span>
+          <span class="severity-badge mineur">Mineur</span>
+        </div>
+        <h3 class="problem-title">Un participant rejoint après validation</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Un retardataire clique sur le lien d'invitation alors que le groupe a déjà validé et payé la commande.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Confusion : le nouvel arrivant ne comprend pas pourquoi il ne peut pas commander</li>
+              <li>Pas de message d'erreur clair</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Interdire les nouvelles entrées une fois le groupe verrouillé</li>
+              <li>Afficher un message clair : "Ce groupe a déjà validé sa commande"</li>
+              <li>Proposer de créer un nouveau groupe</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- =====================================================
+         M. ARCHITECTURE REACT NATIVE / ZUSTAND
+         ===================================================== -->
+    <section class="category-section reveal" id="architecture">
+      <div class="category-header">
+        <div class="category-image-wrapper">
+          <img src="ux-audit-assets/architecture.png" alt="Illustration Architecture" loading="lazy" />
+        </div>
+        <div class="category-meta">
+          <span class="category-letter">Section M</span>
+          <h2 class="category-title">Architecture React Native / Zustand</h2>
+          <p class="category-description">
+            Les problèmes techniques d'architecture ont un impact direct sur l'expérience utilisateur même s'ils ne sont pas visibles au premier abord.
+          </p>
+          <span class="category-problem-count">🐛 3 problèmes identifiés</span>
+        </div>
+      </div>
+
+      <!-- Problem 33 -->
+      <div class="problem-card reveal" data-severity="majeur">
+        <div class="problem-top-row">
+          <span class="problem-number">#33</span>
+          <span class="severity-badge majeur">Majeur</span>
+        </div>
+        <h3 class="problem-title">Désynchronisation des stores Zustand</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Deux écrans affichent des informations différentes pour la même donnée. Ex: l'écran de tracking montre "En livraison" tandis que la page commandes affiche "En préparation".</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Confusion de l'utilisateur</li>
+              <li>Informations contradictoires</li>
+              <li>Perte de confiance dans l'application</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Invalidation et synchronisation globale du cache</li>
+              <li>Single Source of Truth : un seul store Zustand pour les données de commande</li>
+              <li>Utilisation de subscriptions pour propager les mises à jour</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 34 -->
+      <div class="problem-card reveal" data-severity="majeur">
+        <div class="problem-top-row">
+          <span class="problem-number">#34</span>
+          <span class="severity-badge majeur">Majeur</span>
+        </div>
+        <h3 class="problem-title">Perte de données lors d'un redémarrage</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>L'utilisateur ferme l'application ou son téléphone redémarre. Au retour, son panier, ses préférences et l'état de sa commande groupée sont perdus.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Perte du panier en cours</li>
+              <li>L'utilisateur doit tout recommencer</li>
+              <li>Abandon massif</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Persistance des données critiques avec AsyncStorage</li>
+              <li>Middleware Zustand persist pour sauvegarder automatiquement l'état</li>
+              <li>Restauration transparente au lancement</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 35 -->
+      <div class="problem-card reveal" data-severity="modéré">
+        <div class="problem-top-row">
+          <span class="problem-number">#35</span>
+          <span class="severity-badge modere">Modéré</span>
+        </div>
+        <h3 class="problem-title">Navigation incohérente (retour Android après paiement)</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Après avoir payé et vu l'écran de confirmation, l'utilisateur appuie sur le bouton "Retour" physique d'Android. Il revient sur l'écran de paiement au lieu de la page d'accueil.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>L'utilisateur peut relancer un paiement par erreur</li>
+              <li>Navigation confuse et circulaire</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Réinitialiser la pile de navigation (navigation stack reset) après le checkout</li>
+              <li>Rediriger vers l'écran de suivi ou la page d'accueil</li>
+              <li>Bloquer le retour vers les écrans de paiement</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- =====================================================
+         N. CAS MÉTIER
+         ===================================================== -->
+    <section class="category-section reveal" id="business">
+      <div class="category-header">
+        <div class="category-emoji-fallback" style="background: linear-gradient(135deg, var(--accent-purple-dim), var(--accent-blue-dim));">💼</div>
+        <div class="category-meta">
+          <span class="category-letter">Section N</span>
+          <h2 class="category-title">Cas Métier</h2>
+          <p class="category-description">
+            Les règles métier complexes (minimum de commande, frais de livraison, promotions) nécessitent une gestion transparente et des messages clairs pour l'utilisateur.
+          </p>
+          <span class="category-problem-count">🐛 5 problèmes identifiés</span>
+        </div>
+      </div>
+
+      <!-- Problem 36 -->
+      <div class="problem-card reveal" data-severity="majeur">
+        <div class="problem-top-row">
+          <span class="problem-number">#36</span>
+          <span class="severity-badge majeur">Majeur</span>
+        </div>
+        <h3 class="problem-title">Minimum de commande non atteint</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Le groupe a ajouté des plats pour un total de 80 DH, mais le minimum de commande du restaurant est de 100 DH. Le bouton "Valider" est grisé sans explication claire.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>L'utilisateur ne comprend pas pourquoi il ne peut pas payer</li>
+              <li>Frustration et abandon</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Afficher en temps réel le montant restant : "Il manque 20 DH pour atteindre le minimum"</li>
+              <li>Barre de progression visuelle vers le seuil</li>
+              <li>Suggérer des plats populaires pour compléter</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 37 -->
+      <div class="problem-card reveal" data-severity="mineur">
+        <div class="problem-top-row">
+          <span class="problem-number">#37</span>
+          <span class="severity-badge mineur">Mineur</span>
+        </div>
+        <h3 class="problem-title">Frais de livraison qui changent</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Les frais de livraison changent entre le moment où l'utilisateur voit le récapitulatif et le moment où il confirme le paiement (heure de pointe, distance recalculée…).</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Surprise sur le montant final</li>
+              <li>Sensation de manque de transparence</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Mettre à jour le total instantanément</li>
+              <li>Afficher clairement la raison du changement</li>
+              <li>Verrouiller les frais pendant 5 min une fois le récapitulatif affiché</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 38 -->
+      <div class="problem-card reveal" data-severity="critique">
+        <div class="problem-top-row">
+          <span class="problem-number">#38</span>
+          <span class="severity-badge critique">Critique</span>
+        </div>
+        <h3 class="problem-title">Restaurant refuse une partie de la commande</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>Le restaurant accepte la commande mais refuse 2 articles sur 8 (rupture de stock). L'utilisateur a pourtant payé pour l'ensemble.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>L'utilisateur paie pour des articles non livrés</li>
+              <li>Processus de remboursement partiel nécessaire</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Permettre d'accepter une commande partielle avec accord de l'utilisateur</li>
+              <li>Remboursement automatique immédiat du montant des articles refusés</li>
+              <li>Proposer des articles de remplacement</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 39 -->
+      <div class="problem-card reveal" data-severity="critique">
+        <div class="problem-top-row">
+          <span class="problem-number">#39</span>
+          <span class="severity-badge critique">Critique</span>
+        </div>
+        <h3 class="problem-title">Annulation après paiement</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>L'utilisateur souhaite annuler sa commande après avoir payé. Les règles de remboursement ne sont pas claires et varient selon l'état de préparation.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>Litige financier entre l'utilisateur, le restaurant et la plateforme</li>
+              <li>Mauvaise expérience et avis négatifs</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Définir clairement les règles de remboursement selon l'état :
+                <br />• Avant préparation → Remboursement complet
+                <br />• En préparation → Remboursement partiel
+                <br />• En livraison → Pas de remboursement</li>
+              <li>Afficher ces règles avant le paiement</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 40 -->
+      <div class="problem-card reveal" data-severity="mineur">
+        <div class="problem-top-row">
+          <span class="problem-number">#40</span>
+          <span class="severity-badge mineur">Mineur</span>
+        </div>
+        <h3 class="problem-title">Plusieurs promotions incompatibles</h3>
+        <div class="problem-detail-grid">
+          <div class="detail-block">
+            <div class="detail-block-label cas">📋 Cas d'usage</div>
+            <p>L'utilisateur a un coupon -15% et une réduction de groupe -20%. Les deux promotions ne sont pas cumulables mais l'application ne l'explique pas clairement.</p>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label impact">⚠️ Impact</div>
+            <ul>
+              <li>L'utilisateur s'attend à cumuler les réductions</li>
+              <li>Déception au moment du paiement</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-label solution">✅ Solution proposée</div>
+            <ul>
+              <li>Afficher automatiquement la combinaison la plus avantageuse</li>
+              <li>Expliquer clairement le calcul avec un détail ligne par ligne</li>
+              <li>Indiquer visuellement quelle promotion est appliquée et pourquoi</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- =====================================================
+         PROPOSITIONS UX — FONCTIONNALITÉS RECOMMANDÉES
+         ===================================================== -->
+    <section id="proposals">
+      <div class="proposals-hero reveal">
+        <h2>
+          Propositions<br />
+          <span class="gradient-text-purple">d'Amélioration UX</span>
+        </h2>
+        <p>
+          Au-delà de la correction des problèmes, voici 19 propositions concrètes pour transformer Jiblina en une expérience mémorable, sociale et addictive.
+        </p>
+        <div class="proposal-count-bar">
+          <div class="proposal-count-item">
+            <div class="proposal-count-value">19</div>
+            <div class="proposal-count-label">Propositions</div>
+          </div>
+          <div class="proposal-count-item">
+            <div class="proposal-count-value">6</div>
+            <div class="proposal-count-label">Catégories</div>
+          </div>
+          <div class="proposal-count-item">
+            <div class="proposal-count-value">19</div>
+            <div class="proposal-count-label">Démos interactives</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 1 — Commande groupée amusante ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-image">
+            <img src="ux-audit-assets/group-live.png" alt="Group Live" loading="lazy" />
+          </div>
+          <div class="proposal-card-meta">
+            <span class="proposal-number">P01</span>
+            <span class="proposal-type-badge social">Social</span>
+            <h3 class="proposal-card-title">Rendre la commande groupée amusante — « Qui commande quoi ? »</h3>
+            <p class="proposal-card-description">
+              Quand les membres rejoignent le groupe, afficher leurs choix en temps réel. Cela donne une sensation de groupe vivant et évite l'impression d'utiliser un simple panier partagé. De plus, permettre aux participants de réagir aux plats des autres ajoute une dimension sociale : « Je veux aussi ! », « Ça a l'air incroyable », « Trop cher ».
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo interactive — Feed en temps réel</div>
+          <div class="live-feed">
+            <div class="live-feed-item">
+              <div class="feed-avatar" style="background: #10b981;">Y</div>
+              <div class="feed-text">
+                <span class="feed-name">Youssef</span>
+                <span class="feed-action"> a choisi </span>
+                <span class="feed-food">🌮 Tacos Poulet</span>
+              </div>
+              <div class="feed-reactions">
+                <span class="feed-reaction">🤤</span>
+                <span class="feed-reaction">👍</span>
+              </div>
+            </div>
+            <div class="live-feed-item">
+              <div class="feed-avatar" style="background: #3b82f6;">S</div>
+              <div class="feed-text">
+                <span class="feed-name">Sara</span>
+                <span class="feed-action"> a choisi </span>
+                <span class="feed-food">🍔 Burger Cheese</span>
+              </div>
+              <div class="feed-reactions">
+                <span class="feed-reaction">😍</span>
+                <span class="feed-reaction">🔥</span>
+              </div>
+            </div>
+            <div class="live-feed-item">
+              <div class="feed-avatar" style="background: #a855f7;">A</div>
+              <div class="feed-text">
+                <span class="feed-name">Ahmed</span>
+                <span class="feed-action"> a choisi </span>
+                <span class="feed-food">🍕 Pizza Margherita</span>
+              </div>
+              <div class="feed-reactions">
+                <span class="feed-reaction">✅</span>
+              </div>
+            </div>
+            <div class="live-feed-item">
+              <div class="feed-avatar" style="background: #f97316;">M</div>
+              <div class="feed-text">
+                <span class="feed-name">Amine</span>
+                <span class="feed-searching"> cherche encore son plat... 🤔</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 2 — Group Order Live ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-image">
+            <img src="ux-audit-assets/group-live.png" alt="Group Order Live" loading="lazy" />
+          </div>
+          <div class="proposal-card-meta">
+            <span class="proposal-number">P02</span>
+            <span class="proposal-type-badge social">Social</span>
+            <h3 class="proposal-card-title">Créer un « Group Order Live » — Mini-room de commande</h3>
+            <p class="proposal-card-description">
+              Pendant la constitution du groupe, avoir une interface presque comme une mini-room en direct. L'objectif est de donner l'impression que la commande évolue en direct, avec des petites animations lorsque quelqu'un rejoint ou valide son panier.
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo — Mini-room en direct (4/5 personnes)</div>
+          <div class="live-feed">
+            <div style="text-align: center; margin-bottom: 16px;">
+              <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-emerald); background: var(--accent-emerald-dim); border: 1px solid var(--border-glow-emerald); padding: 6px 16px; border-radius: 100px;">🟢 Commande de groupe — 4/5 personnes</span>
+            </div>
+            <div class="live-feed-item" style="border-left: 3px solid #10b981;">
+              <div class="feed-avatar" style="background: #10b981;">A</div>
+              <div class="feed-text"><span class="feed-name">Ahmed</span></div>
+              <div style="font-size: 0.82rem; color: var(--accent-emerald); font-weight: 600;">🍔 Burger + Frites — <span style="color: var(--text-muted);">✓ Validé</span></div>
+            </div>
+            <div class="live-feed-item" style="border-left: 3px solid #3b82f6;">
+              <div class="feed-avatar" style="background: #3b82f6;">Y</div>
+              <div class="feed-text"><span class="feed-name">Youssef</span></div>
+              <div style="font-size: 0.82rem; color: var(--accent-emerald); font-weight: 600;">🍕 Pizza — <span style="color: var(--text-muted);">✓ Validé</span></div>
+            </div>
+            <div class="live-feed-item" style="border-left: 3px solid #a855f7;">
+              <div class="feed-avatar" style="background: #a855f7;">S</div>
+              <div class="feed-text"><span class="feed-name">Sara</span></div>
+              <div style="font-size: 0.82rem; color: var(--accent-emerald); font-weight: 600;">🌮 Tacos — <span style="color: var(--text-muted);">✓ Validé</span></div>
+            </div>
+            <div class="live-feed-item" style="border-left: 3px dashed var(--accent-amber);">
+              <div class="feed-avatar" style="background: var(--accent-amber);">M</div>
+              <div class="feed-text"><span class="feed-name">Amine</span></div>
+              <div style="font-size: 0.82rem; color: var(--accent-amber); font-weight: 600; animation: ctaBlink 2s infinite;">⏳ Choix en cours...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 3 — Gamifier la réduction ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-image">
+            <img src="ux-audit-assets/gamification.png" alt="Gamification" loading="lazy" />
+          </div>
+          <div class="proposal-card-meta">
+            <span class="proposal-number">P03</span>
+            <span class="proposal-type-badge gamification">Gamification</span>
+            <h3 class="proposal-card-title">Gamifier la réduction — Progression visuelle motivante</h3>
+            <p class="proposal-card-description">
+              Au lieu d'afficher simplement « -20% à partir de 4 personnes », afficher une progression visuelle avec des points qui se remplissent. Cela crée une petite motivation à inviter ses amis pour débloquer la prochaine réduction.
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo — Progression de la réduction</div>
+          <div class="progress-demo">
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem;">Votre groupe</div>
+            <div class="progress-dots">
+              <div class="progress-dot filled">👤</div>
+              <div class="progress-dot filled">👤</div>
+              <div class="progress-dot filled">👤</div>
+              <div class="progress-dot empty">?</div>
+              <div class="progress-dot empty">?</div>
+            </div>
+            <div class="progress-text"><strong>3</strong> personnes sur <strong>5</strong></div>
+            <div class="progress-cta">🎯 Encore 1 personne pour débloquer -20% !</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 4 — Inviter un ami rapidement ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-image">
+            <img src="ux-audit-assets/share-invite.png" alt="Share Invite" loading="lazy" />
+          </div>
+          <div class="proposal-card-meta">
+            <span class="proposal-number">P04</span>
+            <span class="proposal-type-badge social">Social</span>
+            <h3 class="proposal-card-title">« Inviter un ami » — Partage ultra-rapide</h3>
+            <p class="proposal-card-description">
+              Le partage doit être extrêmement simple. Un bouton « Inviter mes amis » puis un accès direct à WhatsApp, Messenger, Instagram ou la copie du lien. Le lien contient directement le message « Rejoins ma commande Jiblina 🍔 ». L'utilisateur ne devrait pas avoir à expliquer comment rejoindre le groupe.
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo — Boutons de partage</div>
+          <div class="share-buttons-demo">
+            <button class="share-btn-demo whatsapp">💬 WhatsApp</button>
+            <button class="share-btn-demo messenger">📨 Messenger</button>
+            <button class="share-btn-demo instagram">📸 Instagram</button>
+            <button class="share-btn-demo copy-link">🔗 Copier le lien</button>
+          </div>
+          <div style="text-align: center; margin-top: 1rem; padding: 12px 20px; background: var(--bg-card); border: 1px dashed var(--border-card); border-radius: var(--radius-sm); max-width: 400px; margin-left: auto; margin-right: auto;">
+            <span style="font-size: 0.82rem; color: var(--text-secondary);">📋 « Rejoins ma commande Jiblina 🍔 — on économise -20% ensemble ! »</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 5 — Compte à rebours dynamique ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-meta" style="max-width: 100%;">
+            <span class="proposal-number">P05</span>
+            <span class="proposal-type-badge experience">Expérience</span>
+            <h3 class="proposal-card-title">Compte à rebours dynamique avec messages contextuels</h3>
+            <p class="proposal-card-description">
+              Au lieu d'un simple chronomètre froid, utiliser des messages contextuels qui accompagnent l'utilisateur : « Plus que 2 minutes pour débloquer votre réduction ! » ou « Youssef n'a pas encore validé son panier. ». Attention cependant à ne pas créer trop de pression : le compte à rebours doit rester compréhensible et utile.
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo — Chronomètre contextuel</div>
+          <div class="countdown-demo">
+            <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px;">Votre groupe reste ouvert pendant</div>
+            <div class="countdown-digits">08:42</div>
+            <div class="countdown-message">⚡ Plus que 2 minutes pour débloquer votre réduction !</div>
+            <div style="margin-top: 1rem; font-size: 0.82rem; color: var(--text-muted); padding: 8px 16px; background: var(--bg-card); border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); display: inline-block;">
+              💬 « Youssef n'a pas encore validé son panier. »
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 6 — Surprise du jour ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-image">
+            <img src="ux-audit-assets/personalization.png" alt="Surprise du jour" loading="lazy" />
+          </div>
+          <div class="proposal-card-meta">
+            <span class="proposal-number">P06</span>
+            <span class="proposal-type-badge discovery">Découverte</span>
+            <h3 class="proposal-card-title">« Surprise du jour » — Laissez Jiblina choisir pour vous</h3>
+            <p class="proposal-card-description">
+              Pour rendre l'application plus amusante, Jiblina pourrait proposer une découverte : « Vous ne savez pas quoi manger ? ». L'application sélectionne un restaurant ou un plat selon le budget, l'historique, la distance, l'heure et les préférences de l'utilisateur. Avec une petite animation courte.
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo — Suggestion intelligente</div>
+          <div style="max-width: 360px; margin: 0 auto; text-align: center;">
+            <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">Vous ne savez pas quoi manger ?</div>
+            <div style="background: linear-gradient(135deg, var(--accent-purple), #ec4899); padding: 14px 28px; border-radius: var(--radius-md); display: inline-block; cursor: pointer; transition: all 0.3s; font-weight: 700; font-size: 0.95rem;">
+              🎲 Laissez Jiblina choisir pour vous
+            </div>
+            <div style="margin-top: 1.5rem; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 1.5rem; text-align: left;">
+              <div style="font-size: 1.5rem; margin-bottom: 4px;">🍔</div>
+              <div style="font-weight: 800; font-size: 1.1rem;">Burger Smash — Burger Factory</div>
+              <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 4px;">59 DH · 25-35 min · ⭐ 4.7 · 📍 1.2 km</div>
+              <div style="font-size: 0.78rem; color: var(--accent-emerald); margin-top: 6px;">✓ Basé sur votre budget et vos favoris</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 7 — Swipe pour choisir ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-image">
+            <img src="ux-audit-assets/swipe.png" alt="Swipe Discovery" loading="lazy" />
+          </div>
+          <div class="proposal-card-meta">
+            <span class="proposal-number">P07</span>
+            <span class="proposal-type-badge discovery">Découverte</span>
+            <h3 class="proposal-card-title">Swipe pour choisir son plat — Découverte ludique</h3>
+            <p class="proposal-card-description">
+              Inspiré des interfaces de découverte type Tinder : Swipe à droite → J'aime, Swipe à gauche → Pas aujourd'hui. Utilisé uniquement pour découvrir les restaurants et les plats, pas pour tout le parcours de commande. Cela rend la découverte beaucoup plus ludique et engageante.
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo — Swipe de plats (Animation)</div>
+          <div class="swipe-demo">
+            <div class="swipe-card-demo back-card">
+              <div class="swipe-food-emoji">🍕</div>
+              <div class="swipe-food-name">Pizza Pepperoni</div>
+              <div class="swipe-food-price">49 DH</div>
+              <div class="swipe-food-time">20-30 min</div>
+            </div>
+            <div class="swipe-card-demo front-card">
+              <div class="swipe-food-emoji">🍔</div>
+              <div class="swipe-food-name">Burger Smash</div>
+              <div class="swipe-food-price">59 DH</div>
+              <div class="swipe-food-time">25-35 min</div>
+              <div class="swipe-actions">
+                <div class="swipe-btn dislike">✕</div>
+                <div class="swipe-btn like">♥</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 8 — Roulette Jiblina ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-image">
+            <img src="ux-audit-assets/roulette.png" alt="Roulette" loading="lazy" />
+          </div>
+          <div class="proposal-card-meta">
+            <span class="proposal-number">P08</span>
+            <span class="proposal-type-badge discovery">Découverte</span>
+            <h3 class="proposal-card-title">« Roulette Jiblina » — Personne ne sait quoi choisir ?</h3>
+            <p class="proposal-card-description">
+              Pour une commande entre amis quand personne ne sait quoi manger. La roulette choisit parmi les restaurants disponibles. Encore mieux : chaque participant peut voter, et le restaurant avec le plus de votes gagne. Cela transforme un problème classique (« On mange quoi ? ») en interaction amusante.
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo — Roulette animée + Votes</div>
+          <div class="roulette-demo">
+            <div style="position: relative; display: inline-block;">
+              <div class="roulette-pointer">▼</div>
+              <div class="roulette-wheel"></div>
+            </div>
+            <div class="vote-results">
+              <div class="vote-row">
+                <div class="vote-label">🍕 Pizza</div>
+                <div class="vote-bar-bg">
+                  <div class="vote-bar-fill" style="width: 60%; background: var(--accent-emerald);">3 votes</div>
+                </div>
+              </div>
+              <div class="vote-row">
+                <div class="vote-label">🍔 Burger</div>
+                <div class="vote-bar-bg">
+                  <div class="vote-bar-fill" style="width: 40%; background: var(--accent-blue);">2 votes</div>
+                </div>
+              </div>
+              <div class="vote-row">
+                <div class="vote-label">🌮 Tacos</div>
+                <div class="vote-bar-bg">
+                  <div class="vote-bar-fill" style="width: 20%; background: var(--accent-orange);">1 vote</div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top: 1rem; font-weight: 800; color: var(--accent-emerald); font-size: 1.1rem;">🎉 Pizza gagne !</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 9 — Vote pour le restaurant ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-meta" style="max-width: 100%;">
+            <span class="proposal-number">P09</span>
+            <span class="proposal-type-badge social">Social</span>
+            <h3 class="proposal-card-title">Vote pour le restaurant — Décision démocratique</h3>
+            <p class="proposal-card-description">
+              Dans une commande groupée, au lieu que l'organisateur décide seul du restaurant, les participants votent directement. Cela donne davantage de contrôle aux membres et évite les frustrations.
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo — Tableau de votes</div>
+          <div style="max-width: 450px; margin: 0 auto;">
+            <div style="font-size: 0.9rem; font-weight: 700; margin-bottom: 1rem; text-align: center;">Quel restaurant ?</div>
+            <div class="vote-results">
+              <div class="vote-row">
+                <div class="vote-label">🍕 Pizza House</div>
+                <div class="vote-bar-bg">
+                  <div class="vote-bar-fill" style="width: 57%; background: var(--accent-emerald);">4 votes</div>
+                </div>
+              </div>
+              <div class="vote-row">
+                <div class="vote-label">🍔 Burger Factory</div>
+                <div class="vote-bar-bg">
+                  <div class="vote-bar-fill" style="width: 29%; background: var(--accent-blue);">2 votes</div>
+                </div>
+              </div>
+              <div class="vote-row">
+                <div class="vote-label">🌮 Tacos 24</div>
+                <div class="vote-bar-bg">
+                  <div class="vote-bar-fill" style="width: 14%; background: var(--accent-orange);">1 vote</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 10 — Système de défis ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-image">
+            <img src="ux-audit-assets/gamification.png" alt="Défis" loading="lazy" />
+          </div>
+          <div class="proposal-card-meta">
+            <span class="proposal-number">P10</span>
+            <span class="proposal-type-badge gamification">Gamification</span>
+            <h3 class="proposal-card-title">Système de « défis » — Engagement et récompenses</h3>
+            <p class="proposal-card-description">
+              Des défis simples et accessibles pour encourager l'utilisation récurrente. Exemples : « Premier groupe de la semaine », « Team Pizza — Commandez 3 fois chez un restaurant de pizza », « Organisateur — Créez 5 commandes groupées ». Les récompenses : points, réductions, livraison gratuite, badges.
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo — Défis en cours</div>
+          <div style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-md);">
+              <span style="font-size: 2rem;">🏆</span>
+              <div style="flex: 1;">
+                <div style="font-weight: 700; font-size: 0.9rem;">Premier groupe de la semaine</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Créez votre première commande à 3.</div>
+              </div>
+              <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-emerald); background: var(--accent-emerald-dim); padding: 4px 12px; border-radius: 100px;">+50 pts</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-md);">
+              <span style="font-size: 2rem;">🍕</span>
+              <div style="flex: 1;">
+                <div style="font-weight: 700; font-size: 0.9rem;">Team Pizza</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Commandez 3 fois chez un restaurant de pizza. (2/3)</div>
+              </div>
+              <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-orange); background: var(--accent-orange-dim); padding: 4px 12px; border-radius: 100px;">-15%</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-md);">
+              <span style="font-size: 2rem;">👑</span>
+              <div style="flex: 1;">
+                <div style="font-weight: 700; font-size: 0.9rem;">Organisateur</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Créez 5 commandes groupées. (3/5)</div>
+              </div>
+              <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-purple); background: var(--accent-purple-dim); padding: 4px 12px; border-radius: 100px;">🚚 Gratuit</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 11 — Badges amusants ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-meta" style="max-width: 100%;">
+            <span class="proposal-number">P11</span>
+            <span class="proposal-type-badge gamification">Gamification</span>
+            <h3 class="proposal-card-title">Badges amusants — Créer de l'attachement</h3>
+            <p class="proposal-card-description">
+              Ce n'est pas indispensable au fonctionnement de l'application, mais les badges créent de l'attachement émotionnel et de la fierté. Des badges comme « L'organisateur », « Le gourmand », « Le retardataire », « Le fidèle » ajoutent une touche de personnalité.
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo — Collection de badges</div>
+          <div class="badges-grid">
+            <div class="badge-item">
+              <div class="badge-icon">👑</div>
+              <div class="badge-name">L'organisateur</div>
+              <div class="badge-desc">10 commandes groupées créées</div>
+            </div>
+            <div class="badge-item">
+              <div class="badge-icon">🍔</div>
+              <div class="badge-name">Le gourmand</div>
+              <div class="badge-desc">20 burgers commandés</div>
+            </div>
+            <div class="badge-item">
+              <div class="badge-icon">⏰</div>
+              <div class="badge-name">Le retardataire</div>
+              <div class="badge-desc">5 commandes à la dernière minute</div>
+            </div>
+            <div class="badge-item">
+              <div class="badge-icon">❤️</div>
+              <div class="badge-name">Le fidèle</div>
+              <div class="badge-desc">10 commandes chez le même resto</div>
+            </div>
+            <div class="badge-item">
+              <div class="badge-icon">🌟</div>
+              <div class="badge-name">L'explorateur</div>
+              <div class="badge-desc">15 restaurants différents testés</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 12 — Zéro réflexion ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-image">
+            <img src="ux-audit-assets/zero-reflection.png" alt="Zero Reflection" loading="lazy" />
+          </div>
+          <div class="proposal-card-meta">
+            <span class="proposal-number">P12</span>
+            <span class="proposal-type-badge simplicity">Simplicité</span>
+            <h3 class="proposal-card-title">Expérience « zéro réflexion » — Montrer ce qui compte</h3>
+            <p class="proposal-card-description">
+              C'est probablement l'un des points les plus importants pour Jiblina. L'utilisateur doit pouvoir ouvrir l'application et comprendre immédiatement : « Qu'est-ce que je peux manger maintenant ? ». Au lieu de 250 restaurants, montrer : « Il est midi. Voici ce qui est populaire près de vous. » L'application doit réduire le nombre de décisions.
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo — Page d'accueil contextuelle</div>
+          <div style="max-width: 380px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px;">
+            <div style="text-align: center; font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 4px;">🕐 Il est midi. Voici ce qui est populaire près de vous.</div>
+            <div style="display: flex; gap: 10px;">
+              <div style="flex: 1; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-sm); padding: 12px; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--accent-emerald)'" onmouseout="this.style.borderColor='var(--border-card)'">
+                <div style="font-size: 1.5rem;">⚡</div>
+                <div style="font-size: 0.78rem; font-weight: 600; margin-top: 4px;">Livraison rapide</div>
+              </div>
+              <div style="flex: 1; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-sm); padding: 12px; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--accent-orange)'" onmouseout="this.style.borderColor='var(--border-card)'">
+                <div style="font-size: 1.5rem;">🏷️</div>
+                <div style="font-size: 0.78rem; font-weight: 600; margin-top: 4px;">Meilleures offres</div>
+              </div>
+              <div style="flex: 1; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-sm); padding: 12px; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--accent-purple)'" onmouseout="this.style.borderColor='var(--border-card)'">
+                <div style="font-size: 1.5rem;">❤️</div>
+                <div style="font-size: 0.78rem; font-weight: 600; margin-top: 4px;">Vos favoris</div>
+              </div>
+              <div style="flex: 1; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-sm); padding: 12px; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--accent-blue)'" onmouseout="this.style.borderColor='var(--border-card)'">
+                <div style="font-size: 1.5rem;">🤖</div>
+                <div style="font-size: 0.78rem; font-weight: 600; margin-top: 4px;">Pour vous</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 13 — Commande en 3 étapes ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-meta" style="max-width: 100%;">
+            <span class="proposal-number">P13</span>
+            <span class="proposal-type-badge simplicity">Simplicité</span>
+            <h3 class="proposal-card-title">Commande en 3 étapes — Réduire les frictions</h3>
+            <p class="proposal-card-description">
+              Le parcours idéal devrait être extrêmement court : Restaurant → Plat → Commander. Chaque écran supplémentaire augmente le risque d'abandon. Il faut éviter le tunnel : Restaurant → détails → panier → confirmation → adresse → livraison → paiement → confirmation.
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo — Parcours en 3 étapes</div>
+          <div class="steps-demo">
+            <div class="step-item">
+              <div class="step-circle">🍽️</div>
+              <div class="step-label">Restaurant</div>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step-item">
+              <div class="step-circle">🍔</div>
+              <div class="step-label">Plat</div>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step-item">
+              <div class="step-circle">✅</div>
+              <div class="step-label">Commander</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 14 — Commander encore ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-image">
+            <img src="ux-audit-assets/personalization.png" alt="Reorder" loading="lazy" />
+          </div>
+          <div class="proposal-card-meta">
+            <span class="proposal-number">P14</span>
+            <span class="proposal-type-badge personalization">Personnalisation</span>
+            <h3 class="proposal-card-title">« Commander encore » — Un clic pour recommander</h3>
+            <p class="proposal-card-description">
+              Après une commande : « Vous avez adoré cette commande ? Commander à nouveau ». Un clic et les mêmes produits sont ajoutés au panier. C'est particulièrement intéressant pour les commandes habituelles du campus.
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo — Recommander en 1 clic</div>
+          <div style="max-width: 400px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 1.5rem;">
+            <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px;">Dernière commande — il y a 2 jours</div>
+            <div style="font-weight: 700; font-size: 1rem; margin-bottom: 6px;">🍔 Burger Smash + 🍟 Frites + 🥤 Coca</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">Burger Factory · 72 DH</div>
+            <div style="text-align: center;">
+              <div style="display: inline-block; background: var(--accent-emerald); color: white; font-weight: 700; padding: 10px 28px; border-radius: var(--radius-sm); cursor: pointer; font-size: 0.9rem; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                🔄 Commander à nouveau
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 15 — Personnalisation intelligente ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-meta" style="max-width: 100%;">
+            <span class="proposal-number">P15</span>
+            <span class="proposal-type-badge personalization">Personnalisation</span>
+            <h3 class="proposal-card-title">Personnalisation intelligente — L'app qui vous connaît</h3>
+            <p class="proposal-card-description">
+              Jiblina peut apprendre progressivement : « Vous commandez souvent des burgers le vendredi. » Puis proposer directement le restaurant habituel avec une réduction. Cela donne l'impression que l'application connaît les habitudes de l'utilisateur et anticipe ses besoins.
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo — Suggestion personnalisée</div>
+          <div style="max-width: 380px; margin: 0 auto; text-align: center;">
+            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">🗓️ Votre vendredi commence ici</div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 1.5rem; text-align: left; position: relative; overflow: hidden;">
+              <div style="position: absolute; top: 12px; right: 12px; background: var(--accent-emerald); color: white; font-size: 0.72rem; font-weight: 700; padding: 4px 10px; border-radius: 100px;">-10%</div>
+              <div style="font-size: 1.5rem; margin-bottom: 6px;">🍔</div>
+              <div style="font-weight: 800; font-size: 1.1rem;">Burger Factory</div>
+              <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 4px;">45-55 min · ⭐ 4.6 · Votre favori du vendredi</div>
+              <div style="font-size: 0.78rem; color: var(--accent-purple); margin-top: 8px;">🧠 « Vous avez commandé ici 4 vendredis de suite »</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 16 — Tracking vivant ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-image">
+            <img src="ux-audit-assets/tracking.png" alt="Tracking" loading="lazy" />
+          </div>
+          <div class="proposal-card-meta">
+            <span class="proposal-number">P16</span>
+            <span class="proposal-type-badge experience">Expérience</span>
+            <h3 class="proposal-card-title">Rendre le tracking plus vivant</h3>
+            <p class="proposal-card-description">
+              Au lieu d'un simple « Commande confirmée → En préparation → En livraison », créer une progression plus agréable avec des informations utiles : « Votre burger est en préparation. Encore environ 12 min. » Et pour une commande groupée : tout le monde peut suivre la livraison.
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo — Timeline de suivi vivante</div>
+          <div class="tracking-demo">
+            <div class="tracking-step">
+              <div class="tracking-line">
+                <div class="tracking-dot done">✓</div>
+                <div class="tracking-connector done"></div>
+              </div>
+              <div class="tracking-content">
+                <div class="tracking-title">✅ Commande reçue</div>
+                <div class="tracking-subtitle">Le restaurant a bien reçu votre commande</div>
+              </div>
+            </div>
+            <div class="tracking-step">
+              <div class="tracking-line">
+                <div class="tracking-dot done">✓</div>
+                <div class="tracking-connector done"></div>
+              </div>
+              <div class="tracking-content">
+                <div class="tracking-title">👨‍🍳 Préparation</div>
+                <div class="tracking-subtitle">Vos plats sont en cours de préparation</div>
+              </div>
+            </div>
+            <div class="tracking-step">
+              <div class="tracking-line">
+                <div class="tracking-dot active">🔥</div>
+                <div class="tracking-connector pending"></div>
+              </div>
+              <div class="tracking-content">
+                <div class="tracking-title" style="color: var(--accent-orange);">🍔 Votre commande est presque prête</div>
+                <div class="tracking-subtitle">Encore environ 12 min — votre burger est en finition</div>
+              </div>
+            </div>
+            <div class="tracking-step">
+              <div class="tracking-line">
+                <div class="tracking-dot pending">○</div>
+                <div class="tracking-connector pending"></div>
+              </div>
+              <div class="tracking-content">
+                <div class="tracking-title">🚐 Camionnette en route</div>
+                <div class="tracking-subtitle">Le livreur prendra votre commande bientôt</div>
+              </div>
+            </div>
+            <div class="tracking-step">
+              <div class="tracking-line">
+                <div class="tracking-dot pending">○</div>
+              </div>
+              <div class="tracking-content">
+                <div class="tracking-title">📍 Arrivée au campus</div>
+                <div class="tracking-subtitle">Vous serez notifié quand la camionnette arrive</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 17 — Moment de satisfaction ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-meta" style="max-width: 100%;">
+            <span class="proposal-number">P17</span>
+            <span class="proposal-type-badge experience">Expérience</span>
+            <h3 class="proposal-card-title">Le « moment de satisfaction » après la commande</h3>
+            <p class="proposal-card-description">
+              Après livraison : « Votre commande est arrivée ! ». Puis une évaluation rapide, un message humain « Bon appétit, l'équipe Jiblina ! », et les points de fidélité gagnés. Cela ferme positivement le parcours et laisse une bonne dernière impression.
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo — Écran de fin de commande</div>
+          <div style="max-width: 360px; margin: 0 auto; text-align: center; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 2rem;">
+            <div style="font-size: 3rem; margin-bottom: 8px;">🎉</div>
+            <div style="font-weight: 800; font-size: 1.2rem; margin-bottom: 4px;">Votre commande est arrivée !</div>
+            <div style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.2rem;">Bon appétit, l'équipe Jiblina ! 🍕</div>
+            <div style="font-size: 1.8rem; margin-bottom: 8px; letter-spacing: 4px;">⭐⭐⭐⭐⭐</div>
+            <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem;">Comment était votre expérience ?</div>
+            <div style="display: inline-block; background: var(--accent-emerald-dim); border: 1px solid var(--border-glow-emerald); color: var(--accent-emerald); font-weight: 700; padding: 8px 20px; border-radius: var(--radius-sm); font-size: 0.85rem;">
+              +35 points gagnés 🌟
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 18 — Identité Jiblina ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-meta" style="max-width: 100%;">
+            <span class="proposal-number">P18</span>
+            <span class="proposal-type-badge experience">Expérience</span>
+            <h3 class="proposal-card-title">Une identité Jiblina reconnaissable — Micro-copy sympathique</h3>
+            <p class="proposal-card-description">
+              Il faut que l'application ait une personnalité. Pas seulement « Commande confirmée. » mais plutôt « C'est parti ! Votre repas arrive. ». Le but n'est pas de mettre des emojis partout, mais de donner à Jiblina une voix cohérente et humaine.
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo — Avant / Après micro-copy</div>
+          <div class="microcopy-demo">
+            <div class="microcopy-item">
+              <div class="microcopy-before">Commande confirmée.</div>
+              <div class="microcopy-arrow">→</div>
+              <div class="microcopy-after">C'est parti ! Votre repas arrive. 🚀</div>
+            </div>
+            <div class="microcopy-item">
+              <div class="microcopy-before">4 personnes dans le groupe.</div>
+              <div class="microcopy-arrow">→</div>
+              <div class="microcopy-after">Votre groupe est presque au complet ! 🎯</div>
+            </div>
+            <div class="microcopy-item">
+              <div class="microcopy-before">Réduction disponible à 5 personnes.</div>
+              <div class="microcopy-arrow">→</div>
+              <div class="microcopy-after">Encore une personne et vous débloquez -20% ! 💰</div>
+            </div>
+            <div class="microcopy-item">
+              <div class="microcopy-before">Le livreur est arrivé.</div>
+              <div class="microcopy-arrow">→</div>
+              <div class="microcopy-after">Le livreur arrive, préparez-vous ! 📦</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== PROPOSAL 19 — Rapide avant amusant ====== -->
+      <div class="proposal-card reveal">
+        <div class="proposal-card-header">
+          <div class="proposal-card-meta" style="max-width: 100%;">
+            <span class="proposal-number">P19</span>
+            <span class="proposal-type-badge simplicity">Simplicité</span>
+            <h3 class="proposal-card-title">Règle UX fondamentale : « Rapide avant amusant »</h3>
+            <p class="proposal-card-description">
+              L'amusement ne doit jamais ralentir la commande. L'utilisateur qui sait déjà ce qu'il veut doit pouvoir commander très rapidement. Il faut satisfaire les deux types d'utilisateurs : l'utilisateur pressé (parcours ultra-rapide) et l'utilisateur qui veut découvrir (fonctionnalités ludiques).
+            </p>
+          </div>
+        </div>
+        <div class="demo-container">
+          <div class="demo-label">▶ Démo — Deux modes de navigation</div>
+          <div class="dual-mode-demo">
+            <div class="mode-card" onmouseover="this.style.borderColor='var(--accent-emerald)'" onmouseout="this.style.borderColor='var(--border-card)'">
+              <div class="mode-card-icon">⚡</div>
+              <div class="mode-card-title">Commander rapidement</div>
+              <div class="mode-card-desc">Vous savez ce que vous voulez.<br />Restaurant → Plat → Payer.</div>
+            </div>
+            <div class="mode-card" onmouseover="this.style.borderColor='var(--accent-purple)'" onmouseout="this.style.borderColor='var(--border-card)'">
+              <div class="mode-card-icon">🎲</div>
+              <div class="mode-card-title">Découvrir quelque chose</div>
+              <div class="mode-card-desc">Explorez, swipez, jouez à la roulette et découvrez.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="report-footer">
+    <div class="footer-brand">🍕 Jiblina — Audit UX</div>
+    <p>Rapport généré dans le cadre du projet de stage PFA — ENIAD</p>
+    <p style="margin-top: 0.5rem;">40 problèmes identifiés · 19 propositions UX · 14 catégories · 59 solutions proposées</p>
+    <p style="margin-top: 1rem; font-size: 0.75rem; color: var(--text-muted);">© 2026 — Tous droits réservés</p>
+  </footer>
+
+  <!-- ============================================
+       SCROLL REVEAL SCRIPT
+       ============================================ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const reveals = document.querySelectorAll('.reveal');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.08,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      reveals.forEach((el) => observer.observe(el));
+    });
+  </script>
+
+</body>
+</html>

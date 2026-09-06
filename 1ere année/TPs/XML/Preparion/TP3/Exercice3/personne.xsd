@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema xmlns:x="http://www.w3.org/2001/XMLSchema">
+    <x:element name="personne" type="person" />
+    <x:complexType name="person">
+        <x:sequence>
+            <x:element name="nom" type="x:string" />
+            <x:element name="age">
+                <x:simpleType>
+                    <x:restriction base="x:int">
+                        <x:minExclusive value="0" />
+                        <x:maxInclusive value="120" />
+                    </x:restriction>
+                </x:simpleType>
+            </x:element>
+            <x:element name="dateNaissance" type="x:date" />
+        </x:sequence>
+    </x:complexType>
+</x:schema>

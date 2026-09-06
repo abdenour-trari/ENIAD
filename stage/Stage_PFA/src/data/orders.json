@@ -1,0 +1,56 @@
+{
+  "orderId": "#JIB24578",
+  "restaurantName": "Pizza Hut",
+  "restaurantLogo": "https://upload.wikimedia.org/wikipedia/sco/thumb/d/d2/Pizza_Hut_logo.svg/1088px-Pizza_Hut_logo.svg.png",
+  "coverUrl": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=400&fit=crop",
+  "deliveryLocation": "ENIAD, Berkane",
+  "distanceText": "1.2 km",
+  "estimatedTimeText": "18 min",
+  "timeVariationText": "± 5 min",
+  "loyaltyPoints": 25,
+  "driver": {
+    "name": "Youssef",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+    "rating": 4.9,
+    "totalDeliveries": 128,
+    "phone": "+212 611 223 344"
+  },
+  "timeline": [
+    {
+      "step": 1,
+      "key": "confirmed",
+      "title": "Confirmée",
+      "timestamp": "13:02",
+      "description": "Ta commande a été confirmée"
+    },
+    {
+      "step": 2,
+      "key": "preparing",
+      "title": "Préparation",
+      "timestamp": "13:05",
+      "description": "Le restaurant prépare ta commande"
+    },
+    {
+      "step": 3,
+      "key": "on_the_way",
+      "title": "En route",
+      "timestamp": "13:18",
+      "description": "Ton livreur est en route !"
+    },
+    {
+      "step": 4,
+      "key": "delivered",
+      "title": "Livraison",
+      "timestamp": "~ 13:36",
+      "description": "Ta commande sera bientôt livrée"
+    }
+  ],
+  "items": [
+    { "id": "f1", "name": "2x Margherita", "price": 118, "imageKey": "margherita" },
+    { "id": "f2", "name": "1x Chicken BBQ", "price": 69, "imageKey": "burgerCover" },
+    { "id": "f3", "name": "1x Pâtes Alfredo", "price": 55, "imageKey": "alfredo" }
+  ],
+  "subtotal": 242,
+  "groupDiscount": 53,
+  "totalPaid": 189
+}

@@ -1,0 +1,68 @@
+.addProduct {
+  background-color: rgba(0, 0, 0, 0.496);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.addProduct .cancel {
+  color: red;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  background-color: #0000004d;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
+.addProduct .card {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #eee;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+h3 {
+  color: #000;
+  align-self: center;
+}
+
+.addProduct .card input {
+  border: none;
+  outline: none;
+  height: 40px;
+  width: 300px;
+  padding: 0 10px;
+  font-size: 17px;
+}
+
+.addProduct .card button {
+  background-color: rgb(1, 188, 1);
+  border: none;
+  border-radius: 2px;
+  font-size: 15px;
+  color: #eee;
+  width: 320px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.addProduct .card button:hover {
+  background-color: rgb(5, 225, 5);
+}
+
+.addProduct .card span {
+  color: red;
+  font-size: 15px;
+}

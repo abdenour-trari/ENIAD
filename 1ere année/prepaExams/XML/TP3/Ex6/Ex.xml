@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<employe Salary="1234567890" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Ex_e.xsd">
+    <Name></Name>
+    <DateOfBirth>2004-10-10</DateOfBirth>
+        
+</employe>

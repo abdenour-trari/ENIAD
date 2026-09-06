@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE annuaire SYSTEM "Ex.dtd">
+<annuaire>
+    <personne>
+        <nom>TRARI</nom>
+        <prenom usuel="Vrai">Abdenour</prenom>
+        <date format="ANSI">10/10/2025</date>
+        <telephone>
+            <indicatif>+212</indicatif>
+            <num>6-12-21-43-99</num>
+        </telephone>
+        <societe>SQLI</societe>
+    </personne>
+</annuaire>

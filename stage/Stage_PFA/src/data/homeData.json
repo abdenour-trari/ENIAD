@@ -1,0 +1,190 @@
+{
+  "userName": "Youssef",
+  "userLocation": {
+    "name": "Casablanca",
+    "unreadNotificationsCount": 2
+  },
+  "search": {
+    "placeholder": "Rechercher un plat, un resto..."
+  },
+  "actionCards": {
+    "createGroup": {
+      "title": "Créer un groupe",
+      "subtitle": "Invite tes amis et économisez ensemble !",
+      "imageKey": "createGroup3d"
+    },
+    "inviteFriends": {
+      "title": "Inviter des amis",
+      "subtitle": "Plus vous êtes nombreux, plus vous économisez !",
+      "imageKey": "inviteFriends3d"
+    }
+  },
+  "promoBanner": {
+    "badge": "🔥 Offre du jour",
+    "titlePrefix": "Économise plus\nen ",
+    "titleHighlight": "commandant\nensemble !",
+    "discountText": "Jusqu'à -30% sur les commandes collectives",
+    "imageKey": "promoBanner"
+  },
+  "categories": [
+    { "id": "all", "name": "Tout", "icon": "fast-food", "active": true },
+    { "id": "pizza", "name": "Pizza", "icon": "pizza", "active": false },
+    { "id": "plats", "name": "Plats", "icon": "restaurant", "active": false },
+    { "id": "fastfood", "name": "Fast Food", "icon": "nutrition", "active": false },
+    { "id": "healthy", "name": "Healthy", "icon": "leaf", "active": false },
+    { "id": "desserts", "name": "Desserts", "icon": "ice-cream", "active": false }
+  ],
+  "groupOrders": [
+    {
+      "id": "g1",
+      "groupName": "Pizza Lovers",
+      "groupEmoji": "🍕",
+      "restaurantName": "Pizza Lovers",
+      "membersJoined": 7,
+      "maxMembers": 8,
+      "timeRemainingText": "35 min restantes",
+      "discountPercentage": 20,
+      "savingsAmount": 32,
+      "distanceText": "600 m • ENIAD",
+      "deliveryTimeText": "Livraison à 13:15",
+      "imageKey": "pizzaCover",
+      "avatars": [
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop",
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop",
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop"
+      ],
+      "extraAvatarsCount": 3
+    },
+    {
+      "id": "g2",
+      "groupName": "Sushi Time",
+      "groupEmoji": "🍣",
+      "restaurantName": "Sushi Time",
+      "membersJoined": 6,
+      "maxMembers": 6,
+      "timeRemainingText": "20 min restantes",
+      "discountPercentage": 18,
+      "savingsAmount": 28,
+      "distanceText": "450 m • ENIAD",
+      "deliveryTimeText": "Livraison à 12:45",
+      "imageKey": "burgerCover",
+      "avatars": [
+        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop",
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop",
+        "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop"
+      ],
+      "extraAvatarsCount": 1
+    },
+    {
+      "id": "g3",
+      "groupName": "Burgers Addict",
+      "groupEmoji": "🍔",
+      "restaurantName": "Burgers Addict",
+      "membersJoined": 5,
+      "maxMembers": 5,
+      "timeRemainingText": "15 min restantes",
+      "discountPercentage": 15,
+      "savingsAmount": 22,
+      "distanceText": "300 m • ENIAD",
+      "deliveryTimeText": "Livraison à 13:00",
+      "imageKey": "burgerCover",
+      "avatars": [
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop",
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop"
+      ],
+      "extraAvatarsCount": 0
+    },
+    {
+      "id": "g4",
+      "groupName": "Club Sandwich",
+      "groupEmoji": "🥪",
+      "restaurantName": "Club Sandwich",
+      "membersJoined": 4,
+      "maxMembers": 6,
+      "timeRemainingText": "40 min restantes",
+      "discountPercentage": 10,
+      "savingsAmount": 16,
+      "distanceText": "200 m • ENIAD",
+      "deliveryTimeText": "Livraison à 13:30",
+      "imageKey": "pizzaCover",
+      "avatars": [
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop",
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop"
+      ],
+      "extraAvatarsCount": 2
+    }
+  ],
+  "popularSandwiches": [
+    {
+      "id": "s1",
+      "name": "Sandwich Poulet Grillé",
+      "price": 35,
+      "imageKey": "sandwichPoulet"
+    },
+    {
+      "id": "s2",
+      "name": "Sandwich Thon Épicé",
+      "price": 32,
+      "imageKey": "sandwichThon"
+    },
+    {
+      "id": "s3",
+      "name": "Sandwich Viande Hachée",
+      "price": 38,
+      "imageKey": "sandwichViande"
+    },
+    {
+      "id": "s4",
+      "name": "Sandwich Œuf Fromage",
+      "price": 28,
+      "imageKey": "sandwichOeuf"
+    }
+  ],
+  "nearbyRestaurants": [
+    {
+      "id": "r1",
+      "name": "Sandwich House",
+      "rating": 4.7,
+      "deliveryTime": "20-30 min",
+      "priceRange": "$$",
+      "category": "Sandwichs",
+      "imageKey": "restoSandwichHouse"
+    },
+    {
+      "id": "r2",
+      "name": "Baguette Express",
+      "rating": 4.6,
+      "deliveryTime": "15-25 min",
+      "priceRange": "$$",
+      "category": "Sandwichs",
+      "imageKey": "restoBaguetteExpress"
+    },
+    {
+      "id": "r3",
+      "name": "Le Coin Gourmand",
+      "rating": 4.8,
+      "deliveryTime": "25-35 min",
+      "priceRange": "$$$",
+      "category": "Sandwichs",
+      "imageKey": "restoCoinGourmand"
+    },
+    {
+      "id": "r4",
+      "name": "Street Bites",
+      "rating": 4.5,
+      "deliveryTime": "20-30 min",
+      "priceRange": "$$",
+      "category": "Sandwichs",
+      "imageKey": "restoStreetBites"
+    }
+  ],
+  "loyaltyCard": {
+    "levelTitle": "Étudiant Futé",
+    "currentPoints": 120,
+    "nextLevelPoints": 180,
+    "buttonText": "Voir mes récompenses"
+  }
+}

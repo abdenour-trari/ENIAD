@@ -1,0 +1,134 @@
+{
+  "points": 2450,
+  "targetPoints": 3000,
+  "currentLevel": "Gold",
+  "nextLevel": "Gold",
+  "pointsRemaining": 550,
+  "levels": [
+    { "id": "bronze", "name": "Bronze", "range": "0 - 999 points", "color": "bronze" },
+    { "id": "silver", "name": "Silver", "range": "1 000 - 2 999 points", "color": "silver" },
+    { "id": "gold", "name": "Gold", "range": "3 000 - 7 999 points", "color": "gold", "isSelected": true },
+    { "id": "platinum", "name": "Platinum", "range": "8 000+ points", "color": "platinum" }
+  ],
+  "goldPerks": [
+    "-10% sur toutes les commandes collectives",
+    "Livraison gratuite sur les commandes > 50 DH",
+    "Accès prioritaire aux commandes populaires",
+    "Offres exclusives chaque semaine",
+    "Points bonus sur chaque commande"
+  ],
+  "myPerks": [
+    { "id": "pk1", "title": "-10% sur la prochaine commande", "points": "150 pts", "icon": "pricetag-outline" },
+    { "id": "pk2", "title": "Livraison gratuite", "points": "500 pts", "icon": "bicycle-outline" },
+    { "id": "pk3", "title": "Priorité sur les commandes", "points": "300 pts", "icon": "people-outline" }
+  ],
+  "rewards": [
+    {
+      "id": "rw1",
+      "title": "-15% chez Burger House",
+      "costPoints": 400,
+      "badge": "-15%",
+      "imageKey": "burgerCover"
+    },
+    {
+      "id": "rw2",
+      "title": "Livraison gratuite",
+      "costPoints": 500,
+      "badge": "Livraison gratuite",
+      "imageKey": "promoBanner"
+    },
+    {
+      "id": "rw3",
+      "title": "-20% chez Snack Story",
+      "costPoints": 600,
+      "badge": "-20%",
+      "imageKey": "pizzaCover"
+    }
+  ],
+  "coupons": [
+    {
+      "id": "cp1",
+      "restaurantName": "Pizza Hut",
+      "restaurantLogo": "https://upload.wikimedia.org/wikipedia/sco/thumb/d/d2/Pizza_Hut_logo.svg/1088px-Pizza_Hut_logo.svg.png",
+      "discountBadge": "-10%",
+      "title": "-10% sur ta prochaine commande chez Pizza Hut",
+      "validUntil": "Valable jusqu'au 25 Mai 2024"
+    },
+    {
+      "id": "cp2",
+      "restaurantName": "KFC",
+      "restaurantLogo": "https://upload.wikimedia.org/wikipedia/sco/thumb/bf/bf/KFC_logo.svg/1024px-KFC_logo.svg.png",
+      "discountBadge": "Livraison gratuite",
+      "title": "Livraison offerte chez KFC dès 60 DH",
+      "validUntil": "Valable jusqu'au 30 Mai 2024"
+    },
+    {
+      "id": "cp3",
+      "restaurantName": "Snack Story",
+      "restaurantLogo": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=100&h=100&fit=crop",
+      "discountBadge": "-15%",
+      "title": "-15% sur tout le menu chez Snack Story",
+      "validUntil": "Valable jusqu'au 15 Juin 2024"
+    }
+  ],
+  "pointsHistory": [
+    {
+      "id": "h1",
+      "title": "Commande #JB12458",
+      "dateText": "12 Mai 2024 • 89 DH",
+      "pointsText": "+89 pts",
+      "icon": "bag-handle-outline"
+    },
+    {
+      "id": "h2",
+      "title": "Commande collective bonus",
+      "dateText": "10 Mai 2024",
+      "pointsText": "+20 pts",
+      "icon": "people-outline"
+    },
+    {
+      "id": "h3",
+      "title": "Avis sur Snack Story",
+      "dateText": "9 Mai 2024",
+      "pointsText": "+15 pts",
+      "icon": "star-outline"
+    },
+    {
+      "id": "h4",
+      "title": "Invitation : Sara",
+      "dateText": "8 Mai 2024",
+      "pointsText": "+100 pts",
+      "icon": "person-add-outline"
+    }
+  ],
+  "howToEarn": [
+    {
+      "id": "e1",
+      "title": "Passer une commande",
+      "subtitle": "10 points par 10 DH dépensés",
+      "points": "+10 pts",
+      "icon": "bag-handle"
+    },
+    {
+      "id": "e2",
+      "title": "Commande collective",
+      "subtitle": "Bonus de 20 points",
+      "points": "+20 pts",
+      "icon": "people"
+    },
+    {
+      "id": "e3",
+      "title": "Inviter un ami",
+      "subtitle": "Ton ami passe sa 1ère commande",
+      "points": "+100 pts",
+      "icon": "person-add"
+    },
+    {
+      "id": "e4",
+      "title": "Laisser un avis",
+      "subtitle": "Sur un restaurant ou une commande",
+      "points": "+15 pts",
+      "icon": "star"
+    }
+  ]
+}

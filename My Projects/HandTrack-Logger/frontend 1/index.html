@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LetterQuest — Nesture AI</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <!-- ═══════ NAVBAR ═══════ -->
+    <nav class="navbar">
+      <div class="nav-inner">
+        <a class="nav-brand" href="#">
+          <div class="brand-mark">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path
+                d="M14 2L26 8V20L14 26L2 20V8L14 2Z"
+                stroke="url(#g1)"
+                stroke-width="1.5"
+                fill="none"
+              />
+              <path
+                d="M14 7L21 11V17L14 21L7 17V11L14 7Z"
+                fill="url(#g2)"
+                opacity="0.6"
+              />
+              <defs>
+                <linearGradient id="g1" x1="2" y1="2" x2="26" y2="26">
+                  <stop offset="0%" stop-color="#6366f1" />
+                  <stop offset="100%" stop-color="#10b981" />
+                </linearGradient>
+                <linearGradient id="g2" x1="7" y1="7" x2="21" y2="21">
+                  <stop offset="0%" stop-color="#6366f1" />
+                  <stop offset="100%" stop-color="#10b981" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">LetterQuest</span>
+            <span class="brand-sub">by Nesture AI</span>
+          </div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#" class="nav-link active">Session</a></li>
+          <li><a href="#" class="nav-link">Analytics</a></li>
+          <li><a href="#" class="nav-link">Reports</a></li>
+          <li><a href="#" class="nav-link">Settings</a></li>
+        </ul>
+
+        <div class="nav-right">
+          <div class="tracking-pill" id="trackingIndicator">
+            <span class="t-dot"></span>
+            <span>Hand Tracking</span>
+          </div>
+          <div class="nav-sep"></div>
+          <div class="nav-user">
+            <div class="user-avatar">JD</div>
+            <div class="user-info">
+              <span class="user-name">Jordan D.</span>
+              <span class="user-role">Patient</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ═══════ PAGE ═══════ -->
+    <div class="page">
+      <div class="layout">
+        <!-- ── MAIN COLUMN ── -->
+        <main class="main-col">
+          <!-- Session bar -->
+          <div class="session-bar">
+            <div class="session-info">
+              <span class="session-label">Session</span>
+              <span class="session-num">#14</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-steps">
+                <div class="step done"></div>
+                <div class="step done"></div>
+                <div class="step active"></div>
+                <div class="step"></div>
+                <div class="step"></div>
+              </div>
+              <span class="step-label">Word 3 / 5</span>
+            </div>
+            <div class="session-timer">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <circle
+                  cx="7"
+                  cy="7"
+                  r="6"
+                  stroke="#6366f1"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M7 4v3.5l2 1.5"
+                  stroke="#6366f1"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <span id="timer">00:00</span>
+            </div>
+          </div>
+
+          <!-- Game card -->
+          <div class="game-card">
+            <div class="game-card-glow"></div>
+
+            <!-- Word prompt -->
+            <div class="word-prompt">
+              <div class="prompt-top">
+                <span class="chip">Spell the word</span>
+                <span class="difficulty-badge">Level 3</span>
+              </div>
+              <div class="prompt-body">
+                <div class="prompt-emoji-wrap">
+                  <span class="prompt-emoji">🥜</span>
+                </div>
+                <h2 class="prompt-word" id="targetWord">NUT</h2>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="card-divider"></div>
+
+            <!-- Answer display -->
+            <div class="answer-row">
+              <span class="answer-hint">Your answer</span>
+              <div class="answer-display" id="answerDisplay"></div>
+            </div>
+
+            <!-- Actions -->
+            <div class="actions">
+              <button
+                class="btn btn-ghost"
+                id="cancelBtn"
+                onclick="cancelLetter()"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M5 8h7M5 8l3-3M5 8l3 3"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                Cancel
+              </button>
+              <button
+                class="btn btn-ghost"
+                id="resetBtn"
+                onclick="resetAnswer()"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M3 8a5 5 0 105-5H5m0 0L3 5m2-2v3"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                Reset
+              </button>
+            </div>
+          </div>
+
+          <!-- Canvas keyboard -->
+          <div class="canvas-card">
+            <div class="canvas-label">
+              <span class="dot-live"></span>
+              Hand Tracking Keyboard
+            </div>
+            <canvas id="canvas" width="900" height="214"></canvas>
+          </div>
+
+          <!-- AI Feedback -->
+          <div class="feedback-bar" id="feedback">
+            <div class="fb-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <circle
+                  cx="9"
+                  cy="9"
+                  r="8"
+                  stroke="#6366f1"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M6 9l2 2 4-4"
+                  stroke="#6366f1"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="fb-content">
+              <span class="fb-title">AI Motor Analysis</span>
+              <p id="feedbackText">Waiting for pattern analysis…</p>
+            </div>
+          </div>
+        </main>
+
+        <!-- ── SIDEBAR ── -->
+        <aside class="sidebar">
+          <!-- Score pill -->
+          <div class="score-pill">
+            <span class="score-label">Score</span>
+            <span class="score-value" id="score">0</span>
+            <span class="score-pts">pts</span>
+          </div>
+
+          <!-- Metrics card -->
+          <div class="s-card">
+            <div class="s-card-title">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <rect x="1" y="8" width="3" height="7" rx="1" fill="#6366f1" />
+                <rect
+                  x="6"
+                  y="5"
+                  width="3"
+                  height="10"
+                  rx="1"
+                  fill="#6366f1"
+                  opacity=".6"
+                />
+                <rect
+                  x="11"
+                  y="2"
+                  width="3"
+                  height="13"
+                  rx="1"
+                  fill="#6366f1"
+                  opacity=".3"
+                />
+              </svg>
+              Real-Time Metrics
+            </div>
+            <div class="metric-item">
+              <span class="m-label">Response Time</span>
+              <span class="m-value" id="responseTime">—</span>
+            </div>
+            <div class="metric-item">
+              <span class="m-label">Accuracy</span>
+              <span class="m-value accent-green" id="accuracy">—</span>
+            </div>
+            <div class="metric-item">
+              <span class="m-label">Session</span>
+              <span class="m-value">3 / 5</span>
+            </div>
+            <div class="s-progress-wrap">
+              <div class="s-progress-bar">
+                <div class="s-progress-fill" style="width: 60%"></div>
+              </div>
+              <span class="s-progress-label">60%</span>
+            </div>
+          </div>
+
+          <!-- Motor patterns card -->
+          <div class="s-card">
+            <div class="s-card-title">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <circle
+                  cx="8"
+                  cy="8"
+                  r="7"
+                  stroke="#10b981"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M5 8h6M8 5v6"
+                  stroke="#10b981"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                />
+              </svg>
+              Motor Patterns
+            </div>
+            <div class="motor-grid">
+              <div class="motor-cell" id="mCell-point">
+                <div class="motor-icon">👆</div>
+                <b class="motor-score" id="pointScore">0%</b>
+                <span class="motor-label">Point</span>
+                <div class="motor-bar">
+                  <div
+                    class="motor-fill"
+                    id="mBar-point"
+                    style="width: 0%"
+                  ></div>
+                </div>
+              </div>
+              <div class="motor-cell" id="mCell-select">
+                <div class="motor-icon">✋</div>
+                <b class="motor-score" id="selectScore">0%</b>
+                <span class="motor-label">Select</span>
+                <div class="motor-bar">
+                  <div
+                    class="motor-fill"
+                    id="mBar-select"
+                    style="width: 0%"
+                  ></div>
+                </div>
+              </div>
+              <div class="motor-cell" id="mCell-precision">
+                <div class="motor-icon">🎯</div>
+                <b class="motor-score" id="precisionScore">0%</b>
+                <span class="motor-label">Precision</span>
+                <div class="motor-bar">
+                  <div
+                    class="motor-fill"
+                    id="mBar-precision"
+                    style="width: 0%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Encouragement -->
+          <div class="enc-card" id="encouragementBox">
+            <div class="enc-glow"></div>
+            <div class="enc-icon">✦</div>
+            <p class="enc-text">Waiting for AI encouragement…</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <video id="video" autoplay></video>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

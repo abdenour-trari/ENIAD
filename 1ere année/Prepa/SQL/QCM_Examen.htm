@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QCM Examen</title>
+  </head>
+  <body>
+    <h1>QCM : Examen</h1>
+    <div id="questions"></div>
+
+    <script>
+      fetch("./QCM_IBD_Examen.json")
+        .then((response) => response.json())
+        .then((questions) => {
+          const container = document.getElementById("questions");
+          questions.forEach((q, index) => {
+            const questionDiv = document.createElement("div");
+            questionDiv.innerHTML = `<strong>Question ${index + 1}:</strong> ${
+              q.question
+            }`;
+            q.options.forEach((option, i) => {
+              questionDiv.innerHTML += `<br>${String.fromCharCode(
+                65 + i
+              )}. ${option}`;
+            });
+            container.appendChild(questionDiv);
+          });
+        });
+    </script>
+  </body>
+</html>

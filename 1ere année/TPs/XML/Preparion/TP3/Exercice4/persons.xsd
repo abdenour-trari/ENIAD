@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema xmlns:x="http://www.w3.org/2001/XMLSchema">
+    <x:element name="persons">
+        <x:complexType>
+            <x:sequence>
+                <x:element name="person" type="person_type" minOccurs="1" />
+            </x:sequence>
+        </x:complexType>
+    </x:element>
+    <x:complexType name="person_type" mixed="true">
+        <x:sequence>
+            <x:element name="firstname" type="x:string"/>
+            <x:element name="lastname" type="x:string"/>
+        </x:sequence>
+        <x:attribute name="identifiant" use="required">
+            <x:simpleType>
+                <x:restriction base="x:integer">
+                    <x:minInclusive value="10000000" />
+                </x:restriction>
+            </x:simpleType>
+        </x:attribute>
+    </x:complexType>
+
+</x:schema>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="persons" type="personsType"/>
+    <xs:complexType name="personsType">
+        <xs:sequence>
+            <xs:element name="person" type="personType" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="personType" mixed="true">
+        <xs:sequence>
+            <xs:element name="firstname" type="xs:string" />
+            <xs:element name="lastname" type="xs:string" />
+        </xs:sequence>
+        <xs:attribute name="identifiant" type="identifiantType" use="required" />
+    </xs:complexType>
+
+    <xs:simpleType name="identifiantType">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="8"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="prenom" type="prenomType" />
+    <xs:complexType name="prenomType" mixed="true">
+        <xs:sequence>
+            <xs:element name="firstname" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="nom" type="nomType" />
+    <xs:complexType name="nomType" mixed="true">
+        <xs:sequence>
+                <xs:element name="lastname" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

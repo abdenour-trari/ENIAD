@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE document [
+    <!ELEMENT document ((title | publisher)*, name?) >
+    <!ELEMENT title (#PCDATA)>
+    <!ELEMENT publisher (name)>
+    <!ELEMENT name (#PCDATA)>
+    <!ATTLIST publisher name CDATA #IMPLIED >
+]>
+<document>
+    <title> BD </title>
+    <publisher> 
+        <name> Alfred Pub </name>
+     </publisher>
+    <title> bande dessinée </title>
+    <publisher name="Helo">
+        <name> Marvel </name>
+    </publisher>
+</document>

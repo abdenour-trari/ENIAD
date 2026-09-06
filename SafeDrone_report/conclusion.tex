@@ -1,0 +1,25 @@
+% ============================================================
+%  CONCLUSION GÉNÉRALE
+% ============================================================
+\chapter*{Conclusion Générale}
+\addcontentsline{toc}{chapter}{Conclusion Générale}
+\markboth{Conclusion Générale}{Conclusion Générale}
+
+Ce projet avait pour ambition de répondre à une question concrète : est-il possible, à partir d'une simple image aérienne, de doter un drone autonome de la capacité à identifier automatiquement une zone d'atterrissage sécurisée en situation d'urgence ? Les travaux réalisés montrent que la réponse est \textbf{oui} — sous réserve des conditions et limites clairement identifiées tout au long de ce rapport.
+
+En combinant segmentation sémantique profonde, transfert d'apprentissage et optimisations orientées Edge AI, le système développé atteint un \textbf{Val IoU de 0.8803} et un \textbf{Val Dice Score de 0.9349} sur le Graz Semantic Drone Dataset (avec une précision de \textbf{0.9305} et un rappel de \textbf{0.9393} au meilleur modèle), des performances classées excellentes selon les seuils retenus.
+
+L'évaluation finale du système met en évidence un bilan positif au regard des objectifs fixés. L'objectif d'identification des zones sûres d'atterrissage et la segmentation multiclasses des 24 catégories sémantiques sont pleinement atteints, grâce à la précision spatiale fine apportée par l'architecture Attention U-Net combinée à la data augmentation. En revanche, la détection des obstacles est jugée partiellement atteinte, car si le modèle segmente fidèlement les menaces de grande envergure (bâtiments, routes encombrées), des limitations persistent sur les petits obstacles ponctuels (personnes isolées, poteaux fins) en raison du sous-échantillonnage de l'encodeur.
+
+Sur le plan de l'intégration, la robustesse environnementale est globalement atteinte grâce à la diversité des scènes du Graz Semantic Drone Dataset et à l'entraînement sous conditions d'augmentation variées. La compatibilité avec les plateformes Edge AI est quant à elle prometteuse, démontrée par la légèreté de l'encodeur EfficientNet-B0 et la portabilité offerte par le format ONNX. Toutefois, le traitement temps réel complet reste à améliorer ; bien que l'inférence théorique réponde aux exigences, une validation physique et matérielle embarquée sur carte Jetson Orin reste nécessaire pour confirmer les temps de réponse de la boucle fermée de contrôle.
+
+\vspace{0.6em}
+\textbf{Limites identifiées :} Le volume du dataset reste limité (400 images), restreignant la diversité des scènes couvertes. La validation embarquée réelle (latence, FPS, consommation) reste à conduire. La variabilité des conditions (nuit, pluie, forte luminosité) constitue un angle mort potentiel.
+
+\vspace{0.6em}
+\textbf{Perspectives :} À court terme, l'export du modèle en ONNX/TensorRT et la validation sur processeur embarqué (Jetson Nano). À moyen terme, l'enrichissement du dataset et l'amélioration de la détection des petits objets. À long terme, la fusion multimodale capteurs/vision, l'exploration des Vision Transformers et un agent de Reinforcement Learning pour une stratégie d'atterrissage dynamique.
+
+\vspace{0.6em}
+En définitive, ce projet démontre qu'il est possible, avec des ressources limitées et un dataset de taille modeste, de construire un système de segmentation sémantique performant et orienté vers l'embarqué — une contribution concrète vers la nouvelle génération de drones autonomes capables de \textbf{percevoir, comprendre et décider} en toute sécurité.
+
+\clearpage

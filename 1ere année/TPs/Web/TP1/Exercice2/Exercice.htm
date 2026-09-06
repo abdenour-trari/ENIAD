@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <link rel="stylesheet" href="Exercice.css" />
+  <head>
+    <title>Formulaire de Saisie</title>
+  </head>
+  <body>
+    <h2>Formulaire de Saisie</h2>
+    <form action="#" method="post">
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" name="nom" required /><br /><br />
+
+      <label for="prenom">Prénom :</label>
+      <input type="text" id="prenom" name="prenom" required /><br /><br />
+
+      <label for="adresse">Adresse :</label><br />
+      <textarea id="adresse" name="adresse" rows="20" cols="50"></textarea
+      ><br /><br />
+
+      <label for="email">Email :</label>
+      <input type="email" id="email" name="email" required /><br /><br />
+
+      <label for="telephone">Téléphone :</label>
+      <input type="tel" id="telephone" name="telephone" required /><br /><br />
+
+      <label for="site">Site web :</label>
+      <input type="url" id="site" name="site" /><br /><br />
+
+      <label for="date_naissance">Date de naissance :</label>
+      <input
+        type="date"
+        id="date_naissance"
+        name="date_naissance"
+        required
+      /><br /><br />
+
+      <label for="nb_enfants">Nombre d'enfants :</label>
+      <input type="number" id="nb_enfants" name="nb_enfants" /><br /><br />
+
+      <label for="couleur">Couleur préférée :</label>
+      <input type="color" id="couleur" name="couleur" /><br /><br />
+
+      <label for="filiere">Filière :</label>
+      <input list="filieres" id="filiere" name="filiere" />
+      <datalist id="filieres">
+        <option value="GI"></option>
+        <option value="IA"></option>
+        <option value="RS"></option>
+        <option value="Robotique"></option></datalist
+      ><br /><br />
+
+      <label>Langues maîtrisées :</label><br />
+      <input type="checkbox" id="arabe" name="langues" value="Arabe" />
+      <label for="arabe">Arabe</label>
+      <input type="checkbox" id="francais" name="langues" value="Français" />
+      <label for="francais">Français</label>
+      <input type="checkbox" id="anglais" name="langues" value="Anglais" />
+      <label for="anglais">Anglais</label><br /><br />
+
+      <label>Groupe :</label><br />
+      <input type="radio" id="groupe101" name="groupe" value="101" />
+      <label for="groupe101">101</label>
+      <input type="radio" id="groupe102" name="groupe" value="102" />
+      <label for="groupe102">102</label><br /><br />
+
+      <label for="module">Module :</label>
+      <select id="module" name="module">
+        <option value="M01">M01</option>
+        <option value="M02">M02</option>
+        <option value="M03">M03</option>
+        <option value="M04">M04</option>
+        <option value="M05">M05</option></select
+      ><br /><br />
+
+      <label for="cv">CV :</label>
+      <input type="file" id="cv" name="cv" /><br /><br />
+
+      <input type="submit" value="Envoyer" />
+      <input type="reset" value="Réinitialiser" />
+    </form>
+  </body>
+</html>

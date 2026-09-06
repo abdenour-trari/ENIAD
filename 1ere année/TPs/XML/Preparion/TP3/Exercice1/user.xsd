@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema xmlns:x="http://www.w3.org/2001/XMLSchema">
+    <x:element name="utilisateur" type="nom_mail" />
+    <x:complexType name="nom_mail">
+        <x:sequence>
+            <x:element name="nom" type="x:string" />
+            <x:element name="email" type="x:string" />
+        </x:sequence>
+        <x:attribute name="id" type="x:integer" use="required"/>
+        <x:attribute name="actif" type="x:boolean" use="optional"/>
+    </x:complexType>
+</x:schema>

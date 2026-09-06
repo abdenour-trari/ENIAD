@@ -1,0 +1,109 @@
+% ============================================================
+%  REMERCIEMENTS
+% ============================================================
+\chapter*{Remerciements}
+\addcontentsline{toc}{chapter}{Remerciements}
+\markboth{Remerciements}{Remerciements}
+
+Avant tout, nous tenons à exprimer notre profonde gratitude envers toutes les personnes qui ont contribué, de près ou de loin, à la réalisation de ce projet de fin d'études.
+
+Nous adressons en premier lieu nos sincères remerciements à notre encadrant académique, \textbf{Mr. AISSI Mohamed}, pour son accompagnement, sa disponibilité, ses conseils pertinents ainsi que son soutien tout au long de ce travail. Son expertise, ses orientations et ses remarques constructives ont constitué une source précieuse d'apprentissage et ont largement contribué à l'aboutissement de ce projet.
+
+Nous exprimons également notre reconnaissance à l'ensemble des enseignants de la filière Intelligence Artificielle de l'ENIAD, qui nous ont transmis des connaissances solides durant notre parcours universitaire et nous ont permis d'acquérir les compétences nécessaires pour mener à bien ce projet.
+
+Nos remerciements s'adressent également aux responsables pédagogiques et administratifs de l'établissement pour avoir mis à notre disposition un environnement favorable au développement de nos compétences académiques et professionnelles.
+
+Nous souhaitons remercier toute personne ayant participé directement ou indirectement à la réalisation de ce projet, notamment les collègues, camarades et collaborateurs qui ont apporté leur soutien, leurs remarques et leurs échanges tout au long des différentes étapes de conception, de développement et de validation.
+
+Nous exprimons aussi notre gratitude envers la communauté scientifique et les ressources académiques, techniques et technologiques qui ont facilité nos travaux de recherche dans les domaines de l'Intelligence Artificielle, du Deep Learning, de la Vision par Ordinateur et des systèmes embarqués.
+
+Enfin, nous adressons nos plus profonds remerciements à nos familles pour leur soutien moral, leur patience, leurs encouragements constants et leur confiance tout au long de notre parcours universitaire. Leur présence et leurs sacrifices ont constitué une véritable source de motivation dans l'accomplissement de ce travail.
+
+Ce projet représente l'aboutissement d'un parcours académique riche en apprentissage, en défis et en expériences, et nous espérons qu'il contribuera modestement au développement de solutions innovantes dans le domaine des systèmes intelligents appliqués aux drones autonomes.
+
+\clearpage
+
+% ============================================================
+%  RÉSUMÉ — FRANÇAIS
+% ============================================================
+\chapter*{Résumé}
+\addcontentsline{toc}{chapter}{Résumé}
+\markboth{Résumé}{Résumé}
+
+L'évolution rapide des drones autonomes a ouvert de nombreuses perspectives dans des domaines tels que la surveillance, l'agriculture, la logistique et les interventions d'urgence. Cependant, en cas de panne système, de perte de communication ou de batterie critique, la capacité du drone à effectuer un atterrissage sécurisé devient un défi majeur. L'identification automatique d'une zone d'atterrissage sûre, tout en évitant les obstacles, constitue une problématique essentielle pour garantir la sécurité des équipements et de l'environnement.
+
+Ce projet propose la conception et l'implémentation d'un système intelligent basé sur la segmentation sémantique profonde pour l'identification automatique de zones d'atterrissage sécurisées. L'approche repose sur une architecture \textbf{Attention U-Net} avec encodeur \textbf{EfficientNet-B0} pré-entraîné, entraînée sur le \textit{Graz Semantic Drone Dataset} (400 images aériennes, 24 classes sémantiques). Le pipeline complet intègre le prétraitement des images, l'entraînement du modèle avec une fonction de coût hybride (Dice Loss + Cross Entropy pondérée), des optimisations embarquées (Mixed Precision, Early Stopping) et un mécanisme de décision automatique basé sur la Distance Transform pour sélectionner la zone la plus sûre.
+
+L'évaluation du système sur l'ensemble de test démontre des performances excellentes : un \textbf{Val IoU de 0.8803} et un \textbf{Val Dice Score de 0.9349}, obtenus après convergence stable sur 128 époques avec arrêt anticipé. Les résultats qualitatifs confirment la capacité du modèle à distinguer précisément les surfaces praticables des obstacles critiques (personnes, véhicules, objets) en produisant un masque binaire SAFE/UNSAFE directement exploitable pour la décision d'atterrissage.
+
+Ce travail ouvre des perspectives vers le déploiement Edge AI (ONNX/TensorRT), la fusion multimodale capteurs/vision et le développement de systèmes d'atterrissage autonome encore plus robustes en environnements complexes.
+
+\vspace{0.8em}
+\begin{tcolorbox}[
+  colback=ENIADLightBlue!40, colframe=ENIADBlue,
+  title={\textbf{Mots-clés}}, fonttitle=\bfseries\small,
+  arc=4pt, boxrule=0.8pt
+]
+  Segmentation Sémantique, U-Net, Deep Learning, Drone Autonome, Atterrissage d'Urgence, Edge AI, EfficientNet, Computer Vision.
+\end{tcolorbox}
+
+\clearpage
+
+% ============================================================
+%  ABSTRACT — ENGLISH
+% ============================================================
+\begin{otherlanguage}{english}
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+\markboth{Abstract}{Abstract}
+
+The rapid evolution of autonomous drones has opened new perspectives in fields such as surveillance, agriculture, logistics, and emergency response. However, in critical situations such as system failure, communication loss, or low battery, the ability to perform a safe emergency landing becomes a major challenge. Automatically identifying a safe landing zone while avoiding obstacles is therefore essential to protect both equipment and the surrounding environment.
+
+This project presents the design and implementation of an intelligent system based on deep semantic segmentation for the automatic identification of safe landing zones. The approach relies on an \textbf{Attention U-Net} architecture with a pre-trained \textbf{EfficientNet-B0} encoder, trained on the \textit{Graz Semantic Drone Dataset} (400 aerial images, 24 semantic classes). The complete pipeline integrates image preprocessing, model training with a hybrid loss function (Dice Loss + weighted Cross Entropy), embedded optimizations (Mixed Precision Training, Early Stopping), and an automatic decision mechanism based on Distance Transform to select the safest landing area.
+
+System evaluation demonstrates excellent performance: a \textbf{Val IoU of 0.8803} and a \textbf{Val Dice Score of 0.9349}, achieved after stable convergence over 128 epochs with early stopping. Qualitative results confirm the model's ability to precisely distinguish usable surfaces from critical obstacles (people, vehicles, objects), producing a SAFE/UNSAFE binary mask directly exploitable for landing decisions.
+
+This work opens perspectives toward Edge AI deployment (ONNX/TensorRT), multimodal sensor/vision fusion, and the development of more robust autonomous landing systems in complex environments.
+
+\vspace{0.8em}
+\begin{tcolorbox}[
+  colback=ENIADLightBlue!40, colframe=ENIADBlue,
+  title={\textbf{Keywords}}, fonttitle=\bfseries\small,
+  arc=4pt, boxrule=0.8pt
+]
+  Semantic Segmentation, U-Net, Deep Learning, Autonomous Drone, Emergency Landing, Edge AI, EfficientNet, Computer Vision.
+\end{tcolorbox}
+\end{otherlanguage}
+
+\clearpage
+
+% ============================================================
+%  ملخص — ARABIC
+% ============================================================
+\begin{otherlanguage}{arabic}
+\chapter*{ملخص}
+\addcontentsline{toc}{chapter}{ملخص}
+\markboth{ملخص}{ملخص}
+
+شهدت الطائرات المسيّرة المستقلة تطوراً متسارعاً في السنوات الأخيرة، مما فتح آفاقاً واسعة في مجالات عدة كالمراقبة والزراعة الذكية والخدمات اللوجستية والتدخل في حالات الطوارئ. غير أنه في حالات الأعطال التقنية أو انقطاع الاتصال أو نفاد البطارية، يصبح إيجاد منطقة هبوط آمنة بشكل تلقائي تحدياً بالغ الأهمية لحماية المعدات والمحيط.
+
+يقدم هذا المشروع تصميم وتطوير نظام ذكي يعتمد على التجزئة الدلالية العميقة للكشف التلقائي عن مناطق الهبوط الآمنة. يرتكز النهج المعتمد على بنية Attention U-Net مع مشفّر EfficientNet-B0 مدرَّب مسبقاً، تم تدريبه على مجموعة بيانات Graz Semantic Drone Dataset المكوّنة من 400 صورة جوية موزّعة على 24 فئة دلالية.
+
+يتضمن النظام سلسلة معالجة متكاملة تشمل المعالجة المسبقة للصور، وتدريب النموذج باستخدام دالة خسارة هجينة تجمع بين Dice Loss وCross Entropy الموزونة، فضلاً عن تحسينات للأنظمة المدمجة كـ Mixed Precision وEarly Stopping، وآلية قرار تلقائية مبنية على Distance Transform لاختيار أفضل منطقة هبوط.
+
+أثبت النظام كفاءة عالية على مجموعة الاختبار، إذ بلغت قيمة Val IoU 0.8803 وVal Dice Score 0.9349 بعد تقارب مستقر على مدى 128 دورة تدريبية. تؤكد النتائج النوعية قدرة النموذج على التمييز الدقيق بين الأسطح الصالحة للهبوط والعقبات الحرجة، مع إنتاج قناع ثنائي SAFE/UNSAFE قابل للاستخدام المباشر في قرار الهبوط.
+
+يفتح هذا العمل آفاقاً نحو النشر على الأنظمة المدمجة عبر ONNX/TensorRT، والدمج متعدد الحساسات، وتطوير أنظمة هبوط مستقلة أكثر متانة في البيئات المعقدة.
+
+\vspace{0.8em}
+\begin{tcolorbox}[
+  colback=ENIADLightBlue!40, colframe=ENIADBlue,
+  title={\textbf{الكلمات المفتاحية}}, fonttitle=\bfseries\small,
+  arc=4pt, boxrule=0.8pt,
+  halign=right, halign title=right
+]
+  التجزئة الدلالية، الشبكات العصبية العميقة، الطائرات المسيّرة المستقلة، الهبوط الطارئ، الذكاء الاصطناعي المدمج
+\end{tcolorbox}
+\end{otherlanguage}
+
+\clearpage

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>AoAgent - Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 20px;
+      }
+      .card {
+        border: 1px solid #ddd;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 12px;
+      }
+      button {
+        padding: 8px 12px;
+        border-radius: 6px;
+      }
+      pre {
+        white-space: pre-wrap;
+        background: #f7f7f7;
+        padding: 8px;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>AoAgent — Veille Appels d'Offres (PMMP)</h1>
+    <div class="card">
+      <button id="btn-scrape">Lancer Scraping</button>
+      <span id="scrape-status"></span>
+    </div>
+
+    <div class="card">
+      <h3>Offres récupérées</h3>
+      <div id="offers"></div>
+    </div>
+
+    <div class="card">
+      <h3>Planification & génération</h3>
+      <div>
+        <select id="select-offer"></select>
+        <button id="btn-plan">Générer plan</button>
+        <button id="btn-exec">Générer brouillon</button>
+      </div>
+      <h4>Plan</h4>
+      <pre id="plan-output"></pre>
+      <h4>Brouillon</h4>
+      <pre id="draft-output"></pre>
+    </div>
+
+    <script>
+      async function fetchOffers() {
+        const r = await fetch("/api/offers");
+        const j = await r.json();
+        const sel = document.getElementById("select-offer");
+        const offersDiv = document.getElementById("offers");
+        sel.innerHTML = "";
+        offersDiv.innerHTML = "";
+        (j.offers || []).forEach((o) => {
+          const opt = document.createElement("option");
+          opt.value = JSON.stringify(o);
+          opt.text = o.title + " — " + o.deadline;
+          sel.add(opt);
+          const d = document.createElement("div");
+          d.innerText = o.title + " — " + o.org + " (" + o.deadline + ")";
+          offersDiv.appendChild(d);
+        });
+      }
+
+      document.getElementById("btn-scrape").onclick = async () => {
+        document.getElementById("scrape-status").innerText = " — scraping...";
+        const r = await fetch("/api/scrape", { method: "POST" });
+        const j = await r.json();
+        document.getElementById("scrape-status").innerText = JSON.stringify(j);
+        await fetchOffers();
+      };
+
+      document.getElementById("btn-plan").onclick = async () => {
+        const sel = document.getElementById("select-offer");
+        if (!sel.value) return alert("Choisis une offre");
+        const offer = JSON.parse(sel.value);
+        const r = await fetch("/api/plan", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ offer }),
+        });
+        const j = await r.json();
+        document.getElementById("plan-output").innerText = j.plan;
+      };
+
+      document.getElementById("btn-exec").onclick = async () => {
+        const sel = document.getElementById("select-offer");
+        if (!sel.value) return alert("Choisis une offre");
+        const offer = JSON.parse(sel.value);
+        const plan = document.getElementById("plan-output").innerText;
+        if (!plan) return alert("Génère d'abord le plan");
+        const r = await fetch("/api/execute", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ offer, plan }),
+        });
+        const j = await r.json();
+        document.getElementById("draft-output").innerText = j.draft;
+      };
+
+      window.onload = fetchOffers;
+    </script>
+  </body>
+</html>

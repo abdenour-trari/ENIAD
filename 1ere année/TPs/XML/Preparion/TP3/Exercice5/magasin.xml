@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<magasin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="magasin.xsd">
+    <clients>
+        <client clientID="C-1" />
+    </clients>
+    <commandes>
+        <commande>
+            <clientID ID="C-1"></clientID>
+            <dateCommande>2025-10-10</dateCommande>
+            <dateLivraison>2025-10-10</dateLivraison>
+        </commande>
+    </commandes>
+</magasin>

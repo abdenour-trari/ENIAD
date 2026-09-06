@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Smartphone Android Pro",
+    "price": "2999 DH",
+    "image": "assets/products/phone.png",
+    "desc": "128 Go, 8 Go RAM"
+  },
+  {
+    "id": 2,
+    "name": "Smartphone Android Pro",
+    "price": "2999 DH",
+    "image": "assets/products/watch.png",
+    "desc": "128 Go, 8 Go RAM"
+  },
+  {
+    "id": 3,
+    "name": "Smartphone Android Pro",
+    "price": "2999 DH",
+    "image": "assets/products/watch.png",
+    "desc": "128 Go, 8 Go RAM"
+  }
+]

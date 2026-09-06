@@ -1,0 +1,11 @@
+<!ELEMENT annuaire (personne+)>
+<!ELEMENT personne (nom, prenom+, date, telephone, societe?)>
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT prenom (#PCDATA)>
+<!ATTLIST prenom usuel (Vrai|Faux) "Faux" >
+<!ELEMENT date (#PCDATA)>
+<!ATTLIST date format (ANSI | ISO | EN-exp | FR-exp) #REQUIRED>
+<!ELEMENT telephone (indicatif, num)? >
+<!ELEMENT indicatif (#PCDATA)>
+<!ELEMENT num (#PCDATA)>
+<!ELEMENT societe (#PCDATA) >

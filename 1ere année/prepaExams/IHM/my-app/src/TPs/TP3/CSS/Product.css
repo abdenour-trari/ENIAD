@@ -1,0 +1,28 @@
+.productCard {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #7f7f7f;
+  margin: 20px;
+}
+.productCard img {
+  margin-top: 10px;
+  height: 280px;
+  width: 280px;
+  background-color: #d49191;
+}
+.productCard .productInfos {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+}
+.productCard .productInfos button {
+  width: 50%;
+  height: 30px;
+  border: solid 0.5px rgb(201, 201, 201);
+  border-radius: 3px;
+  box-shadow: 0 0 4px #a3a3a3;
+}

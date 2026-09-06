@@ -1,0 +1,109 @@
+{
+  "categories": [
+    {
+      "id": "cat_1",
+      "name": "Légumes Frais",
+      "icon": "leaf",
+      "description": "Légumes frais issus de la production locale"
+    },
+    {
+      "id": "cat_2",
+      "name": "Fruits de Saison",
+      "icon": "nutrition",
+      "description": "Fruits mûrs et savoureux cueillis à la main"
+    },
+    {
+      "id": "cat_3",
+      "name": "Produits Laitiers",
+      "icon": "water",
+      "description": "Lait, fromage d'origine locale et beurre frais"
+    },
+    {
+      "id": "cat_4",
+      "name": "Épicerie fine",
+      "icon": "basket",
+      "description": "Huiles d'olive, miel naturel et épices"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod_1",
+      "name": "Tomates Bio",
+      "description": "Tomates rouges juteuses cultivées sans pesticides.",
+      "price": 12.5,
+      "unit": "kg",
+      "categoryId": "cat_1",
+      "imageUrl": "https://images.unsplash.com/photo-1592924357228-91a4daadcfea",
+      "rating": 4.8,
+      "isAvailable": true,
+      "origin": "Souss-Massa"
+    },
+    {
+      "id": "prod_2",
+      "name": "Huile d'Olive Extra Vierge",
+      "description": "Huile d'olive extra vierge pressée à froid.",
+      "price": 85.0,
+      "unit": "Litre",
+      "categoryId": "cat_4",
+      "imageUrl": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5",
+      "rating": 4.9,
+      "isAvailable": true,
+      "origin": "Meknès"
+    },
+    {
+      "id": "prod_3",
+      "name": "Oranges de Berkane",
+      "description": "Oranges douces et pleines de vitamine C.",
+      "price": 8.0,
+      "unit": "kg",
+      "categoryId": "cat_2",
+      "imageUrl": "https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b",
+      "rating": 4.7,
+      "isAvailable": true,
+      "origin": "Berkane"
+    },
+    {
+      "id": "prod_4",
+      "name": "Fromage Frais Artisanal",
+      "description": "Fromage frais pur lait de chèvre.",
+      "price": 25.0,
+      "unit": "unité",
+      "categoryId": "cat_3",
+      "imageUrl": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d",
+      "rating": 4.6,
+      "isAvailable": true,
+      "origin": "Chaouen"
+    }
+  ],
+  "users": [
+    {
+      "id": "user_demo",
+      "name": "Karim Bennani",
+      "email": "karim@jiblina.ma",
+      "phone": "+212 600 112 233",
+      "createdAt": "2026-01-15T10:00:00Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ord_1001",
+      "userId": "user_demo",
+      "items": [
+        {
+          "productId": "prod_1",
+          "quantity": 2,
+          "unitPrice": 12.5
+        },
+        {
+          "productId": "prod_2",
+          "quantity": 1,
+          "unitPrice": 85.0
+        }
+      ],
+      "totalAmount": 110.0,
+      "status": "delivered",
+      "deliveryAddress": "123 Bd Zerktouni, Casablanca",
+      "createdAt": "2026-07-28T14:30:00Z"
+    }
+  ]
+}

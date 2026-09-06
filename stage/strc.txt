@@ -1,0 +1,63 @@
+appels-offres-maroc/
+│
+├── src/                        # Code source principal
+│   ├── configs/                 # Configurations globales
+│   │   └── app_config.yaml      # URLs, paramètres scraping, etc.
+│   │
+│   ├── scrapers/                # Logique de scraping
+│   │   ├── __init__.py
+│   │   ├── finances.py
+│   │   ├── credit_agricole.py
+│   │   ├── pmmp.py
+│   │   └── utils_scraping.py    # Fonctions communes de scraping
+│   │
+│   ├── filters/                 # Logique de filtrage
+│   │   ├── __init__.py
+│   │   ├── keyword_filter.py
+│   │   └── advanced_filter.py
+│   │
+│   ├── interfaces/              # Interfaces utilisateur
+│   │   ├── __init__.py
+│   │   ├── web_ui.py             # Flask app (ancien app.py)
+│   │   └── api.py                # Routes API séparées
+│   │
+│   ├── utils/                    # Fonctions utilitaires
+│   │   ├── __init__.py
+│   │   ├── logger.py
+│   │   └── config.py
+│   │
+│   └── __init__.py
+│
+├── static/                      # CSS / JS / images
+│   ├── css/
+│   │   └── style.css
+│   └── js/
+│       ├── script.js
+│       └── advancedSearch.js
+│
+├── templates/                   # Templates HTML
+│   └── index.html
+│
+├── tests/                       # Tests unitaires
+│   ├── test_scrapers.py
+│   ├── test_filters.py
+│   └── test_api.py
+│
+├── docker/                      # Configuration Docker
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│   └── requirements.txt
+│
+├── docs/                        # Documentation
+│   ├── README.md
+│   ├── api.md
+│   ├── setup.md
+│   └── architecture.md
+│
+├── .env                         # Variables d'environnement
+├── .gitignore
+├── LICENSE
+└── README.md
+
+
+Gh@1234IsNot

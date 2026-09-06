@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    ;
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Formulaire de Contact</h2>
+    <form id="contactForm">
+      Nom : <input type="text" id="nom" /><span
+        id="errNom"
+        style="color: red"
+      ></span
+      ><br /><br />
+      Prénom : <input type="text" id="prenom" /><span
+        id="errPrenom"
+        style="color: red"
+      ></span
+      ><br /><br />
+      Email : <input type="email" id="email" /><span
+        id="errEmail"
+        style="color: red"
+      ></span
+      ><br /><br />
+      Commentaire : <br />
+      <textarea id="commentaire" rows="4" cols="40"></textarea><br />
+      <span id="errCommentaire" style="color: red"></span><br /><br />
+      <button type="button" onclick="validerForm()">Envoyer</button>
+    </form>
+    <script src="./index.js"></script>
+  </body>
+</html>

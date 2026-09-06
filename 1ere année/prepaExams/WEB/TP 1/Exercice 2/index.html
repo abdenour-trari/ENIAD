@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Formulaire d'inscription</title>
+  </head>
+  <body>
+    <form action="#" method="post">
+      <!-- Champ Nom -->
+      <label for="nom">Nom : *</label>
+      <input type="text" id="nom" name="nom" required /><br /><br />
+
+      <!-- Champ Prénom -->
+      <label for="prenom">Prénom : *</label>
+      <input type="text" id="prenom" name="prenom" required /><br /><br />
+
+      <!-- Champ Adresse -->
+      <label for="adresse">Adresse :</label><br />
+      <textarea id="adresse" name="adresse" rows="20" cols="50"></textarea
+      ><br /><br />
+
+      <!-- Champ Email -->
+      <label for="email">Email : *</label>
+      <input type="email" id="email" name="email" required /><br /><br />
+
+      <!-- Champ Téléphone -->
+      <label for="telephone">Téléphone : *</label>
+      <input
+        type="tel"
+        id="telephone"
+        name="telephone"
+        pattern="[0-9]{10}"
+        required
+      /><br /><br />
+
+      <!-- Champ Site Web -->
+      <label for="siteweb">Site Web :</label>
+      <input type="url" id="siteweb" name="siteweb" /><br /><br />
+
+      <!-- Champ Date de Naissance -->
+      <label for="naissance">Date de naissance : *</label>
+      <input type="date" id="naissance" name="naissance" required /><br /><br />
+
+      <!-- Champ Nombre d’enfants -->
+      <label for="enfants">Nombre d’enfants :</label>
+      <input type="number" id="enfants" name="enfants" /><br /><br />
+
+      <!-- Champ Couleur préférée -->
+      <label for="couleur">Couleur préférée :</label>
+      <input type="color" id="couleur" name="couleur" /><br /><br />
+
+      <!-- Champ Filière -->
+      <label for="filiere">Filière :</label>
+      <input list="filieres" id="filiere" name="filiere" />
+      <datalist id="filieres">
+        <option value="GI"></option>
+        <option value="IA"></option>
+        <option value="RS"></option>
+        <option value="Robotique"></option></datalist
+      ><br /><br />
+
+      <!-- Champ Langues maîtrisées -->
+      <label>Langues maîtrisées :</label><br />
+      <input type="checkbox" name="langues" value="Arabe" /> Arabe<br />
+      <input type="checkbox" name="langues" value="Français" /> Français<br />
+      <input type="checkbox" name="langues" value="Anglais" />
+      Anglais<br /><br />
+
+      <!-- Champ Groupe (Radio) -->
+      <label>Groupe :</label><br />
+      <input type="radio" name="groupe" value="101" /> 101<br />
+      <input type="radio" name="groupe" value="102" /> 102<br /><br />
+
+      <!-- Champ Module (Select) -->
+      <label for="module">Module :</label>
+      <select id="module" name="module">
+        <option value="M01">M01</option>
+        <option value="M02">M02</option>
+        <option value="M03">M03</option>
+        <option value="M04">M04</option>
+        <option value="M05">M05</option></select
+      ><br /><br />
+
+      <!-- Champ CV (Fichier) -->
+      <label for="cv">CV :</label>
+      <input type="file" id="cv" name="cv" /><br /><br />
+
+      <!-- Boutons -->
+      <input type="submit" value="Envoyer" />
+      <input type="reset" value="Réinitialiser" />
+    </form>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+.table {
+  width: 300px;
+  height: 150px;
+}
+
+.table td {
+  text-align: center;
+}
+
+.table tr:nth-child(2) td:last-child {
+  align-content: end;
+}

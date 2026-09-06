@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cdtheque SYSTEM "cdtheque.dtd">
+<cdtheque date="2025-04-22" auteur="Houda Benhar">
+  <cd>
+    <titre>Random Access Memories</titre>
+    <artiste>Daft Punk</artiste>
+    <style>Électronique</style>
+  </cd>
+  <cd>
+    <titre>Thriller</titre>
+    <artiste>Michael Jackson</artiste>
+  </cd>
+</cdtheque>

@@ -1,0 +1,11 @@
+llm:
+  model: "gpt-4o-mini"
+  temperature: 0
+  api_key: "${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}"
+
+scrapers:
+  pmmp_url: "https://www.marchespublics.gov.ma/pmmp/"
+  detailed_url: "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseAdvancedSearch&AvisRapportPresentation"
+
+database:
+  path: "memory_store/agent_memory.db"

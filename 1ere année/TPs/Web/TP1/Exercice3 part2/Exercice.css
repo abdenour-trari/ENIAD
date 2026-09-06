@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+header {
+  height: 20%;
+  background-color: #4a7dcf;
+}
+.content {
+  display: flex;
+  flex: 1;
+}
+aside {
+  width: 25%;
+  background-color: #e57629;
+}
+main {
+  flex: 1;
+  background-color: white;
+}
+footer {
+  height: 15%;
+  background-color: #8bc34a;
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="menus.xsd">
+    <menu jour="Lundi">
+        <entree>Mr TRARI</entree>
+        <plat>
+            <plat_compose>
+                <viande>Boeuf</viande>
+                <accompagnement>Salade</accompagnement>
+            </plat_compose>
+        </plat>
+        <dessert>Fruit</dessert>
+    </menu>
+    <menu jour="Mardi">
+        <entree>Mr BENBOUAZZA</entree>
+        <plat>
+            <plat_unique>Salade Mixte</plat_unique>
+        </plat>
+        <dessert>Fruit</dessert>
+    </menu>
+</menus>

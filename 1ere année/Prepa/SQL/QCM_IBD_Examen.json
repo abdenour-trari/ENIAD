@@ -1,0 +1,602 @@
+[
+    {
+        "question": "Quel est l'objectif principal du mod\u00e8le conceptuel de donn\u00e9es (MCD) ?",
+        "options": [
+            "G\u00e9rer les bases de donn\u00e9es relationnelles",
+            "Identifier, d\u00e9crire et mod\u00e9liser les entit\u00e9s et leurs associations",
+            "R\u00e9aliser des tests et maintenances",
+            "Cr\u00e9er des index"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Dans la m\u00e9thode Merise, qu'est-ce qu'une entit\u00e9 ?",
+        "options": [
+            "Une relation entre deux bases de donn\u00e9es",
+            "Un ensemble de propri\u00e9t\u00e9s d\u00e9crivant des objets de m\u00eame nature",
+            "Une colonne dans une table",
+            "Une contrainte appliqu\u00e9e \u00e0 un attribut"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Quelle est la premi\u00e8re \u00e9tape pour \u00e9laborer un MCD ?",
+        "options": [
+            "Cr\u00e9er les associations",
+            "D\u00e9finir les r\u00e8gles de gestion",
+            "Ajouter les cardinalit\u00e9s",
+            "\u00c9laborer le dictionnaire des donn\u00e9es"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Quelle contrainte n'est pas obligatoire pour qu'une entit\u00e9 soit valide ?",
+        "options": [
+            "Poss\u00e9der un identifiant unique",
+            "Avoir des propri\u00e9t\u00e9s distinctes",
+            "Avoir au moins une propri\u00e9t\u00e9",
+            "\u00catre li\u00e9e \u00e0 d'autres entit\u00e9s"
+        ],
+        "answer": 3
+    },
+    {
+        "question": "Qu'est-ce qu'une association dans un MCD ?",
+        "options": [
+            "Une relation entre deux entit\u00e9s",
+            "Un attribut unique d'une entit\u00e9",
+            "Un ensemble de propri\u00e9t\u00e9s d'une entit\u00e9",
+            "Un identifiant unique"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 6 du Chapitre 1",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 7 du Chapitre 1",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 8 du Chapitre 1",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 9 du Chapitre 1",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 10 du Chapitre 1",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 11 du Chapitre 1",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 12 du Chapitre 1",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 13 du Chapitre 1",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 14 du Chapitre 1",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 15 du Chapitre 1",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 16 du Chapitre 1",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 17 du Chapitre 1",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 18 du Chapitre 1",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 19 du Chapitre 1",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 20 du Chapitre 1",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Quel probl\u00e8me les bases de donn\u00e9es cherchent-elles \u00e0 r\u00e9soudre par rapport aux fichiers traditionnels ?",
+        "options": [
+            "Acc\u00e8s concurrentiel",
+            "S\u00e9curit\u00e9 des donn\u00e9es",
+            "Gestion de la redondance",
+            "Toutes les r\u00e9ponses ci-dessus"
+        ],
+        "answer": 3
+    },
+    {
+        "question": "Quel terme d\u00e9crit une ligne dans une table relationnelle ?",
+        "options": [
+            "Attribut",
+            "Colonne",
+            "Tuple",
+            "Relation"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Quel est un avantage cl\u00e9 des SGBD relationnels ?",
+        "options": [
+            "Acc\u00e8s rapide aux donn\u00e9es gr\u00e2ce \u00e0 des structures non organis\u00e9es",
+            "Gestion efficace des relations entre les donn\u00e9es",
+            "Absence totale de redondance",
+            "Acc\u00e8s limit\u00e9 aux utilisateurs"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Quel concept correspond au champ dans une table relationnelle ?",
+        "options": [
+            "Enregistrement",
+            "Instance",
+            "Colonne",
+            "Ligne"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Quel langage est utilis\u00e9 pour manipuler les bases de donn\u00e9es relationnelles ?",
+        "options": [
+            "HTML",
+            "SQL",
+            "XML",
+            "JSON"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 6 du Chapitre 2",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 7 du Chapitre 2",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 8 du Chapitre 2",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 9 du Chapitre 2",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 10 du Chapitre 2",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 11 du Chapitre 2",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 12 du Chapitre 2",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 13 du Chapitre 2",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 14 du Chapitre 2",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 15 du Chapitre 2",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 16 du Chapitre 2",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 17 du Chapitre 2",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 18 du Chapitre 2",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 19 du Chapitre 2",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 20 du Chapitre 2",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Quel ordre SQL permet de cr\u00e9er une nouvelle table ?",
+        "options": [
+            "INSERT",
+            "ALTER",
+            "CREATE",
+            "SELECT"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Que signifie l'acronyme SQL ?",
+        "options": [
+            "Structured Query Language",
+            "Sequential Query List",
+            "Simple Query Language",
+            "Secure Query Logic"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Quel type de contrainte garantit qu'une colonne n'acceptera pas de valeurs nulles ?",
+        "options": [
+            "PRIMARY KEY",
+            "NOT NULL",
+            "UNIQUE",
+            "CHECK"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Quel type de donn\u00e9es est utilis\u00e9 pour stocker des valeurs bool\u00e9ennes en SQL ?",
+        "options": [
+            "BOOLEAN",
+            "VARCHAR",
+            "INT",
+            "DATE"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Quel ordre permet de supprimer une table en SQL ?",
+        "options": [
+            "DELETE",
+            "TRUNCATE",
+            "DROP",
+            "REMOVE"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 6 du Chapitre 3",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 7 du Chapitre 3",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 8 du Chapitre 3",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 9 du Chapitre 3",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 10 du Chapitre 3",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 11 du Chapitre 3",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 12 du Chapitre 3",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 13 du Chapitre 3",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 14 du Chapitre 3",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 15 du Chapitre 3",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 16 du Chapitre 3",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 17 du Chapitre 3",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 18 du Chapitre 3",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 19 du Chapitre 3",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Question suppl\u00e9mentaire 20 du Chapitre 3",
+        "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+        ],
+        "answer": 0
+    }
+]

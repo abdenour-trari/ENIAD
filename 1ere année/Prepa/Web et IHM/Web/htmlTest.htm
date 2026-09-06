@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test</title>
+  </head>
+  <body>
+    <h2>La balise Title</h2>
+    <p title="Lorem">
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, quidem
+      quam dolorum totam consequatur voluptates dolores accusamus consectetur
+      sapiente, numquam ipsam doloribus. Repellat harum beatae labore veniam
+      placeat ipsum suscipit?
+    </p>
+
+    <h2>Formulaire :</h2>
+    <p>
+      • GET : permet d'envoyer les données sous forme de chaine de paramètres à
+      travers l'URL. Les données sont visibles dans la barre d'adresse.
+      <br />
+      • POST : permet d'envoyer les données (invisibles) à travers une requête
+      HTTP.
+    </p>
+    <form action="" method="">
+      <input type="time" id="time" />
+      <input
+        type="button"
+        onclick="alert(document.getElementById('time').value)"
+        value="Clic ici!"
+      />
+    </form>
+
+    <h2>Les balise UL et OL</h2>
+    <ul>
+      <li>Abdenour</li>
+      <li>Mohamed</li>
+      <li>Moussa</li>
+    </ul>
+
+    <ol>
+      <li type="A">Abdenour</li>
+      <li type="A">Mohamed</li>
+      <li type="A">Moussa</li>
+      <li type="A" value="1">Ahmed</li>
+    </ol>
+
+    <h2>La balise 'a'</h2>
+    <a
+      href="https://chatgpt.com/"
+      target="_blank"
+      title="Ouvre dans une nouvelle fenêtre"
+    >
+      Ouverture de la page cible dans une nouvelle fenêtre
+    </a>
+
+    <br />
+
+    <a
+      href="https://chatgpt.com/"
+      target="_parent"
+      title="Ouvre dans la fenêtre parente"
+    >
+      Ouverture de la page cible dans la fenêtre parente
+    </a>
+
+    <br />
+
+    <a
+      href="https://chatgpt.com/"
+      target="_top"
+      title="Ouvre dans la fenêtre principale"
+    >
+      Ouverture de la page cible dans la fenêtre principale
+    </a>
+
+    <h2>div et span</h2>
+    <div>div : Hello World</div>
+    <span>span : Hello World</span>
+
+    <h2>iframe</h2>
+    <iframe
+      width="640"
+      height="360"
+      src="https://www.youtube.com/embed/Ma1vSev07ug"
+    ></iframe>
+
+    <h2>balise : Objet</h2>
+    <object data="data/test.html" type="text/html" width="300" height="200">
+      alt : <a href="./htmlTest.htm">test.html</a>
+    </object>
+
+    <h2>Les tableaux</h2>
+
+    <table border="1" cellspacing="0" cellpadding="20px">
+      <tr>
+        <th>CIN</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+      </tr>
+      <tr>
+        <td>FJ30368</td>
+        <td>TRARI</td>
+        <td>Abdenour</td>
+      </tr>
+      <tr>
+        <td>FJ30368</td>
+        <td>TRARI</td>
+        <td>Abdenour</td>
+      </tr>
+      <tr>
+        <td>FJ30368</td>
+        <td>TRARI</td>
+        <td>Abdenour</td>
+      </tr>
+      <tr>
+        <td colspan="3" style="text-align: center">
+          Etudiants / (colspan et rowspan pour la fusion des td)
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

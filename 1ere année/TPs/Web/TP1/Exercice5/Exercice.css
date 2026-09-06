@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+.coloredRectangles {
+  height: 300px;
+  width: 300px;
+  position: relative;
+}
+
+.coloredRectangles div {
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  border: solid 18px;
+}
+
+.coloredRectangles .red {
+  border-color: red;
+  z-index: 4;
+}
+
+.coloredRectangles .green {
+  border-color: green;
+  right: 0;
+  z-index: 2;
+}
+.coloredRectangles .blue {
+  border-color: blue;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+}
+.coloredRectangles .orange {
+  border-color: orange;
+  bottom: 0;
+  z-index: 1;
+}

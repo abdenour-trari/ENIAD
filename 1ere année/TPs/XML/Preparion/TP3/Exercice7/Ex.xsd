@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="annuaire" type="annuaireType" />
+    <xs:complexType name="annuaireType">
+        <xs:sequence>
+            <xs:element name="personne" type="personneType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="personneType">
+        <xs:sequence>
+            <!-- Balise Nom -->
+            <xs:element name="nom" type="xs:string" />
+            <!-- Balise Prenom -->
+            <xs:element name="prenom" type="prenomType" maxOccurs="unbounded" />
+            <!-- Balise Date -->
+            <xs:element name="date" type="dateType" />
+            <!-- Balise Telephone -->
+            <xs:element name="telephone" type="telephoneType" minOccurs="0" />
+            <!-- Balise Societe -->
+            <xs:element name="societe" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Complex types -->
+    <!-- prenomType -->
+    <xs:complexType name="prenomType" mixed="true" >
+        <xs:attribute name="usuel" default="Faux">
+        <!-- Attribut 'usuel' -->
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Faux" />
+                        <xs:enumeration value="Vrai" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+    <!-- dateType -->
+    <xs:complexType name="dateType" mixed="true">
+        <xs:attribute name="format" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ANSI"/>
+                    <xs:enumeration value="ISO"/>
+                    <xs:enumeration value="EN-exp"/>
+                    <xs:enumeration value="FR-exp"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+    <!-- dateType -->
+    <xs:complexType name="telephoneType" >
+        <xs:sequence>
+            <xs:element name="indicatif" type="xs:string" />
+            <xs:element name="num" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,40 @@
+% ============================================================
+%  INTRODUCTION GÉNÉRALE
+% ============================================================
+\chapter*{Introduction Générale}
+\addcontentsline{toc}{chapter}{Introduction Générale}
+\markboth{Introduction Générale}{Introduction Générale}
+
+\section*{Contexte et motivation}
+
+Ces dernières années, les drones autonomes ont connu une évolution considérable grâce aux avancées en électronique embarquée, intelligence artificielle et vision par ordinateur. Initialement militaires, ils sont aujourd'hui intégrés dans de nombreux secteurs civils et industriels — agriculture intelligente, logistique, inspection d'infrastructures, cartographie, sécurité et gestion des catastrophes — en raison de leur flexibilité et de leur capacité à accéder à des environnements difficiles. Le développement des algorithmes d'apprentissage profond permet désormais à ces systèmes de prendre des décisions autonomes en temps réel, notamment dans les scénarios critiques nécessitant une réaction rapide.
+
+\section*{Problématique}
+
+L'une des situations les plus critiques dans l'utilisation des drones concerne l'atterrissage d'urgence : en cas de perte de batterie, de panne matérielle, de défaillance des capteurs, de perte de communication ou de conditions météorologiques défavorables, le drone doit être capable d'identifier automatiquement une zone d'atterrissage sécurisée afin de minimiser les risques de collision. Les approches traditionnelles basées sur le GPS ou des capteurs spécifiques présentent des limites importantes dans des environnements complexes ou dynamiques.
+
+\begin{tcolorbox}[
+  colback=ENIADLightBlue!40, colframe=ENIADBlue,
+  title={\textbf{Question centrale}}, fonttitle=\bfseries,
+  arc=4pt, boxrule=0.8pt
+]
+Comment permettre à un drone d'identifier automatiquement une zone d'atterrissage sécurisée en conditions réelles, à partir d'images acquises par caméra embarquée ?
+\end{tcolorbox}
+
+\section*{Objectifs}
+
+L'objectif principal est de concevoir, implémenter et évaluer un système intelligent capable d'identifier automatiquement des zones d'atterrissage sécurisées par segmentation sémantique profonde. Les objectifs secondaires sont :
+
+\begin{enumerate}[leftmargin=2em, itemsep=4pt, label=\textbf{\arabic*.}]
+  \item Préparer et prétraiter le dataset (\textit{Graz Semantic Drone Dataset}) ;
+  \item Développer un modèle de segmentation basé sur l'architecture Attention U-Net ;
+  \item Entraîner et optimiser le modèle pour des contraintes Edge AI ;
+  \item Évaluer les performances par des métriques quantitatives (IoU, Dice Score) ;
+  \item Valider qualitativement les résultats sur des images non vues.
+\end{enumerate}
+
+\section*{Organisation du rapport}
+
+Ce rapport est organisé en quatre chapitres. Le \textbf{Chapitre 1} présente l'état de l'art : drones autonomes, méthodes classiques de sélection de zone, et techniques de segmentation sémantique profonde justifiant le choix de l'architecture U-Net. Le \textbf{Chapitre 2} détaille l'analyse fonctionnelle et la conception du système. Le \textbf{Chapitre 3} regroupe la préparation des données (dataset, prétraitement, augmentation) et le développement du modèle (architecture, hyperparamètres, fonction de coût et optimisations). Le \textbf{Chapitre 4} évalue expérimentalement les performances obtenues. Enfin, la \textbf{Conclusion Générale} synthétise les contributions, les limites et les perspectives du projet.
+
+\clearpage

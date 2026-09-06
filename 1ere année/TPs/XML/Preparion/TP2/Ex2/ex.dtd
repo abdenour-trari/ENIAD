@@ -1,0 +1,5 @@
+<!ELEMENT Modules (cours*) >
+<!ELEMENT cours (titre,mh,coefficient?)>
+<!ELEMENT titre (#PCDATA)>
+<!ELEMENT mh (#PCDATA)>
+<!ELEMENT coefficient (#PCDATA)>

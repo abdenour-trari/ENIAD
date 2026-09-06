@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="annuaire" type="annuaireType" />
+    <xsd:complexType name="annuaireType">
+        <xsd:sequence>
+            <xsd:element ref="personne" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="personne" type="personneType" />
+    <xsd:complexType name="personneType"> 
+        <xsd:sequence>
+            <xsd:element name="nom" type="xsd:string"/>
+            <xsd:element ref="prenom" maxOccurs="unbounded"/>
+            <xsd:element ref="date"/>
+            <xsd:element name="telephone" type="xsd:string"/>
+            <xsd:element name="societe" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <xsd:element name="prenom" type="prenomType" />
+    <xsd:complexType name="prenomType" mixed="true">
+        <xsd:attribute name="usel" type="uselType" default="Faux" use="optional" />
+    </xsd:complexType>
+
+    <xsd:element name="date" type="dateType" />
+    <xsd:complexType name="dateType" mixed="true">
+        <xsd:attribute name="format" type="formatType" use="required" />
+    </xsd:complexType>
+
+
+    <xsd:simpleType name="uselType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Vrai"/>
+            <xsd:enumeration value="Faux"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="formatType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ANSI"/>
+            <xsd:enumeration value="ISO"/>
+            <xsd:enumeration value="EN-exp"/>
+            <xsd:enumeration value="FR-exp"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

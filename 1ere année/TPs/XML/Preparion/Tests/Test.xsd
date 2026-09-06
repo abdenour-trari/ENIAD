@@ -1,0 +1,25 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- Définition d'un type Price avec un contenu décimal + un attribut 'currency' -->
+  <xs:complexType name="Price">
+    <xs:simpleContent>
+      <xs:extension base="xs:decimal">
+        <xs:attribute name="currency" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <!-- Définition d'un type LocalPrice qui étend Price avec un attribut 'country' -->
+  <xs:complexType name="LocalPrice">
+    <xs:simpleContent>
+      <xs:extension base="Price">
+        <xs:attribute name="country" type="xs:string"/>
+        <xs:attribute name="city" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <!-- Élément principal qui utilise LocalPrice -->
+  <xs:element name="price" type="LocalPrice"/>
+
+</xs:schema>

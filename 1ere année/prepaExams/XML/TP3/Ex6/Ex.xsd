@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:element name="employe" type="InternPuls"/>
+
+  <xs:complexType name="Employee">
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string"/>
+      <xs:element name="DateOfBirth" type="xs:date"/>
+    </xs:sequence>
+    <xs:attribute name="Salary" type="xs:int" />
+  </xs:complexType>
+
+
+  <xs:complexType name="InternPuls">
+    <xs:complexContent>
+      <xs:restriction base="Employee">
+        <xs:sequence>
+          <xs:element name="Name" type="xs:string"/>
+          <xs:element name="DateOfBirth" type="xs:date"/>
+        </xs:sequence>
+        <xs:attribute name="Salary" type="xs:int" use="prohibited" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+
+  
+</xs:schema>

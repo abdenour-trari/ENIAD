@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<personne xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="personne.xsd">
+  <nom>Dupont</nom>
+  <age>35</age>
+  <dateNaissance>1988-06-15</dateNaissance>
+</personne>

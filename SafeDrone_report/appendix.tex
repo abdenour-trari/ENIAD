@@ -1,0 +1,176 @@
+% ============================================================
+%  ANNEXE UNIQUE : EXTRAITS DE CODE SOURCE
+% ============================================================
+\appendix
+
+\chapter{Extraits de code source}
+\label{ann:code}
+
+Cette annexe contient les extraits les plus significatifs du code d'entraînement, de préparation des données et de guidage du modèle développé dans ce projet.
+
+\subsection{Configuration et Hyperparamètres}
+
+L'extrait suivant présente les hyperparamètres et la configuration globale utilisés pour initialiser l'entraînement (définis dans la cellule 21 du notebook).
+
+\begin{lstlisting}[language=Python, caption={Hyperparamètres globaux d'entraînement.}]
+# -- Image
+IMG_SIZE    = 320
+IN_CHANNELS = 3
+
+# -- Training
+EPOCHS         = 150
+BATCH_SIZE     = 8
+LEARNING_RATE  = 3e-4
+WEIGHT_DECAY   = 1e-4
+MAX_GRAD_NORM  = 1.0
+
+# -- Scheduler & early stop
+PATIENCE_ES    = 15
+PATIENCE_LR    = 5
+
+# -- ImageNet stats (correct for pretrained encoders)
+IMAGENET_MEAN = (0.485, 0.456, 0.406)
+IMAGENET_STD  = (0.229, 0.224, 0.225)
+\end{lstlisting}
+
+\subsection{Dataset et augmentation de données}
+\label{sec:code-dataset-augmentation}
+
+L'implémentation de la classe personnalisée PyTorch \texttt{DroneDataset} et la chaîne d'augmentation de données basée sur Albumentations (cellules 27 et 29 du notebook).
+
+\begin{lstlisting}[language=Python, caption={Pipeline d'augmentation et classe de chargement des données.}]
+# Pipeline d'augmentation pour l'entraînement
+train_transform = A.Compose([
+    A.Resize(IMG_SIZE, IMG_SIZE),
+    A.HorizontalFlip(p=0.5),
+    A.VerticalFlip(p=0.3),
+    A.RandomRotate90(p=0.5),
+    A.ShiftScaleRotate(
+        shift_limit=0.1, scale_limit=0.2, rotate_limit=30,
+        border_mode=cv2.BORDER_REFLECT_101, p=0.7
+    ),
+    A.Perspective(scale=(0.04, 0.08), p=0.3),
+    A.RandomBrightnessContrast(brightness_limit=0.3, contrast_limit=0.3, p=0.6),
+    A.CoarseDropout(
+        max_holes=8, max_height=32, max_width=32,
+        min_holes=1, fill_value=0, mask_fill_value=0, p=0.3
+    ),
+    A.Normalize(mean=IMAGENET_MEAN, std=IMAGENET_STD),
+    ToTensorV2(),
+])
+
+class DroneDataset(Dataset):
+    """Binary segmentation: SAFE (1) vs UNSAFE (0) landing zones."""
+    SAFE_CLASSES = [1, 3] # paved-area (1), grass (3)
+
+    def __init__(self, img_list, mask_list, img_dir, mask_dir, transform=None):
+        self.img_list  = img_list
+        self.mask_list = mask_list
+        self.img_dir   = img_dir
+        self.mask_dir  = mask_dir
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.img_list)
+
+    def __getitem__(self, idx):
+        img_path  = os.path.join(self.img_dir,  self.img_list[idx])
+        mask_path = os.path.join(self.mask_dir, self.mask_list[idx])
+
+        image = cv2.imread(img_path)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
+
+        # Binarisation: 1.0 = SAFE, 0.0 = UNSAFE
+        mask = np.isin(mask, self.SAFE_CLASSES).astype(np.float32)
+
+        if self.transform:
+            augmented = self.transform(image=image, mask=mask)
+            image = augmented["image"]
+            mask  = augmented["mask"]
+
+        return image, mask.unsqueeze(0)
+\end{lstlisting}
+
+\subsection{Architecture du modèle et fonction de coût}
+
+Le code ci-dessous montre la définition du modèle via la bibliothèque \texttt{segmentation\_models\_pytorch} et la fonction de coût hybride combinant la BCE logarithmique et la Tversky Loss.
+
+\begin{lstlisting}[language=Python, caption={Définition du modèle U-Net et de la fonction de coût.}]
+# Modèle U-Net avec encodeur EfficientNet-B0 pré-entraîné
+model = smp.Unet(
+    encoder_name    = "efficientnet-b0",
+    encoder_weights = "imagenet",
+    in_channels     = IN_CHANNELS,
+    classes         = 1,
+    activation      = None,
+    decoder_use_batchnorm = True,
+)
+model = model.to(DEVICE)
+
+# Definition des fonctions de cout
+bce_loss = nn.BCEWithLogitsLoss()
+tversky_loss = smp.losses.TverskyLoss(
+    mode="binary", alpha=0.3, beta=0.7, smooth=1e-6
+)
+
+def loss_fn(pred, target):
+    return 0.5 * bce_loss(pred, target) + 0.5 * tversky_loss(pred, target)
+\end{lstlisting}
+
+\subsection{Contrôleur de guidage et machine d'états}
+\label{sec:code-guidage-machine}
+
+Ces classes et fonctions implémentent le pipeline d'évitement géométrique et la logique de pilotage de haut niveau qui traite la prédiction du modèle.
+
+\begin{lstlisting}[language=Python, caption={Algorithme de guidage géométrique et machine d'états de vol.}]
+# Guidance Controller
+def guidance_controller(landing_x, landing_y, image_width, image_height, tolerance=10):
+    center_x = image_width // 2
+    center_y = image_height // 2
+
+    # Calcul de l'erreur en pixels
+    dx = landing_x - center_x
+    dy = landing_y - center_y
+
+    distance = math.sqrt(dx**2 + dy**2)
+    heading = math.degrees(math.atan2(dy, dx))
+
+    # Logique de guidage horizontal et vertical
+    horizontal = "MOVE RIGHT" if dx > tolerance else ("MOVE LEFT" if dx < -tolerance else "HOLD")
+    vertical = "MOVE BACKWARD" if dy > tolerance else ("MOVE FORWARD" if dy < -tolerance else "HOLD")
+    centered = abs(dx) <= tolerance and abs(dy) <= tolerance
+
+    return {
+        "landing_x": landing_x, "landing_y": landing_y,
+        "center_x": center_x, "center_y": center_y,
+        "dx": dx, "dy": dy, "distance": distance, "heading": heading,
+        "horizontal": horizontal, "vertical": vertical, "centered": centered
+    }
+
+# Machine d'états de vol
+class FlightState(Enum):
+    SEARCHING = "SEARCHING"
+    GUIDING = "GUIDING"
+    LANDING = "LANDING"
+
+class FlightStateMachine:
+    def __init__(self):
+        self.state = FlightState.SEARCHING
+
+    def update(self, landing_allowed, centered):
+        if self.state == FlightState.SEARCHING:
+            if landing_allowed:
+                self.state = FlightState.GUIDING
+        elif self.state == FlightState.GUIDING:
+            if not landing_allowed:
+                self.state = FlightState.SEARCHING
+            elif centered:
+                self.state = FlightState.LANDING
+        elif self.state == FlightState.LANDING:
+            if not landing_allowed:
+                self.state = FlightState.SEARCHING
+        return self.state
+\end{lstlisting}
+
+\clearpage

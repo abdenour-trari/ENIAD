@@ -1,0 +1,182 @@
+{
+  "openGroups": [
+    {
+      "id": "g_pizzahut_1",
+      "restaurantId": "pizza-hut",
+      "restaurantName": "Pizza Hut",
+      "restaurantLogo": "https://upload.wikimedia.org/wikipedia/sco/thumb/d/d2/Pizza_Hut_logo.svg/1088px-Pizza_Hut_logo.svg.png",
+      "coverUrl": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=400&fit=crop",
+      "locationText": "300 m • ENIAD",
+      "deliveryTimeText": "Livraison à 13:15",
+      "membersJoined": 5,
+      "maxMembers": 8,
+      "minMembersForDiscount": 8,
+      "missingMembersCount": 3,
+      "discountPercentage": 25,
+      "discountText": "-25% sur le total",
+      "creatorName": "Yassine",
+      "shareUrl": "jiblina.ma/g/pizzahut-eniad-13h15",
+      "status": "Commande ouverte",
+      "avatars": [
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop",
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"
+      ],
+      "extraAvatarsCount": 1,
+      "members": [
+        {
+          "id": "m1",
+          "name": "Yassine (Vous)",
+          "role": "Organisateur",
+          "isCreator": true,
+          "isCurrentUser": true,
+          "paymentStatus": "paid",
+          "paymentStatusText": "A payé",
+          "amount": 89,
+          "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+        },
+        {
+          "id": "m2",
+          "name": "Sara",
+          "role": "Membre",
+          "isCreator": false,
+          "paymentStatus": "paid",
+          "paymentStatusText": "A payé",
+          "amount": 89,
+          "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop"
+        },
+        {
+          "id": "m3",
+          "name": "Amine",
+          "role": "Membre",
+          "isCreator": false,
+          "paymentStatus": "paid",
+          "paymentStatusText": "A payé",
+          "amount": 89,
+          "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"
+        },
+        {
+          "id": "m4",
+          "name": "Imane",
+          "role": "Membre",
+          "isCreator": false,
+          "paymentStatus": "pending",
+          "paymentStatusText": "En attente",
+          "amount": 89,
+          "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop"
+        },
+        {
+          "id": "m5",
+          "name": "Khalid",
+          "role": "Membre",
+          "isCreator": false,
+          "paymentStatus": "pending",
+          "paymentStatusText": "En attente",
+          "amount": 89,
+          "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop"
+        }
+      ],
+      "orderedFoods": [
+        {
+          "id": "f1",
+          "name": "Margherita",
+          "quantity": 1,
+          "unitPrice": 59,
+          "imageKey": "margherita"
+        },
+        {
+          "id": "f2",
+          "name": "Chicken BBQ",
+          "quantity": 1,
+          "unitPrice": 69,
+          "imageKey": "burgerCover"
+        },
+        {
+          "id": "f3",
+          "name": "Pâtes Alfredo",
+          "quantity": 1,
+          "unitPrice": 55,
+          "imageKey": "alfredo"
+        },
+        {
+          "id": "f4",
+          "name": "Coca Cola",
+          "quantity": 2,
+          "unitPrice": 12,
+          "imageUrl": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300&h=300&fit=crop"
+        }
+      ],
+      "originalTotal": 475,
+      "discountedTotal": 356,
+      "totalItemsCount": 5
+    },
+    {
+      "id": "g_kfc_2",
+      "restaurantId": "kfc",
+      "restaurantName": "KFC",
+      "restaurantLogo": "https://upload.wikimedia.org/wikipedia/sco/thumb/bf/bf/KFC_logo.svg/1024px-KFC_logo.svg.png",
+      "coverUrl": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&h=400&fit=crop",
+      "locationText": "450 m • ENIAD",
+      "deliveryTimeText": "Livraison à 12:45",
+      "membersJoined": 2,
+      "maxMembers": 5,
+      "minMembersForDiscount": 5,
+      "missingMembersCount": 3,
+      "discountPercentage": 20,
+      "discountText": "-20% sur le total",
+      "creatorName": "Sara",
+      "shareUrl": "jiblina.ma/g/kfc-eniad-12h45",
+      "status": "Commande ouverte",
+      "avatars": [
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop",
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop"
+      ],
+      "extraAvatarsCount": 2,
+      "members": [
+        {
+          "id": "m10",
+          "name": "Sara (Vous)",
+          "role": "Organisateur",
+          "isCreator": true,
+          "isCurrentUser": true,
+          "paymentStatus": "paid",
+          "paymentStatusText": "A payé",
+          "amount": 75,
+          "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop"
+        }
+      ],
+      "orderedFoods": [],
+      "originalTotal": 200,
+      "discountedTotal": 160,
+      "totalItemsCount": 2
+    },
+    {
+      "id": "g_snackstory_3",
+      "restaurantId": "snack-story",
+      "restaurantName": "Snack Story",
+      "restaurantLogo": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=100&h=100&fit=crop",
+      "coverUrl": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&h=400&fit=crop",
+      "locationText": "200 m • ENIAD",
+      "deliveryTimeText": "Livraison à 13:00",
+      "membersJoined": 4,
+      "maxMembers": 7,
+      "minMembersForDiscount": 7,
+      "missingMembersCount": 3,
+      "discountPercentage": 15,
+      "discountText": "-15% sur le total",
+      "creatorName": "Amine",
+      "shareUrl": "jiblina.ma/g/snackstory-eniad-13h00",
+      "status": "Commande ouverte",
+      "avatars": [
+        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop",
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop"
+      ],
+      "extraAvatarsCount": 2,
+      "members": [],
+      "orderedFoods": [],
+      "originalTotal": 280,
+      "discountedTotal": 238,
+      "totalItemsCount": 4
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+flask 
+flask-cors
+groq
+ langgraph
+selenium
+beautifulsoup4
+requests
+PyPDF2
+python-docx
+pdf2image
+pytesseract
+

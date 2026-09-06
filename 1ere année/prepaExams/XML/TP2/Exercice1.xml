@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<annuaire xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Ex.xsd">
+    <personne>
+        <nom>TRARI</nom>
+        <prenom>Abdenour</prenom>
+        <date format="EN-exp">2001-20-11</date>
+        <telephone>099393912</telephone>
+    </personne>
+</annuaire>

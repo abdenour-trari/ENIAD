@@ -1,0 +1,101 @@
+{
+  "categories": [
+    { "id": "all", "name": "Tout", "icon": "grid-outline" },
+    { "id": "pizza", "name": "Pizza", "icon": "pizza-outline" },
+    { "id": "burger", "name": "Burgers", "icon": "fast-food-outline" },
+    { "id": "pates", "name": "Pâtes", "icon": "restaurant-outline" },
+    { "id": "asian", "name": "Asiatique", "icon": "nutrition-outline" },
+    { "id": "desserts", "name": "Desserts", "icon": "ice-cream-outline" }
+  ],
+  "popularSearches": [
+    "Pizza Hut",
+    "Pepperoni",
+    "KFC",
+    "Penne Arrabbiata",
+    "Burger BBQ",
+    "Snack Story"
+  ],
+  "results": [
+    {
+      "id": "pizza-hut",
+      "type": "restaurant",
+      "name": "Pizza Hut",
+      "category": "pizza",
+      "cuisine": "Italienne • Pizza • Fast Food",
+      "rating": 4.6,
+      "totalReviews": 892,
+      "deliveryTime": "20-30 min",
+      "distance": "1.2 km",
+      "priceLevel": "$$",
+      "discountBadge": "-25% sur les commandes collectives",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/sco/thumb/d/d2/Pizza_Hut_logo.svg/1088px-Pizza_Hut_logo.svg.png",
+      "coverUrl": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=400&fit=crop",
+      "imageKey": "pizzaCover"
+    },
+    {
+      "id": "kfc",
+      "type": "restaurant",
+      "name": "KFC Berkane",
+      "category": "burger",
+      "cuisine": "Poulet Frit • Burgers • Fast Food",
+      "rating": 4.5,
+      "totalReviews": 650,
+      "deliveryTime": "15-25 min",
+      "distance": "450 m",
+      "priceLevel": "$$",
+      "discountBadge": "-20% sur le total",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/sco/thumb/bf/bf/KFC_logo.svg/1024px-KFC_logo.svg.png",
+      "coverUrl": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&h=400&fit=crop",
+      "imageKey": "burgerCover"
+    },
+    {
+      "id": "snack-story",
+      "type": "restaurant",
+      "name": "Snack Story",
+      "category": "burger",
+      "cuisine": "Tacos • Burgers • Sandwiches",
+      "rating": 4.4,
+      "totalReviews": 420,
+      "deliveryTime": "15-20 min",
+      "distance": "200 m",
+      "priceLevel": "$",
+      "discountBadge": "-15% sur tout le menu",
+      "logoUrl": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=100&h=100&fit=crop",
+      "coverUrl": "https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&h=400&fit=crop",
+      "imageKey": "promoBanner"
+    },
+    {
+      "id": "food_1",
+      "type": "food",
+      "name": "Pizza Margherita",
+      "restaurantName": "Pizza Hut",
+      "category": "pizza",
+      "price": 59,
+      "rating": 4.8,
+      "description": "Sauce tomate, mozzarella fraîche, basilic.",
+      "imageKey": "margherita"
+    },
+    {
+      "id": "food_5",
+      "type": "food",
+      "name": "Penne Arrabbiata",
+      "restaurantName": "Pizza Hut",
+      "category": "pates",
+      "price": 55,
+      "rating": 4.7,
+      "description": "Sauce tomate épicée, ail, basilic, parmesan.",
+      "imageKey": "penne"
+    },
+    {
+      "id": "food_3",
+      "type": "food",
+      "name": "Chicken BBQ Burger",
+      "restaurantName": "KFC Berkane",
+      "category": "burger",
+      "price": 75,
+      "rating": 4.6,
+      "description": "Poulet grillé, sauce BBQ, oignons rouges, mozzarella.",
+      "imageKey": "burgerCover"
+    }
+  ]
+}

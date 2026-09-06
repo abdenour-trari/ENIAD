@@ -1,0 +1,51 @@
+.QCM {
+  background-color: #eee;
+  padding: 0 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.QCM .Card {
+  height: 400px;
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+}
+.Card p {
+  color: green;
+  font-weight: 800;
+  font-size: 19px;
+}
+
+.Card .responses {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+button {
+  height: 30px;
+  width: 100px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 0 3px #000;
+  cursor: pointer;
+}
+
+.next button {
+  margin-top: 20px;
+  background-color: rgb(57, 255, 47);
+}
+
+.option-button {
+  background-color: #eee;
+}
+.correct {
+  background-color: lightgreen;
+}
+
+.wrong {
+  background-color: lightcoral;
+}

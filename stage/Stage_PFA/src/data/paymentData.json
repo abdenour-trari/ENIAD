@@ -1,0 +1,118 @@
+{
+  "steps": [
+    { "number": 1, "title": "Panier", "status": "completed" },
+    { "number": 2, "title": "Livraison", "status": "completed" },
+    { "number": 3, "title": "Paiement", "status": "active" },
+    { "number": 4, "title": "Confirmation", "status": "upcoming" }
+  ],
+  "orderSummary": {
+    "restaurantName": "Pizza Hut",
+    "restaurantLogo": "https://upload.wikimedia.org/wikipedia/sco/thumb/d/d2/Pizza_Hut_logo.svg/1088px-Pizza_Hut_logo.svg.png",
+    "coverUrl": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=400&fit=crop",
+    "groupInfo": "Commande collective • 5 participants",
+    "deliveryInfo": "Livraison à 13:15 • ENIAD",
+    "items": [
+      { "name": "2x Margherita", "price": 118 },
+      { "name": "1x Chicken BBQ", "price": 69 },
+      { "name": "1x Pâtes Alfredo", "price": 55 },
+      { "name": "2x Coca Cola", "price": 24 }
+    ],
+    "subtotal": 266,
+    "deliveryFee": 10,
+    "groupDiscount": 53,
+    "totalToPay": 223
+  },
+  "groupDiscountBanner": {
+    "title": "Réduction débloquée 🎉",
+    "subtitle": "Plus on est nombreux, plus on économise !",
+    "discountAmount": 53
+  },
+  "myShare": {
+    "userName": "Yassine (Vous)",
+    "role": "Organisateur",
+    "itemCountText": "2 articles",
+    "subtotal": 89,
+    "discount": 18,
+    "shareToPay": 71,
+    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+  },
+  "paymentMethods": [
+    {
+      "id": "card",
+      "name": "Carte bancaire",
+      "subtext": "•••• •••• •••• 4242",
+      "icon": "card-outline"
+    },
+    {
+      "id": "cash",
+      "name": "Cash à la livraison",
+      "subtext": "Payer en espèces au livreur",
+      "icon": "cash-outline"
+    },
+    {
+      "id": "wallet",
+      "name": "Jiblina Wallet",
+      "subtext": "Solde : 120 DH",
+      "icon": "wallet-outline"
+    },
+    {
+      "id": "shared",
+      "name": "Paiement partagé",
+      "subtext": "Payer pour le groupe",
+      "icon": "people-outline"
+    }
+  ],
+  "participants": [
+    {
+      "id": "p1",
+      "name": "Yassine (Vous)",
+      "role": "Organisateur",
+      "itemText": "2 articles",
+      "amount": 71,
+      "status": "À payer",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+    },
+    {
+      "id": "p2",
+      "name": "Sara",
+      "role": "Membre",
+      "itemText": "1 article",
+      "amount": 71,
+      "status": "À payer",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop"
+    },
+    {
+      "id": "p3",
+      "name": "Amine",
+      "role": "Membre",
+      "itemText": "1 article",
+      "amount": 71,
+      "status": "À payer",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"
+    },
+    {
+      "id": "p4",
+      "name": "Imane",
+      "role": "Membre",
+      "itemText": "1 article",
+      "amount": 71,
+      "status": "À payer",
+      "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop"
+    },
+    {
+      "id": "p5",
+      "name": "Khalid",
+      "role": "Membre",
+      "itemText": "1 article",
+      "amount": 71,
+      "status": "À payer",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop"
+    }
+  ],
+  "sharedPaymentSummary": {
+    "groupTotal": 355,
+    "totalDiscount": 53,
+    "multiplierText": "5 x 71 DH",
+    "totalToPay": 355
+  }
+}

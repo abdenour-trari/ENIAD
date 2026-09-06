@@ -1,0 +1,45 @@
+* {
+  margin: 10px;
+  padding: 0;
+}
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+}
+
+table td,
+th {
+  text-align: start;
+}
+
+tr {
+  border-top: 2px solid rgb(243, 183, 183);
+}
+
+table thead tr {
+  height: 50px;
+}
+
+table tbody tr {
+  height: 70px;
+}
+.btn {
+  background-color: rgb(212, 82, 82);
+  color: #eee;
+  height: 35px;
+  width: 80px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgb(153, 20, 20);
+}

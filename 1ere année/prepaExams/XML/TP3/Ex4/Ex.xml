@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<magasin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Ex.xsd">
+    <clients>
+        <client clientID="CLT-01" />
+    </clients>
+    <commandes>
+      <commande >
+            <clientID ID="CLT-01" />
+            <dateCommande>2025-10-10</dateCommande>
+            <dateLivraison>2025-10-30</dateLivraison>
+      </commande>  
+    </commandes>
+</magasin>

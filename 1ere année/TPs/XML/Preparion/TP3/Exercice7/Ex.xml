@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<annuaire xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="Ex.xsd">
+    <personne>
+        <nom>TRARI</nom>
+        <prenom usuel="Vrai">Abdenour</prenom>
+        <date format="ANSI">10/10/2025</date>
+        <telephone>
+            <indicatif>+212</indicatif>
+            <num>6-12-21-43-99</num>
+        </telephone>
+        <societe>SQLI</societe>
+    </personne>
+</annuaire>

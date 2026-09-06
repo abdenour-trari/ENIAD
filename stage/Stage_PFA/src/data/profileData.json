@@ -1,0 +1,92 @@
+{
+  "user": {
+    "id": "u_abdenour",
+    "name": "Abdenour Trari",
+    "badge": "Étudiant ENIAD",
+    "email": "abdenour.trari@eniad.ac.ma",
+    "phone": "+212 6 12 34 56 78",
+    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop"
+  },
+  "level": {
+    "currentLevel": "Gold",
+    "subtitle": "Super ! Tu es parmi nos meilleurs utilisateurs.",
+    "currentPoints": 2450,
+    "targetPoints": 3000,
+    "nextLevel": "Platinum",
+    "pointsRemaining": 550
+  },
+  "kpis": {
+    "totalOrders": 128,
+    "points": 2450,
+    "savingsDH": 684
+  },
+  "badges": [
+    {
+      "id": "b1",
+      "title": "Organisateur",
+      "description": "5 commandes collectives créées",
+      "color": "green",
+      "icon": "people"
+    },
+    {
+      "id": "b2",
+      "title": "Gourmet",
+      "description": "20 restaurants différents",
+      "color": "orange",
+      "icon": "restaurant"
+    },
+    {
+      "id": "b3",
+      "title": "Top Économiseur",
+      "description": "500 DH économisés",
+      "color": "purple",
+      "icon": "wallet"
+    }
+  ],
+  "recentOrders": [
+    {
+      "id": "o1",
+      "restaurantName": "Pizza Hut",
+      "typeText": "Commande collective • 5 participants",
+      "dateText": "Livrée le 12 Mai 2024",
+      "amountDH": 189,
+      "restaurantLogo": "https://upload.wikimedia.org/wikipedia/sco/thumb/d/d2/Pizza_Hut_logo.svg/1088px-Pizza_Hut_logo.svg.png"
+    },
+    {
+      "id": "o2",
+      "restaurantName": "KFC",
+      "typeText": "Commande collective • 4 participants",
+      "dateText": "Livrée le 10 Mai 2024",
+      "amountDH": 156,
+      "restaurantLogo": "https://upload.wikimedia.org/wikipedia/sco/thumb/bf/bf/KFC_logo.svg/1024px-KFC_logo.svg.png"
+    },
+    {
+      "id": "o3",
+      "restaurantName": "Snack Story",
+      "typeText": "Commande individuelle",
+      "dateText": "Livrée le 8 Mai 2024",
+      "amountDH": 75,
+      "restaurantLogo": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=100&h=100&fit=crop"
+    }
+  ],
+  "activityStats": {
+    "collectiveOrdersCount": 35,
+    "totalSavedDH": 684,
+    "restaurantsVisited": 18
+  },
+  "shortcuts": [
+    { "id": "s1", "title": "Modifier le profil", "icon": "person-outline", "route": "/edit-profile" },
+    { "id": "s2", "title": "Moyens de paiement", "icon": "card-outline", "route": "/payment" },
+    { "id": "s3", "title": "Adresses enregistrées", "icon": "location-outline", "route": "/settings" },
+    { "id": "s4", "title": "Restaurants favoris", "icon": "heart-outline", "route": "/search" },
+    { "id": "s5", "title": "Inviter des amis", "icon": "gift-outline", "badge": "+100 pts", "route": "/profile" },
+    { "id": "s6", "title": "Mes badges", "icon": "ribbon-outline", "route": "/loyalty" }
+  ],
+  "settings": [
+    { "id": "st1", "title": "Notifications", "icon": "notifications-outline", "route": "/notifications" },
+    { "id": "st2", "title": "Langue", "icon": "globe-outline", "value": "Français" },
+    { "id": "st3", "title": "Thème", "icon": "sunny-outline", "value": "Clair" },
+    { "id": "st4", "title": "Confidentialité", "icon": "lock-closed-outline", "route": "/settings" },
+    { "id": "st5", "title": "Aide & Support", "icon": "help-circle-outline", "route": "/settings" }
+  ]
+}

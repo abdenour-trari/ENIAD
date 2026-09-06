@@ -1,0 +1,121 @@
+body {
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  border-bottom: 3px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.globale {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  width: 100%;
+  text-align: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.texte {
+  max-width: 340px;
+  padding: 10px;
+  text-align: left;
+}
+
+.texte h1 {
+  font-weight: bold;
+}
+
+.texte p {
+  font-size: 1.2em;
+  line-height: 1.8;
+}
+
+.texte a {
+  display: inline-block;
+  background-color: red;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 20px;
+  text-decoration: none;
+  margin: 10px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.texte a:hover {
+  background-color: darkred;
+}
+ul li a:hover {
+  text-decoration: underline 2px;
+}
+
+.video {
+  max-width: 640px;
+}
+
+.video video {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.fin {
+  display: flex;
+  margin-left: 189px;
+  flex-wrap: wrap;
+  font-weight: bold;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+@media (max-width: 992px) {
+  .globale {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .texte {
+    max-width: 90%;
+    text-align: center;
+  }
+
+  .video {
+    max-width: 100%;
+  }
+
+  .texte a {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .texte h1 {
+    font-size: 1.5em;
+  }
+
+  .texte p {
+    font-size: 1em;
+  }
+
+  .texte a {
+    padding: 8px 20px;
+    font-size: 0.9em;
+  }
+
+  .video video {
+    width: 100%;
+    height: auto;
+  }
+
+  .fin {
+    flex-direction: column;
+    text-align: center;
+  }
+}

@@ -1,0 +1,6 @@
+<!ELEMENT catalogue (film+)>
+<!ELEMENT film (titre,acteur+)>
+<!ELEMENT titre (#PCDATA)>
+<!ELEMENT acteur (#PCDATA)>
+<!ATTLIST film  realis CDATA #REQUIRED
+                date CDATA #REQUIRED>  

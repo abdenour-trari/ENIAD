@@ -1,0 +1,23 @@
+.header {
+  background-color: rgb(108, 159, 236);
+  display: flex;
+  padding: 0 10%;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .logo {
+  font-size: 30px;
+  color: orange;
+}
+
+.header .Links {
+  display: flex;
+  gap: 15px;
+}
+
+.header .Links a {
+  text-decoration: 0;
+  color: darkblue;
+}

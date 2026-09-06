@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article SYSTEM "Ex1.dtd" [
+    <!ELEMENT référence (intitulé? , nom? , url? , auteur* , date? , editor?) >
+    <!ATTLIST référence code CDATA #REQUIRED>
+    <!ELEMENT nom (#PCDATA) >
+    <!ELEMENT url (#PCDATA) >
+    <!ELEMENT intitulé (#PCDATA) >
+    <!ELEMENT auteur (#PCDATA) >
+    <!ELEMENT date (#PCDATA) >
+    <!ELEMENT editor (#PCDATA) >
+
+]>
+<article >
+    <titre > A propos des DTD </titre>
+    <corps >
+        <p>
+        Les DTD, <important>c'est facile</important>, il suffit de lire
+        le cours de Marc Tommasi <cite ref="siteMarc" />.
+        </p>
+        <p>Il y a aussi de bons livres <cite ref="AmannRigaux" />.</p>
+    </corps>
+    <références >
+        <référence code="siteMarc">
+            <nom>Site de Marc Tommasi</nom>
+            <url> http://www.grappa.univ-lille3.fr/~tommasi/Homepage/SurDtd.html</url>
+        </référence>
+        <référence code="AmannRigaux">
+            <intitulé>Comprendre XSLT</intitulé>
+            <auteur>Bernd Amann</auteur>
+            <auteur>Philippe Rigaux</auteur>
+            <date>2002</date>
+            <editor>O'Reilly</editor>
+        </référence>
+    </références>
+</article>

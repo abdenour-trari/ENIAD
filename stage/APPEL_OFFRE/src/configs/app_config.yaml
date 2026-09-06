@@ -1,0 +1,9 @@
+# src/configs/app_config.yaml
+
+sources:
+  finances: "https://www.finances.gov.ma/fr/vous-orientez/Pages/appels-offres.aspx"
+  credit_agricole: "https://www.creditagricole.ma/fr/appel-offres"
+  pmmp: "https://www.marchespublics.gov.ma/pmmp/"
+
+user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+timeout: 10

@@ -1,0 +1,156 @@
+% ============================================================
+%  CHAPITRE 1 — ÉTAT DE L'ART & PROBLÉMATIQUE
+% ============================================================
+\chapter{État de l'art \& Problématique}
+
+\section{Introduction}
+
+L'essor fulgurant des technologies d'aéronefs sans pilote (UAV) ou drones a engendré une transformation profonde au sein de multiples secteurs d'activité civils, industriels et scientifiques. Grâce aux progrès notables de la microélectronique embarquée, des processeurs graphiques compacts et des algorithmes d'apprentissage profond, ces vecteurs aériens ne sont plus de simples plateformes téléguidées à distance, mais se métamorphosent en systèmes dotés d'une autonomie décisionnelle avancée. Cette autonomie repose sur l'intégration étroite de modules de perception visuelle et de commande de vol capables d'analyser la dynamique d'environnements complexes en temps réel.
+
+Cependant, la multiplication des missions de livraison de colis, de surveillance d'infrastructures sensibles, de cartographie agricole ou d'inspection technique en zone urbaine soulève des préoccupations majeures quant à la sécurité opérationnelle. Les défaillances de communication, les pannes matérielles internes ou la baisse brutale de tension des batteries représentent des risques réels d'accidents. Sur le plan économique, la perte d'un drone équipé de capteurs onéreux constitue un préjudice substantiel, tandis que sur le plan sécuritaire et juridique, la chute incontrôlée d'un aéronef en zone peuplée peut avoir des conséquences humaines et matérielles dramatiques. Dès lors, le développement d'un pipeline d'atterrissage d'urgence capable d'identifier une zone praticable libre d'obstacles s'impose comme une nécessité absolue pour assurer la viabilité de ces technologies.
+
+L'objectif de ce premier chapitre est de poser les fondements théoriques et techniques qui justifient la conception de notre solution d'atterrissage d'urgence basée sur la vision sémantique. Pour ce faire, nous détaillons tout d'abord le fonctionnement des drones autonomes et la criticité de l'atterrissage d'urgence (section~\ref{sec:drones}). Nous présentons ensuite une comparaison des méthodes classiques de sélection de zones sûres, telles que les capteurs physiques ou le positionnement par satellite (section~\ref{sec:methodes-classiques}). Par la suite, nous explorons l'apport de l'intelligence artificielle et de la segmentation sémantique pour la vision par ordinateur, en comparant les modèles phares de la littérature (section~\ref{sec:ia-segmentation}). Nous justifions également le choix de l'architecture U-Net face aux contraintes spécifiques du calcul embarqué ou Edge AI (section~\ref{sec:unet-edge}). Enfin, nous confrontons notre approche aux travaux académiques existants afin d'en dégager les limites et d'analyser la problématique sous-jacente (sections~\ref{sec:travaux} et~\ref{sec:problematique}). 
+
+Cette structuration théorique commence par l'analyse des composants constitutifs d'un drone autonome et des situations d'urgence qui imposent une rupture immédiate de la trajectoire nominale du vol, comme exposé dans la section suivante.
+
+
+\section{Drones autonomes et problématique de l'atterrissage d'urgence}
+\label{sec:drones}
+
+Un drone autonome se distingue d'un drone classique par sa capacité à percevoir son environnement, analyser les données disponibles et exécuter des actions avec une intervention humaine minimale, à travers plusieurs fonctions essentielles : perception, navigation, localisation, évitement d'obstacles et prise de décision. Son architecture repose sur des capteurs, un contrôleur de vol, un module de perception, un module de planification et un système de contrôle moteur, formant un cycle continu \textit{observer $\rightarrow$ analyser $\rightarrow$ décider $\rightarrow$ agir}.
+
+L'atterrissage d'urgence constitue l'une des opérations les plus critiques de ce fonctionnement autonome : contrairement à un atterrissage planifié, il intervient lorsqu'un événement imprévu (batterie faible, panne matérielle ou logicielle, perte de communication, conditions météorologiques défavorables) empêche la poursuite normale du vol. Le système doit alors identifier rapidement une zone sûre, réduire les risques de collision et protéger le matériel ainsi que l'environnement. Pour surmonter ces risques, la sélection d'une zone propice a reposé historiquement sur des capteurs et des algorithmes classiques que nous allons comparer.
+
+\section{Méthodes classiques de sélection de zone d'atterrissage}
+\label{sec:methodes-classiques}
+
+Avant l'apparition des approches basées sur l'intelligence artificielle, la sélection d'une zone d'atterrissage propice a reposé historiquement sur trois grandes familles de méthodes classiques : les systèmes par positionnement satellite (GPS/RTK), les capteurs physiques actifs (LiDAR, ultrasons) et les techniques de vision classique monoculaire ou stéréoscopique.
+
+Les approches basées sur le positionnement par satellite, notamment le GPS différentiel et le positionnement cinématique en temps réel (RTK), reposent sur l'utilisation de signaux de phase de porteuse pour obtenir une précision géométrique centimétrique. Dans ces systèmes, comme celui proposé par Barber et al.~\cite{barber2007autonomous}, le drone se dirige vers des coordonnées géographiques pré-définies ou suit les coordonnées transmises par une station de base. Bien que les performances de guidage rapportées soient excellentes pour l'atterrissage de précision sur piste dégagée ou sur des plateformes coopératives bien identifiées, ces méthodes échouent dès lors que l'environnement de secours est inconnu. Elles manquent de flexibilité face aux obstacles imprévus (arbres, piétons, véhicules) et souffrent d'une grande vulnérabilité dans les zones d'ombre satellitaire ou de brouillage.
+
+Les méthodes exploitant des capteurs physiques actifs tels que le LiDAR (télémétrie laser) ou les capteurs ultrasonores (sonar) mesurent directement la distance aux obstacles pour cartographier le relief. Les systèmes LiDAR embarqués, à l'instar de celui développé par Scherer et al.~\cite{scherer2012autonomous}, génèrent des cartes d'élévation 3D précises de la zone sous le drone, permettant de calculer les pentes et la rugosité locale du sol. De leur côté, les capteurs ultrasoniques, comme dans les travaux de Merz et al.~\cite{merz2006autonomous}, fournissent une estimation fiable de l'altitude au-dessus du sol à courte distance. Si ces capteurs offrent des performances robustes face aux variations de luminosité et de texture, leur portée reste limitée par la puissance émise et le poids important des LiDAR 3D classiques restreint leur intégration sur de petits drones (contraintes de charge utile et de consommation).
+
+Enfin, les approches par vision classique reposent sur l'utilisation de caméras monoculaires ou stéréoscopiques associées à des algorithmes de traitement d'images traditionnels (détection de contours par filtre de Canny, flux optique pour le mouvement, ou transformée de Hough). Par exemple, le système de guidage de Cesetti et al.~\cite{cesetti2010vision} évalue la planéité et l'absence d'obstacles en mesurant la densité des contours et la cohérence temporelle du flux optique. Bien que ces méthodes présentent l'avantage d'un coût matériel réduit et d'une charge de calcul limitée, elles s'avèrent extrêmement sensibles aux conditions d'éclairage (ombres, éblouissements) et échouent à classifier sémantiquement la nature du sol (par exemple, distinguer de l'herbe d'un plan d'eau ou d'une toiture fragile).
+
+\begin{table}[!ht]
+  \centering
+  \caption{Comparaison des méthodes classiques de sélection de zone d'atterrissage.}
+  \label{tab:methodes}
+  \renewcommand{\arraystretch}{1.4}
+  \begin{tabularx}{0.95\textwidth}{
+    >{\bfseries\color{ENIADBlue}}l
+    >{\centering\arraybackslash}X
+    >{\centering\arraybackslash}X
+  }
+    \toprule
+    \rowcolor{ENIADBlue!12}
+    \textbf{Méthode} & \textbf{Avantages} & \textbf{Limites} \\
+    \midrule
+    GPS / RTK & Précision centimétrique sur cible connue & Aveugle aux obstacles, sensible au brouillage \\
+    \rowcolor{ENIADLightBlue!20}
+    Capteurs physiques & Insensibles à la lumière, mesures géométriques & Portée limitée, poids et coût élevés (LiDAR) \\
+    Vision classique & Faible coût calcul et matériel & Sensible aux ombres, pas de classification du sol \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+En synthèse, l'analyse de ces approches classiques révèle plusieurs limites fondamentales et interdépendantes. D'une part, le positionnement satellitaire souffre d'un manque intrinsèque d'informations locales sur le relief et les obstacles, rendant la précision GPS insuffisante en environnement encombré. D'autre part, les capteurs actifs comme les LiDARs 3D, bien que précis, imposent des coûts financiers et des contraintes de poids prohibitifs pour la majorité des plateformes aériennes légères. Enfin, la vision classique, si elle est économique, se heurte à une forte instabilité face aux variations d'éclairage et s'avère incapable d'assurer une compréhension sémantique de la scène, limitant sa détection à des critères purement géométriques. Aucune de ces approches prise isolément ne garantit ainsi un atterrissage totalement sécurisé en milieu complexe. Ce constat impose le recours à l'intelligence artificielle et aux réseaux de neurones profonds, capables de traiter des images de caméras légères standard pour en extraire une interprétation sémantique haut niveau de la scène, thématique au cœur de la section suivante.
+
+
+\section{Solutions basées sur l'intelligence artificielle}
+\label{sec:ia-segmentation}
+
+L'intelligence artificielle (IA), et plus particulièrement l'apprentissage profond (\textit{Deep Learning}), a révolutionné le traitement des données capteurs. Contrairement aux approches programmées manuellement qui imposent des règles rigides, les réseaux de neurones profonds apprennent de manière autonome des représentations abstraites et hiérarchiques directement à partir de bases d'images annotées. Appliqués à la vision par ordinateur (\textit{Computer Vision}), ils exploitent principalement des réseaux convolutifs (CNN) pour extraire de façon incrémentale des motifs allant de caractéristiques simples (contours, textures) à des objets de haut niveau sémantique.
+
+\subsection{Niveaux d'analyse d'image en vision par ordinateur}
+
+L'analyse de scènes bidimensionnelles par vision artificielle se structure classiquement selon trois niveaux de granularité croissants :
+\begin{itemize}[leftmargin=1.8em, itemsep=4pt]
+  \item \textbf{La classification d'images} : Il s'agit du niveau le plus global. Le réseau prend une image en entrée et lui attribue une ou plusieurs étiquettes globales. Cette approche est insuffisante pour l'atterrissage d'urgence, car elle n'indique pas la position ni la forme géométrique des obstacles dans l'image.
+  \item \textbf{La détection d'objets} : Ce niveau intermédiaire vise à localiser et classifier des objets spécifiques dans une scène sous forme de boîtes englobantes (\textit{bounding boxes}). Bien que plus précise, la détection par boîte englobante ne fournit qu'une approximation rectangulaire des obstacles, ce qui est inadapté pour modéliser des menaces aux contours irréguliers (ex. arbres, reliefs de terrains) et peut exclure des micro-zones d'atterrissage pourtant exploitables.
+  \item \textbf{La segmentation sémantique} : Il s'agit d'une classification dense à l'échelle du pixel. Le réseau associe chaque pixel individuel à une classe sémantique prédéfinie (ex. route, bâtiment, végétation). Pour un drone autonome, la segmentation sémantique représente l'approche idéale, car elle permet d'identifier précisément les contours des zones praticables continues tout en isolant les obstacles avec une résolution géométrique maximale.
+\end{itemize}
+
+\subsection{Étude comparative des architectures de la littérature}
+
+Le choix d'un modèle de segmentation sémantique pour une application embarquée exige d'analyser les différentes architectures proposées par la littérature scientifique. Le tableau~\ref{tab:architectures} résume les caractéristiques, les avantages et les limites de ces architectures majeures.
+
+\begin{table}[!ht]
+  \centering
+  \caption{Comparaison des architectures de segmentation sémantique de la littérature.}
+  \label{tab:architectures}
+  \renewcommand{\arraystretch}{1.4}
+  \begin{tabularx}{0.95\textwidth}{
+    >{\bfseries\color{ENIADBlue}}l
+    >{\centering\arraybackslash}X
+    >{\centering\arraybackslash}X
+    >{\centering\arraybackslash}X
+  }
+    \toprule
+    \rowcolor{ENIADBlue!12}
+    \textbf{Modèle} & \textbf{Principe} & \textbf{Avantages} & \textbf{Limites} \\
+    \midrule
+    R-CNN~\cite{girshick2014rcnn} & Régions candidates & Haute précision de détection & Latence élevée, pas de pixels fins \\
+    \rowcolor{ENIADLightBlue!20}
+    YOLO~\cite{redmon2016yolo} & Régression mono-passe & Rapidité temps réel ($>30$ FPS) & Limité aux boîtes englobantes \\
+    FCN~\cite{long2015fcn} & Convolutions de bout en bout & Premier modèle pixel-à-pixel & Perte des détails spatiaux fins \\
+    \rowcolor{ENIADLightBlue!20}
+    \textbf{U-Net}~\cite{ronneberger2015unet} & Encodeur-décodeur et connexions & Excellent compromis vitesse/précision & Légère charge de calcul décodeur \\
+    DeepLabV3~\cite{chen2017deeplabv3} & Convolutions dilatées (Atrous) & Captation multi-échelle avancée & Très complexe, gourmand en VRAM \\
+    \rowcolor{ENIADLightBlue!20}
+    SegFormer~\cite{xie2021segformer} & Vision Transformers (ViT) & Excellente généralisation globale & Ressources GPU trop importantes \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+Une analyse détaillée de ces modèles met en lumière leur adéquation vis-à-vis des contraintes des drones autonomes :
+\begin{itemize}[leftmargin=1.8em, itemsep=4pt]
+  \item \textbf{R-CNN}~\cite{girshick2014rcnn} : Ce modèle à deux étapes (\textit{two-stage}) extrait des régions candidates avant de les classifier. Bien que robuste, sa structure séquentielle engendre une latence de traitement prohibitive pour les boucles de contrôle de vol rapides.
+  \item \textbf{YOLO}~\cite{redmon2016yolo} : En traitant l'image en une seule passe, YOLO atteint des débits d'inférence élevés adaptés au temps réel. Cependant, sa sortie sous forme de boîtes englobantes ne permet pas de détourer précisément les obstacles complexes.
+  \item \textbf{FCN}~\cite{long2015fcn} : FCN a ouvert la voie à la segmentation sémantique en remplaçant les couches denses par des convolutions. Toutefois, l'utilisation de décimations successives sans mécanisme de reconstruction fine conduit à des masques très flous aux contours imprécis.
+  \item \textbf{DeepLabV3}~\cite{chen2017deeplabv3} : Ce modèle exploite des convolutions dilatées (convolutions \textit{atrous}) et un module ASPP (\textit{Atrous Spatial Pyramid Pooling}) pour capturer le contexte à différentes échelles sans perte de résolution. Malgré ses performances de pointe, la complexité de son architecture s'avère inadaptée aux ressources limitées des processeurs embarqués.
+  \item \textbf{SegFormer}~\cite{xie2021segformer} : Basé sur des Transformers de vision, SegFormer s'affranchit des encodages de position et offre une excellente généralisation. Néanmoins, son empreinte mémoire et ses besoins en calcul (notamment pour l'attention globale) restent incompatibles avec les puces Edge AI à basse consommation.
+  \item \textbf{U-Net}~\cite{ronneberger2015unet} : Doté d'une forme en U symétrique, ce réseau combine une phase de contraction (encodeur) et une phase d'expansion (décodeur). L'intégration de connexions directes (\textit{skip connections}) permet de concaténer les cartes de caractéristiques haute résolution de l'encodeur aux couches correspondantes du décodeur, préservant ainsi les détails spatiaux fins et les frontières des obstacles avec une faible charge calculatoire.
+\end{itemize}
+
+Dans ce contexte, l'architecture U-Net~\cite{ronneberger2015unet} s'impose comme la solution la plus adaptée pour la détection de zones d'atterrissage. Elle combine l'efficacité requise pour le traitement Edge AI à la précision spatiale nécessaire pour garantir la sécurité physique de l'aéronef, deux aspects développés en détail dans la section suivante.
+
+
+\section{Architecture U-Net et contraintes Edge AI}
+\label{sec:unet-edge}
+
+U-Net~\cite{ronneberger2015unet}, initialement proposé pour l'imagerie biomédicale, repose sur une structure symétrique en deux phases. L'\textbf{encodeur} (phase de contraction) extrait progressivement les caractéristiques importantes de l'image par convolutions et max pooling, réduisant la dimension spatiale tout en augmentant la richesse sémantique. Le \textbf{décodeur} (phase d'expansion) reconstruit ensuite, par upsampling et convolutions successives, une carte de segmentation détaillée où chaque pixel reçoit une classe. L'innovation principale réside dans les \textit{skip connections}, qui transfèrent directement certaines informations de l'encodeur vers les couches symétriques du décodeur, limitant la perte de détails spatiaux.
+
+Le déploiement d'un tel modèle sur un drone impose des contraintes spécifiques à l'Edge AI : mémoire disponible (modèles compacts), énergie (autonomie de la batterie), latence (décision rapide), débit d'inférence (FPS) et échauffement matériel lors d'un calcul prolongé. Ces contraintes influencent directement les choix d'architecture et d'optimisation détaillés au chapitre~\ref{chap:modele}. Nous présentons d'abord une synthèse critique des travaux similaires de la littérature pour situer notre approche.
+
+\section{Travaux existants et analyse critique}
+\label{sec:travaux}
+
+L'analyse de la littérature met en évidence des développements majeurs et des limites récurrentes dans la recherche sur la détection de zones d'atterrissage sécurisées. Les travaux pionniers basés sur la vision monoculaire classique, tels que ceux de Belbachir et al.~\cite{belbachir2016landing}, ont jeté les bases géométriques pour estimer la planéité locale de la zone ciblée. Plus récemment, les réseaux de segmentation sémantique profonde se sont imposés pour classifier précisément le relief et les obstacles, à l'image des approches proposées par Castellano et Vessio~\cite{castellano2021image} pour distinguer les surfaces praticables des menaces en n'utilisant qu'une caméra RGB standard. Afin d'utiliser ces modèles sur des processeurs embarqués à faibles ressources (Edge AI), des architectures légères optimisées comme STDC-CT ont été présentées par Li et al.~\cite{li2023realtime}, permettant de concilier une excellente précision spatiale et un débit d'inférence en temps réel. D'autres systèmes, à l'instar de celui développé par Bischoff et al.~\cite{bischoff2022image}, combinent la segmentation sémantique à une projection métrique plane et des machines d'états gérées par des arbres de comportement pour assurer un contrôle de vol autonome et robuste lors de la descente d'urgence. Cependant, ces approches souffrent souvent de limites persistantes : forte dépendance au cloud, traitement temps réel insuffisant sur plateformes ultra-légères, jeux de données restreints, ou manque de robustesse face aux variations d'éclairage. Ces constats motivent le choix de notre solution, combinant une segmentation Attention U-Net embarquée efficace à un contrôleur de guidage réactif.
+
+\section{Problématique}
+\label{sec:problematique}
+
+La problématique centrale de ce projet réside dans l'automatisation complète de la phase d'atterrissage d'urgence pour un drone autonome confronté à une défaillance critique (perte de liaison de communication, baisse brutale de la tension de batterie, ou panne de capteurs de positionnement comme le GPS). Dans un tel scénario, l'appareil doit pouvoir se reposer uniquement sur ses capteurs visuels passifs embarqués (caméra RGB zénithale) pour analyser son environnement tridimensionnel en temps réel, sans intervention humaine externe et sans accès à des ressources de calcul distantes (déploiement hors ligne sous contraintes Edge AI).
+
+Les enjeux associés à cette problématique se déclinent sur plusieurs niveaux :
+\begin{itemize}[leftmargin=1.8em, itemsep=4pt]
+  \item \textbf{Enjeu de sécurité publique et matérielle} : La sélection d'une zone inappropriée (contenant des personnes, des véhicules en mouvement, des câbles électriques ou des plans d'eau) peut entraîner des conséquences catastrophiques, tant sur le plan humain que pour l'intégrité physique du drone et des infrastructures environnantes.
+  \item \textbf{Enjeu d'indépendance aux signaux externes} : Contrairement aux approches basées sur le positionnement GPS, la solution visuelle doit fonctionner en intérieur, sous les arbres ou dans des canyons urbains où les signaux satellites sont indisponibles ou réfléchis (phénomène de multi-trajets).
+  \item \textbf{Enjeu de robustesse visuelle} : Le système doit être capable de s'adapter aux variations d'éclairage (ombres portées, luminosité changeante du soleil) et à la diversité des scènes survolées (zones herbeuses, allées pavées, toitures, obstacles de formes complexes).
+\end{itemize}
+
+Face à ces enjeux, la mise en œuvre pratique est régie par des contraintes techniques antagonistes, qui lient étroitement la problématique à l'état de l'art matériel et logiciel précédemment exposé :
+\begin{enumerate}[leftmargin=2em, itemsep=4pt, label=\textbf{\arabic*.}]
+  \item \textbf{Compromis Précision/Complexité} : Comme mis en évidence dans l'étude comparative (section~\ref{sec:ia-segmentation}), les architectures les plus performantes (ex. SegFormer) requièrent des puissances de calcul incompatibles avec la charge utile et l'autonomie électrique d'un drone. Il est indispensable de concevoir un modèle compact qui maintienne un score de détection élevé tout en réduisant le nombre de paramètres.
+  \item \textbf{Latence et contraintes temps réel} : La vitesse de déplacement du drone impose de générer une commande de guidage en moins de 100~ms. Chaque étape du pipeline (acquisition, segmentation par Attention U-Net, Distance Transform, et prise de décision) doit être optimisée pour tourner à plus de 15~FPS sur du matériel embarqué comme une carte compagnon Jetson Orin ou un Raspberry Pi.
+  \item \textbf{Sûreté de décision} : La pénalisation des faux négatifs (obstacles classés comme zones d'atterrissage) est critique. Contrairement aux applications classiques de segmentation où l'erreur est globale, une seule fausse prédiction positive au niveau d'un obstacle peut détruire l'aéronef, ce qui justifie l'utilisation d'une fonction de coût orientée comme la Tversky Loss.
+\end{enumerate}
+
+\vspace{1.5em}
+\textbf{Conclusion}
+
+En conclusion, ce premier chapitre a permis d'inscrire le projet dans son contexte scientifique en analysant les défis technologiques de l'atterrissage d'urgence des drones autonomes et en identifiant les limites des approches traditionnelles. La comparaison des architectures de vision a mis en évidence la pertinence du modèle U-Net couplé à l'encodeur EfficientNet-B0 pour concilier la préservation des détails fins aux contraintes Edge AI. Afin de formaliser et structurer opérationnellement ces besoins, le chapitre suivant sera consacré à l'analyse fonctionnelle et à la conception technique de la solution proposée, détaillant les diagrammes de séquence et de composants ainsi que les outils technologiques requis.
+
+
+\clearpage

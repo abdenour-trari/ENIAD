@@ -1,0 +1,31 @@
+export const ASSETS = {
+  icon: require('./icon.png'),
+  splash: require('./splash.png'),
+  logo: require('./log-removebg-preview.png'),
+  loginFriends: require('./login_friends.png'),
+  registerHero: require('./register_hero.png'),
+  promoBanner: require('./promo_banner.png'),
+  pizzaCover: require('./pizza_cover.png'),
+  burgerCover: require('./burger_cover.png'),
+  margherita: require('./margherita.png'),
+  fourCheese: require('./four_cheese.png'),
+  penne: require('./penne.png'),
+  alfredo: require('./alfredo.png'),
+  scooter: require('./scooter.png'),
+  giftBox: require('./gift_box.png'),
+  trophy: require('./trophy.png'),
+  // New home screen assets
+  heroBurger: require('./hero_burger.png'),
+  createGroup3d: require('./create_group_3d.png'),
+  inviteFriends3d: require('./invite_friends_3d.png'),
+  sandwichPoulet: require('./sandwich_poulet.png'),
+  sandwichThon: require('./sandwich_thon.png'),
+  sandwichViande: require('./sandwich_viande.png'),
+  sandwichOeuf: require('./sandwich_oeuf.png'),
+  restoSandwichHouse: require('./resto_sandwich_house.png'),
+  restoBaguetteExpress: require('./resto_baguette_express.png'),
+  restoCoinGourmand: require('./resto_coin_gourmand.png'),
+  restoStreetBites: require('./resto_street_bites.png'),
+};
+
+export default ASSETS;

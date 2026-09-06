@@ -1,0 +1,8 @@
+<!ELEMENT article (titre , corps , références)>
+<!ELEMENT titre (#PCDATA)>
+<!ELEMENT corps (#PCDATA | p)*>
+<!ELEMENT p (#PCDATA | important | cite)*>
+<!ELEMENT important (#PCDATA)>
+<!ELEMENT cite EMPTY>
+<!ATTLIST cite ref CDATA #REQUIRED> 
+<!ELEMENT références (référence)* >

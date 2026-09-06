@@ -1,0 +1,190 @@
+\begin{titlepage}
+\thispagestyle{empty}
+
+\begin{tikzpicture}[remember picture, overlay]
+
+  % ── Fond blanc général ──────────────────────────────────
+  \fill[ENIADWhite]
+    (current page.south west) rectangle (current page.north east);
+
+  % ── Bandeau supérieur ────────────────
+  \fill[ENIADWhite]
+    (current page.north west)
+    rectangle ([yshift=-4cm] current page.north east);
+
+  % ── Double ligne orange / bleu sous le bandeau ──────────
+  \fill[ENIADNavy]
+    ([yshift=-4cm]   current page.north west)
+    rectangle ([yshift=-4.2cm] current page.north east);
+  \fill[ENIADOrange]
+    ([yshift=-4.2cm]   current page.north west)
+    rectangle ([yshift=-4.35cm] current page.north east);
+
+  % ── Barre verticale orange gauche double ─────────────────
+  \fill[ENIADOrange]
+    ([xshift=1.5cm] current page.south west)
+    rectangle ([xshift=1.75cm, yshift=-4.35cm] current page.north west);
+  \fill[ENIADNavy!20]
+    ([xshift=1.85cm] current page.south west)
+    rectangle ([xshift=1.9cm, yshift=-4.35cm] current page.north west);
+
+  % ── Overlapping geometric shapes bas-droite (Sleek Layering) ──
+  \fill[ENIADNavy!90]
+    (current page.south east)
+    -- ([xshift=-9.5cm]   current page.south east)
+    -- ([yshift=9.5cm]    current page.south east)
+    -- cycle;
+
+  \fill[ENIADLightBlue!40, opacity=0.4]
+    (current page.south east)
+    -- ([xshift=-6.5cm]   current page.south east)
+    -- ([yshift=6.5cm]    current page.south east)
+    -- cycle;
+
+  \fill[ENIADOrange!85]
+    (current page.south east)
+    -- ([xshift=-4.5cm] current page.south east)
+    -- ([yshift=4.5cm]  current page.south east)
+    -- cycle;
+
+  % ── Points décoratifs style IA ──────────────────────────
+  \foreach \xi in {1,...,9}{
+    \foreach \yi in {1,...,4}{
+      \fill[ENIADWhite, opacity=0.15]
+        ([xshift=\xi*0.65cm - 0.3cm, yshift=-\yi*0.6cm + 0.5cm]
+         current page.north east)
+        circle (1.6pt);
+    }
+  }
+
+  % ── Bandeau inférieur bleu marine (2.4 cm) ──────────────
+  \fill[ENIADNavy]
+    (current page.south west)
+    rectangle ([yshift=2.4cm] current page.south east);
+
+  % ── Texte année dans le pied ────────────────────────────
+  \node[text=ENIADWhite, font=\small\bfseries, anchor=center]
+    at ([yshift=1.2cm] current page.south)
+    {Année Universitaire \pfaAcademicYear};
+
+  % ── Logos ───────────────────────────────────────────────
+  \node[anchor=west, inner sep=0pt]
+    at ([xshift=2.2cm, yshift=-2.1cm] current page.north west)
+    {\logoOrBox{\pfaLogoUMP}{4.5cm}{Logo\\ Univ. Mohamed\\ Premier}};
+
+  \node[anchor=east, inner sep=0pt]
+    at ([xshift=-2cm, yshift=-2.1cm] current page.north east)
+    {\logoOrBox{\pfaLogoENIAD}{4.5cm}{Logo\\ ENIAD\\ Berkane}};
+
+  % ── Mention officielle (Top Card) ──────────────────────
+  \node[
+      anchor=north,
+      draw=ENIADNavy!30,
+      line width=1.2pt,
+      fill=ENIADLightBlue!5,
+      rounded corners=8pt,
+      inner xsep=18pt,
+      inner ysep=10pt,
+      text width=14.2cm,
+      align=center
+  ]
+  at ([yshift=-4.6cm] current page.north)
+  {%
+    {\color{ENIADNavy}\fontsize{11}{13}\selectfont\bfseries Université Mohamed Premier, Oujda, Maroc}\\[3pt]
+    {\color{ENIADNavy}\fontsize{11}{13}\selectfont\bfseries École Nationale de l'Intelligence Artificielle et du Digital, Berkane}\\[6pt]
+    {\color{ENIADBlue}\large\bfseries PROJET DE FIN D'ANNÉE}\\[2pt]
+    {\color{ENIADGray}\small\itshape Cycle Ingénieur}\\[2pt]
+  };
+
+  % ── Filière ─────────────────────────────────────────────
+  \node[
+    anchor=north,
+    fill=ENIADOrange,
+    text=ENIADWhite,
+    font=\bfseries\normalsize,
+    minimum width=11cm,
+    minimum height=0.7cm,
+    rounded corners=3pt
+  ]
+  at ([yshift=-8.6cm] current page.north)
+  {Filière : \pfaSpeciality};
+
+  % ── Titre (Modern Box with Accent Border) ───────────────
+  \node[
+    anchor=north,
+    fill=ENIADLightBlue!12,
+    draw=ENIADNavy!20,
+    line width=1pt,
+    inner sep=12pt,
+    rounded corners=6pt,
+    text width=14.2cm,
+    align=center,
+    minimum height=2.8cm
+  ]
+  at ([yshift=-9.6cm] current page.north)
+  {%
+    \vspace{0.2em}
+    {\color{ENIADNavy}\fontsize{17}{21}\selectfont\bfseries \pfaProjectTitle}%
+  };
+  
+  % Left accent line on Title Box
+  \draw[ENIADOrange, line width=3.5pt]
+    ([xshift=3.42cm, yshift=-9.6cm] current page.north west)
+    -- ([xshift=3.42cm, yshift=-12.4cm] current page.north west);
+
+  % ── Étudiants et Encadrants (Double Column Card) ─────────
+  \node[
+    anchor=north,
+    draw=ENIADBlue!40,
+    line width=1.2pt,
+    rounded corners=8pt,
+    fill=ENIADWhite,
+    inner sep=12pt,
+    text width=14.2cm
+  ]
+  at ([yshift=-12.9cm] current page.north)
+  {%
+    \begin{minipage}[t]{0.47\textwidth}
+      \centering
+      {\color{ENIADGray}\scriptsize\bfseries RÉALISÉ PAR}\\[6pt]
+      {\color{ENIADNavy}\large\bfseries TRARI Abdenour}\\[3pt]
+      {\color{ENIADNavy}\large\bfseries EN-NAQQACH Mohssine}\\[3pt]
+      {\color{ENIADNavy}\large\bfseries EL KABDANI Hicham}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.47\textwidth}
+      \centering
+      {\color{ENIADGray}\scriptsize\bfseries SOUS LA DIRECTION DE}\\[6pt]
+      {\color{ENIADNavy}\large\bfseries \pfaAcademicSupervisor}\\[2pt]
+      {\color{ENIADGray}\tiny Encadrant Académique}
+    \end{minipage}
+    
+    \vspace{8pt}
+    \textcolor{ENIADBlue!20}{\rule{\linewidth}{0.8pt}}\\[4pt]
+    \centering
+    {\color{ENIADGray}\small\bfseries Soutenu le : } {\color{ENIADDark}\small\pfaDefenseDate}
+  };
+
+  % ── Jury (Clean Box) ────────────────────────────────────
+  \node[
+    anchor=north,
+    text width=14cm
+  ]
+  at ([yshift=-19.4cm] current page.north)
+  {%
+    \begin{center}
+    {\color{ENIADNavy}\large\bfseries JURY DE SOUTENANCE}\\[4pt]
+    \renewcommand{\arraystretch}{1.15}
+    \begin{tabular}{>{\bfseries\color{ENIADDark}\footnotesize}p{4.5cm}
+                    >{\color{ENIADGray}\footnotesize}p{5.5cm}
+                    >{\color{ENIADGray}\footnotesize}p{3cm}}
+      Nom du Professeur 1 & Président du Jury & ENIAD \\
+      Nom du Professeur 2 & Examinateur & ENIAD \\
+      \pfaAcademicSupervisor & Encadrant Académique & ENIAD \\
+    \end{tabular}
+    \end{center}
+  };
+
+\end{tikzpicture}%
+\end{titlepage}
+\clearpage

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ajouter un élément</title>
+  </head>
+  <body>
+    <button id="btn">Ajouter un élément</button>
+    <div id="parent"></div>
+
+    <script>
+      const btn = document.getElementById("btn");
+      const parent = document.getElementById("parent");
+
+      btn.onclick = () => {
+        const enfant = document.createElement("p");
+        enfant.innerHTML = "Ceci est un nouveau élément";
+        parent.append(enfant);
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE document [
+    <!ELEMENT document (#PCDATA | title| publisher)*>
+    <!ELEMENT title (#PCDATA)>
+    <!ELEMENT publisher (#PCDATA)> 
+]>
+<document>
+    <title> 
+        LI345
+    </title>
+    <publisher>
+
+    </publisher>
+    asckma
+</document>

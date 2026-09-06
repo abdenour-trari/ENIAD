@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const tab1 = [1, 2, "heho"];
+      const tab2 = [3, "heho"];
+
+      const tab3 = [...tab1, ...tab2];
+      console.log(tab3);
+
+      const obj1 = { a: 1, b: 2 };
+      const obj2 = { ...obj1, c: 3 };
+
+      console.log(obj2); // { a: 1, b: 2, c: 3 }
+
+      const numbers = [5, 10, 15];
+
+      console.log(Math.max(...numbers)); // 15
+    </script>
+
+    <script>
+      // test :
+      const brand = "Tesla";
+      const model = "Model S";
+      const year = 2024;
+
+      const car = { brand, model, year };
+
+      console.log(car);
+
+      ///////////////////////////
+      const book = {
+        title: "JavaScript ES6",
+        author: "John Doe",
+        pages: 300,
+      };
+
+      const { title, author } = book;
+      console.log(`${title} : ${author}`);
+
+      ///////////////////////////////
+      const colors = ["red", "green", "blue"];
+
+      // Déstructure ici
+      const [firstColor, secondColor] = colors;
+
+      console.log(firstColor, secondColor);
+
+      //////////////////////////////
+      const original = [1, 2, 3];
+
+      // Utilise le Spread Operator ici
+      const copy = [...original, 4, 5]; // Modifier cette ligne
+
+      console.log(copy); // Doit afficher [1, 2, 3, 4, 5]
+
+      ////////////////////////////////
+      const person = { name: "Ali", city: "Casablanca" };
+
+      // Utilise le Spread Operator ici
+      const personUpdated = { ...person, age: 24 }; // Modifier cette ligne
+
+      console.log(personUpdated); // { name: "Ali", city: "Casablanca", age: 25 }
+    </script>
+
+    <script type="module" src="import.js"></script>
+  </body>
+</html>

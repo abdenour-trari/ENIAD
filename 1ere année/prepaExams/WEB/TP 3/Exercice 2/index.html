@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Exercice</title>
+  </head>
+  <body>
+    <form action="#" method="post" id="form">
+      <table>
+        <tr>
+          <td><label for="nom">Nom :</label></td>
+          <td>
+            <input type="text" id="nom" name="nom" />
+            <span id="nomSpan"></span>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="prenom">Prénom :</label></td>
+          <td>
+            <input type="text" id="prenom" name="prenom" />
+            <span id="prenomSpan"></span>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="email">Email :</label></td>
+          <td>
+            <input type="email" id="email" name="email" />
+            <span id="emailSpan"></span>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="commentaire">Commentaire :</label></td>
+          <td>
+            <textarea id="commentaire" name="commentaire"></textarea>
+            <span id="cSpan"></span>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="submit-row">
+            <button type="submit" id="Envoyer">Envoyer</button>
+            <button type="reset">Réinitialiser</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <script src="./index.js"></script>
+  </body>
+</html>

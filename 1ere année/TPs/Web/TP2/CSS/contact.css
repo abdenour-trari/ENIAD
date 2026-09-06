@@ -1,0 +1,90 @@
+/* Contact page */
+/* Localisation */
+
+.localisation {
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.localisation img {
+  width: 85%;
+}
+
+/* contact Section */
+
+.contact {
+  display: flex;
+  margin: 40px 0;
+  padding: 0 7.5%;
+}
+
+.contact .adress {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact .adress h2,
+.contactForm h2 {
+  color: #0052da;
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.contact .contactForm {
+  width: 1200px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+}
+
+.contactForm .input {
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+input {
+  padding-left: 10px;
+  background-color: #fdfdfd;
+  border: solid 2px #cfcfcf;
+  width: 30%;
+  height: 30px;
+  font-size: 17px;
+}
+
+input::placeholder {
+  color: black;
+}
+
+textarea {
+  width: 100%;
+  margin-top: 10px;
+  padding-left: 10px;
+  background-color: #fdfdfd;
+  border: solid 2px #cfcfcf;
+  height: 250px;
+  font-size: 17px;
+}
+textarea::placeholder {
+  color: black;
+}
+
+.btns input {
+  background-color: #97cb20;
+  border: solid 2px #7da71c;
+  width: 10%;
+  color: #eee;
+}
+
+.btns {
+  display: flex;
+  margin-top: 20px;
+  justify-content: end;
+  align-items: center;
+}

@@ -1,0 +1,11 @@
+agent:
+  name: "AoAgent"
+  scraping:
+    base_url: "https://www.marchespublics.gov.ma/pmmp/"
+    user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+  db_path: "../memory_store/agent_memory.db"
+  llm:
+    provider: "openai"
+    model: "gpt-4o-mini" # modifiable
+  thresholds:
+    relevance_score: 0.6

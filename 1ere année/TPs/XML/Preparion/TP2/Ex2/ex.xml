@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Modules [
+    <!ELEMENT Modules (cours*) >
+    <!ELEMENT cours (titre,mh,coefficient?)>
+    <!ELEMENT titre (#PCDATA)>
+    <!ELEMENT mh (#PCDATA)>
+    <!ELEMENT coefficient (#PCDATA)>
+]>
+<Modules>
+    <cours>
+        <titre>Prog des applications Web coté client</titre>
+        <mh> 180h </mh>
+        <coefficient>3</coefficient>
+    </cours>
+    <cours>
+        <titre>PS</titre>
+        <mh>120h</mh>
+    </cours>
+</Modules>

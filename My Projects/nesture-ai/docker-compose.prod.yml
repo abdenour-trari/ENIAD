@@ -1,0 +1,54 @@
+version: "3.9"
+# Production compose — use with: docker-compose -f docker-compose.prod.yml up -d
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nesture-backend
+    restart: always
+    environment:
+      - ENV=production
+      - DATA_DIR=/app/data
+      - CORS_ORIGINS=https://yourdomain.com
+      - SECRET_KEY=${SECRET_KEY}
+    volumes:
+      - nesture_data:/app/data
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    container_name: nesture-frontend
+    restart: always
+    expose:
+      - "80"
+    depends_on:
+      - backend
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: nesture-nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+      - frontend
+    volumes:
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+
+volumes:
+  nesture_data:
+    driver: local

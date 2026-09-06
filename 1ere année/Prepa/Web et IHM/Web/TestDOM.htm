@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Événements DOM</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      #info {
+        font-size: 18px;
+        margin-top: 20px;
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Test des événements clavier et souris</h1>
+    <p>Appuie sur une touche du clavier ou clique n'importe où.</p>
+
+    <p id="info">Attente d'une interaction...</p>
+
+    <script>
+      // Événement pour afficher la touche du clavier pressée
+      document.addEventListener("keydown", function (event) {
+        let info = document.getElementById("info");
+        info.innerHTML =
+          "Touche appuyée : " + (event.key === " " ? "space" : event.key);
+      });
+
+      // Événement pour afficher les coordonnées de la souris au clic
+      document.addEventListener("click", function (event) {
+        let info = document.getElementById("info");
+        info.innerHTML =
+          "Clic à la position : X=" + event.clientX + " , Y=" + event.clientY;
+      });
+    </script>
+  </body>
+</html>

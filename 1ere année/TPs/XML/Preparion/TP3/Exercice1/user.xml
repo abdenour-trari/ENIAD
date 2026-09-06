@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<utilisateur xmlns:x="http://www.w3.org/2001/XMLSchema-instance"
+    x:noNamespaceSchemaLocation="user.xsd"
+    id="101" actif="true" >
+    <nom>Mohamed Ali</nom>
+    <email>mali@example.com</email>
+</utilisateur>

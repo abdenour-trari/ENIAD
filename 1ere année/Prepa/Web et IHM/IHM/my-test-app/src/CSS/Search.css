@@ -1,0 +1,22 @@
+.search {
+  background-color: aliceblue;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.search .search-input {
+  width: 30%;
+  background-color: transparent;
+  border: solid 2px rgb(154, 208, 255);
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  outline: none;
+  transition: all ease-in-out 0.2s;
+}
+
+.search .search-input:focus {
+  box-shadow: 0 0 5px rgb(154, 208, 255);
+}

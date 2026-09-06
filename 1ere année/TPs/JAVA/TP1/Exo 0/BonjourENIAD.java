@@ -1,0 +1,7 @@
+public class BonjourENIAD{
+	public static void main(String [] args){
+
+		System.out.println("Boujour ENIAD !");
+
+	}
+}

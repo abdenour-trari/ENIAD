@@ -1,0 +1,164 @@
+{
+  "filters": [
+    { "id": "all", "name": "Toutes", "icon": "notifications-outline" },
+    { "id": "orders", "name": "Commandes", "icon": "bag-handle-outline" },
+    { "id": "promo", "name": "Promotions", "icon": "pricetag-outline" },
+    { "id": "social", "name": "Social", "icon": "people-outline" }
+  ],
+  "newNotifications": [
+    {
+      "id": "n1",
+      "category": "orders",
+      "title": "Ta commande est en route !",
+      "subtitle": "Youssef est en route avec ta commande de Pizza Hut 🍕",
+      "timeText": "Il y a 3 min",
+      "isUnread": true,
+      "type": "order",
+      "imageKey": "pizzaCover"
+    },
+    {
+      "id": "n2",
+      "category": "promo",
+      "title": "Offre spéciale étudiants 🎉",
+      "subtitle": "-20% sur toutes les commandes collectives ce week-end !",
+      "timeText": "Il y a 1 h",
+      "isUnread": true,
+      "type": "promo",
+      "discountBadge": "-20%"
+    },
+    {
+      "id": "n3",
+      "category": "social",
+      "title": "Nouveau groupe près de toi",
+      "subtitle": "Sara a créé une commande collective à ENIAD Cafétéria",
+      "timeText": "Il y a 2 h",
+      "isUnread": true,
+      "type": "group",
+      "groupBadge": "5/8 participants"
+    },
+    {
+      "id": "n4",
+      "category": "promo",
+      "title": "Tu as gagné des points !",
+      "subtitle": "+50 points pour ta dernière commande collective",
+      "timeText": "Il y a 3 h",
+      "isUnread": false,
+      "type": "points",
+      "pointsBadge": "+50 pts"
+    },
+    {
+      "id": "n5",
+      "category": "orders",
+      "title": "Commande livrée ✓",
+      "subtitle": "Ta commande chez KFC a été livrée. Merci d'avoir choisi Jiblina !",
+      "timeText": "Il y a 5 h",
+      "isUnread": false,
+      "type": "delivered",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/sco/thumb/bf/bf/KFC_logo.svg/1024px-KFC_logo.svg.png"
+    }
+  ],
+  "earlierNotifications": [
+    {
+      "id": "n6",
+      "category": "promo",
+      "title": "Nouveau restaurant sur Jiblina !",
+      "subtitle": "Snack Story est maintenant disponible sur ton campus 🚀",
+      "timeText": "Hier, 18:30",
+      "isUnread": false,
+      "type": "new_restaurant",
+      "logoUrl": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=100&h=100&fit=crop"
+    },
+    {
+      "id": "n7",
+      "category": "promo",
+      "title": "Récompense débloquée 🎁",
+      "subtitle": "Tu as débloqué la récompense Livraison gratuite !",
+      "timeText": "Hier, 16:45",
+      "isUnread": false,
+      "type": "reward",
+      "rewardBadge": "Livraison gratuite"
+    },
+    {
+      "id": "n8",
+      "category": "social",
+      "title": "Sara t'a envoyé un message",
+      "subtitle": "\"On mange quoi aujourd'hui ?\"",
+      "timeText": "Hier, 14:20",
+      "isUnread": false,
+      "type": "message",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop"
+    }
+  ],
+  "preferences": [
+    {
+      "id": "pref_orders",
+      "title": "Commandes",
+      "subtitle": "Statut, suivi, livraison...",
+      "icon": "bag-handle",
+      "enabled": true
+    },
+    {
+      "id": "pref_promo",
+      "title": "Promotions & Offres",
+      "subtitle": "Réductions, coupons, offres spéciales...",
+      "icon": "pricetag",
+      "enabled": true
+    },
+    {
+      "id": "pref_groups",
+      "title": "Commandes collectives",
+      "subtitle": "Groupes, invitations, mises à jour...",
+      "icon": "people",
+      "enabled": true
+    },
+    {
+      "id": "pref_loyalty",
+      "title": "Fidélité & Points",
+      "subtitle": "Points gagnés, récompenses...",
+      "icon": "star",
+      "enabled": true
+    },
+    {
+      "id": "pref_messages",
+      "title": "Messages",
+      "subtitle": "Messages privés & discussions...",
+      "icon": "chatbubble-ellipses",
+      "enabled": true
+    },
+    {
+      "id": "pref_news",
+      "title": "Actualités",
+      "subtitle": "Nouveaux restaurants, nouveautés...",
+      "icon": "megaphone",
+      "enabled": false
+    }
+  ],
+  "channels": [
+    {
+      "id": "ch_push",
+      "title": "Notifications push",
+      "subtitle": "Recevoir sur ton téléphone",
+      "icon": "notifications",
+      "enabled": true
+    },
+    {
+      "id": "ch_email",
+      "title": "Email",
+      "subtitle": "Recevoir par email",
+      "icon": "mail",
+      "enabled": false
+    },
+    {
+      "id": "ch_sms",
+      "title": "SMS",
+      "subtitle": "Recevoir par SMS",
+      "icon": "chatbox",
+      "enabled": false
+    }
+  ],
+  "doNotDisturb": {
+    "enabled": false,
+    "fromTime": "22:00",
+    "toTime": "08:00"
+  }
+}

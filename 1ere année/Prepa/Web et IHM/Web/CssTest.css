@@ -1,0 +1,181 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+[type="text"] {
+  width: 200px;
+  background-color: aqua;
+  margin-top: 10px;
+}
+
+.mot {
+  word-spacing: 190px;
+  text-indent: 80px; /*  (text-indent : alhamich (l'espace li kaykun f lowl dyal aya paragraph)    */
+  line-height: 70px;
+  background-color: aqua;
+}
+
+div {
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  border: 1px dashed red;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px gray;
+}
+
+h3 {
+  background-color: rosybrown;
+  height: 30px;
+}
+.h1 {
+  text-align: center;
+}
+.h2 {
+  text-align: left;
+}
+.h3 {
+  text-align: right;
+}
+.h4 {
+  text-align: justify;
+}
+
+.conteneur {
+  background-color: blue;
+  height: max-content;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.conteneur div {
+  flex: none;
+  margin-left: 200px;
+  margin-top: 20px;
+}
+
+.container {
+  margin-top: 50px;
+  background-color: aqua;
+  width: 100%;
+  height: 300px;
+}
+.container {
+  display: flex;
+  align-items: center;
+  height: 200px;
+}
+
+.item1 {
+  align-self: flex-start;
+}
+
+.item2 {
+  align-self: center;
+}
+
+.item3 {
+  align-self: flex-end;
+}
+
+.animation {
+  background-color: royalblue;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: #eee;
+  margin-bottom: 10px;
+  transition: transform 1s ease-in-out;
+}
+
+.animationT:hover {
+  transform: translate(1000px, 0);
+}
+
+.animationR:hover {
+  transform: rotate(90deg);
+}
+
+.animationS:hover {
+  transform: scale(150%, 150%);
+}
+
+/* KeyFrame : */
+
+.key {
+  background-color: lightblue;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 200px;
+  flex-wrap: wrap;
+}
+
+@keyframes exemple {
+  0% {
+    background-color: blue;
+  }
+  50% {
+    background-color: red;
+  }
+  100% {
+    background-color: green;
+  }
+}
+
+/* pour from to 
+@keyframes exemple {
+  from {
+    background-color: red;
+  }
+  to {
+    background-color: yellow;
+  }
+}
+  */
+
+.key div {
+  width: 100px;
+  height: 100px;
+  border: none;
+  animation-name: exemple;
+  animation-duration: 4s;
+  animation-fill-mode: backwards; /* Garde la dernière couleur après l'animation */
+  animation-iteration-count: infinite;
+}
+
+/* Ajout de délais pour que chaque div s'anime après la précédente */
+.div1 {
+  animation-delay: 0s;
+}
+.div2 {
+  animation-delay: 0.5s;
+}
+.div3 {
+  animation-delay: 1s;
+}
+.div4 {
+  animation-delay: 1.5s;
+}
+
+@media screen and (max-width: 1000px) {
+  .key div {
+    width: 100px;
+    height: 100px;
+    border: none;
+    animation-name: exemple;
+    animation-duration: 1s;
+    animation-fill-mode: both; /* Garde la dernière couleur après l'animation */
+    animation-iteration-count: infinite;
+  }
+  .key {
+    background-color: lightgoldenrodyellow;
+  }
+}

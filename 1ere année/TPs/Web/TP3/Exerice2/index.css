@@ -1,0 +1,54 @@
+.container {
+  background-color: blueviolet;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.col {
+  border: solid white 2px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue;
+}
+.row:first-child .col:first-child {
+  background-color: #00c1e1;
+}
+
+.row:nth-child(2) .col:first-child {
+  background-color: #afafeb;
+}
+
+.row:nth-child(2) .col:nth-child(2) {
+  background-color: #ef5fdb;
+}
+
+.row:last-child .col:first-child {
+  background-color: #ef5fdb;
+}
+
+/* Exercie 2  */
+
+.second-container .row:first-child .col:first-child {
+  background-color: #f5c6d6;
+}
+
+.second-container .row .col {
+  border: solid white 4px;
+}
+
+.second-container .row:nth-child(2) .col {
+  background-color: #ee2284;
+}
+
+.second-container .row:nth-child(3) .col {
+  background-color: #85cfd8;
+}
+
+.second-container .row:nth-child(4) .col:first-child {
+  background-color: #8dc73f;
+}
+.second-container .row:nth-child(4) .col:nth-child(2) {
+  background-color: #e76e35;
+}

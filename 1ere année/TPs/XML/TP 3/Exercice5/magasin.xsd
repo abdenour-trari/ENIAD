@@ -1,0 +1,20 @@
+<!-- ++++++++++++++++++++++++++++ Must litle doc XML possible ++++++++++++++++++++++++++++  -->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<magasin>
+  <clients>
+    <client clientID="c1">
+      <nom>Dupont</nom>
+      <prenom>Jean</prenom>
+      <dateNaissance>1980-01-01</dateNaissance>
+      <telephone>0123456789</telephone>
+    </client>
+  </clients>
+  <commandes>
+    <commande>
+      <clientID ID="c1"/>
+      <dateCommande>2024-05-01</dateCommande>
+      <dateLivraison>2024-05-10</dateLivraison>
+    </commande>
+  </commandes>
+</magasin>

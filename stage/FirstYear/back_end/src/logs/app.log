@@ -1,0 +1,121 @@
+2025-10-10 17:29:24,186 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=927984&orgAcronyme=d4q
+2025-10-10 17:29:32,772 - INFO - Téléchargement du fichier 1 depuis : https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDownloadAvisJAL&refConsultation=927984&orgAcronyme=d4q&idAvis=480119
+2025-10-10 17:29:40,213 - INFO - Lecture du fichier : Rapport de présentation_Marché_12_2025_ABHBC__0001.pdf
+2025-10-10 17:29:40,248 - INFO - Texte non détecté dans Rapport de présentation_Marché_12_2025_ABHBC__0001.pdf, utilisation OCR...
+2025-10-10 17:29:47,030 - INFO - Analyse AI terminée pour Rapport de présentation_Marché_12_2025_ABHBC__0001.pdf
+2025-10-10 17:29:47,031 - INFO - Fichier supprimé : Rapport de présentation_Marché_12_2025_ABHBC__0001.pdf
+2025-10-10 17:29:47,031 - INFO - Analyse terminée pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=927984&orgAcronyme=d4q
+2025-10-10 17:30:09,003 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=927996&orgAcronyme=d4q
+2025-10-10 17:30:16,546 - INFO - Téléchargement du fichier 1 depuis : https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDownloadAvisJAL&refConsultation=927996&orgAcronyme=d4q&idAvis=480127
+2025-10-10 17:30:24,045 - INFO - Lecture du fichier : Rapport de présentation_Marché_01_2025_ABHBC_.pdf
+2025-10-10 17:30:24,059 - INFO - Texte non détecté dans Rapport de présentation_Marché_01_2025_ABHBC_.pdf, utilisation OCR...
+2025-10-10 17:30:30,976 - INFO - Analyse AI terminée pour Rapport de présentation_Marché_01_2025_ABHBC_.pdf
+2025-10-10 17:30:30,977 - INFO - Fichier supprimé : Rapport de présentation_Marché_01_2025_ABHBC_.pdf
+2025-10-10 17:30:30,978 - INFO - Analyse terminée pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=927996&orgAcronyme=d4q
+2025-10-10 17:32:19,249 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=927980&orgAcronyme=d4q
+2025-10-10 17:32:26,749 - INFO - Téléchargement du fichier 1 depuis : https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDownloadAvisJAL&refConsultation=927980&orgAcronyme=d4q&idAvis=480116
+2025-10-10 17:32:34,189 - INFO - Lecture du fichier : Rapport de présentation_Marché_07_2025_ABHBC_.pdf
+2025-10-10 17:32:34,204 - INFO - Texte non détecté dans Rapport de présentation_Marché_07_2025_ABHBC_.pdf, utilisation OCR...
+2025-10-10 17:32:40,514 - INFO - Analyse AI terminée pour Rapport de présentation_Marché_07_2025_ABHBC_.pdf
+2025-10-10 17:32:40,515 - INFO - Fichier supprimé : Rapport de présentation_Marché_07_2025_ABHBC_.pdf
+2025-10-10 17:32:40,516 - INFO - Analyse terminée pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=927980&orgAcronyme=d4q
+2025-10-10 17:58:58,993 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935177&orgAcronyme=j0w
+2025-10-10 17:59:08,250 - INFO - Téléchargement du fichier 1 depuis : https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDownloadAvisJAL&refConsultation=935177&orgAcronyme=j0w&idAvis=483429
+2025-10-10 17:59:15,804 - INFO - Traitement du fichier : R. pre AO n°9.zip
+2025-10-10 17:59:15,817 - INFO - Fichier ZIP extrait : R. pre AO n°9.zip
+2025-10-10 17:59:15,818 - INFO - Traitement du fichier : C:\Users\ATRARI\Desktop\ENIAD\stage\FirstYear\back_end\src\downloads\R. pre AO n°9\R. pre AO n°9.pdf
+2025-10-10 17:59:15,849 - INFO - Texte non détecté dans C:\Users\ATRARI\Desktop\ENIAD\stage\FirstYear\back_end\src\downloads\R. pre AO n°9\R. pre AO n°9.pdf, utilisation OCR...
+2025-10-10 17:59:24,741 - INFO - Analyse AI terminée pour C:\Users\ATRARI\Desktop\ENIAD\stage\FirstYear\back_end\src\downloads\R. pre AO n°9\R. pre AO n°9.pdf
+2025-10-10 17:59:24,743 - INFO - Fichier supprimé : C:\Users\ATRARI\Desktop\ENIAD\stage\FirstYear\back_end\src\downloads\R. pre AO n°9\R. pre AO n°9.pdf
+2025-10-10 17:59:24,744 - INFO - Analyse terminée pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935177&orgAcronyme=j0w
+2025-10-10 18:07:29,711 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935177&orgAcronyme=j0w
+2025-10-10 18:07:37,390 - INFO - Téléchargement du fichier 1 depuis : https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDownloadAvisJAL&refConsultation=935177&orgAcronyme=j0w&idAvis=483429
+2025-10-10 18:07:46,363 - INFO - Traitement du fichier : R. pre AO n°9.zip
+2025-10-10 18:07:46,400 - INFO - Fichier ZIP extrait : R. pre AO n°9.zip
+2025-10-10 18:07:46,401 - INFO - Traitement du fichier : C:\Users\ATRARI\Desktop\ENIAD\stage\FirstYear\back_end\src\downloads\R. pre AO n°9\R. pre AO n°9.pdf
+2025-10-10 18:07:46,416 - INFO - Texte non détecté dans C:\Users\ATRARI\Desktop\ENIAD\stage\FirstYear\back_end\src\downloads\R. pre AO n°9\R. pre AO n°9.pdf, utilisation OCR...
+2025-10-10 18:07:52,494 - INFO - Analyse AI terminée pour C:\Users\ATRARI\Desktop\ENIAD\stage\FirstYear\back_end\src\downloads\R. pre AO n°9\R. pre AO n°9.pdf
+2025-10-10 18:07:52,495 - INFO - Fichier supprimé : C:\Users\ATRARI\Desktop\ENIAD\stage\FirstYear\back_end\src\downloads\R. pre AO n°9\R. pre AO n°9.pdf
+2025-10-10 18:07:52,495 - INFO - Analyse terminée pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935177&orgAcronyme=j0w
+2025-10-10 18:10:12,213 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935169&orgAcronyme=j0w
+2025-10-10 18:10:20,472 - INFO - Téléchargement du fichier 1 depuis : https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDownloadAvisJAL&refConsultation=935169&orgAcronyme=j0w&idAvis=483426
+2025-10-10 18:10:28,122 - INFO - Fichier ZIP extrait : R. présentation AO n°7.zip
+2025-10-10 18:10:28,125 - INFO - Dossier extrait supprimé : C:\Users\ATRARI\Desktop\ENIAD\stage\FirstYear\back_end\src\downloads\R. présentation AO n°7
+2025-10-10 18:10:28,126 - INFO - Analyse terminée pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935169&orgAcronyme=j0w
+2025-10-10 18:10:52,213 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935169&orgAcronyme=j0w
+2025-10-10 18:11:00,245 - INFO - Téléchargement du fichier 1 depuis : https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDownloadAvisJAL&refConsultation=935169&orgAcronyme=j0w&idAvis=483426
+2025-10-10 18:11:07,691 - INFO - Traitement du fichier : R. présentation AO n°7.zip
+2025-10-10 18:11:07,774 - INFO - Fichier ZIP extrait : R. présentation AO n°7.zip
+2025-10-10 18:11:07,778 - INFO - Analyse terminée pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935169&orgAcronyme=j0w
+2025-10-10 18:11:58,304 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935177&orgAcronyme=j0w
+2025-10-10 18:12:06,319 - INFO - Téléchargement du fichier 1 depuis : https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDownloadAvisJAL&refConsultation=935177&orgAcronyme=j0w&idAvis=483429
+2025-10-10 18:12:13,720 - INFO - Traitement du fichier : R. pre AO n°9.zip
+2025-10-10 18:12:13,764 - INFO - Fichier ZIP extrait : R. pre AO n°9.zip
+2025-10-10 18:12:13,765 - INFO - Traitement du fichier : C:\Users\ATRARI\Desktop\ENIAD\stage\FirstYear\back_end\src\downloads\R. pre AO n°9\R. pre AO n°9.pdf
+2025-10-10 18:12:13,780 - INFO - Texte non détecté dans C:\Users\ATRARI\Desktop\ENIAD\stage\FirstYear\back_end\src\downloads\R. pre AO n°9\R. pre AO n°9.pdf, utilisation OCR...
+2025-10-10 18:12:20,074 - INFO - Analyse AI terminée pour C:\Users\ATRARI\Desktop\ENIAD\stage\FirstYear\back_end\src\downloads\R. pre AO n°9\R. pre AO n°9.pdf
+2025-10-10 18:12:20,075 - INFO - Fichier supprimé : C:\Users\ATRARI\Desktop\ENIAD\stage\FirstYear\back_end\src\downloads\R. pre AO n°9\R. pre AO n°9.pdf
+2025-10-10 18:12:20,075 - INFO - Analyse terminée pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935177&orgAcronyme=j0w
+2025-10-10 20:03:40,904 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935177&orgAcronyme=j0w
+2025-10-10 20:03:58,182 - INFO - Téléchargement du fichier 1 depuis : https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDownloadAvisJAL&refConsultation=935177&orgAcronyme=j0w&idAvis=483429
+2025-10-10 20:04:06,914 - WARNING - Aucun fichier téléchargé.
+2025-10-10 20:04:43,209 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935169&orgAcronyme=j0w
+2025-10-10 20:04:58,382 - INFO - Téléchargement du fichier 1 depuis : https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDownloadAvisJAL&refConsultation=935169&orgAcronyme=j0w&idAvis=483426
+2025-10-10 20:05:08,205 - WARNING - Aucun fichier téléchargé.
+2025-10-10 20:05:29,091 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935166&orgAcronyme=g3h
+2025-10-10 20:05:43,210 - INFO - Téléchargement du fichier 1 depuis : https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDownloadAvisJAL&refConsultation=935166&orgAcronyme=g3h&idAvis=483423
+2025-10-10 20:05:52,901 - INFO - Traitement du fichier : Rapport de présentation 09-BG-2025.pdf
+2025-10-10 20:05:53,178 - INFO - Texte non détecté dans Rapport de présentation 09-BG-2025.pdf, utilisation OCR...
+2025-10-10 20:06:15,605 - INFO - Analyse AI terminée pour Rapport de présentation 09-BG-2025.pdf
+2025-10-10 20:06:15,856 - INFO - Fichier supprimé : Rapport de présentation 09-BG-2025.pdf
+2025-10-10 20:06:15,942 - INFO - Analyse terminée pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935166&orgAcronyme=g3h
+2025-10-10 20:16:48,422 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935177&orgAcronyme=j0w
+2025-10-10 20:17:02,343 - INFO - Téléchargement du fichier 1 depuis : https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDownloadAvisJAL&refConsultation=935177&orgAcronyme=j0w&idAvis=483429
+2025-10-10 20:17:26,484 - INFO - Traitement du fichier : R. pre AO n°9.zip
+2025-10-10 20:17:26,660 - INFO - Fichier ZIP extrait : R. pre AO n°9.zip
+2025-10-10 20:17:26,776 - INFO - Traitement du fichier : C:\Users\ATRARI\Desktop\ENIAD\stage\FirstYear\back_end\src\downloads\R. pre AO n°9\R. pre AO n°9.pdf
+2025-10-10 20:17:27,664 - INFO - Texte non détecté dans C:\Users\ATRARI\Desktop\ENIAD\stage\FirstYear\back_end\src\downloads\R. pre AO n°9\R. pre AO n°9.pdf, utilisation OCR...
+2025-10-10 20:18:03,846 - INFO - Analyse AI terminée pour C:\Users\ATRARI\Desktop\ENIAD\stage\FirstYear\back_end\src\downloads\R. pre AO n°9\R. pre AO n°9.pdf
+2025-10-10 20:18:03,848 - INFO - Fichier supprimé : C:\Users\ATRARI\Desktop\ENIAD\stage\FirstYear\back_end\src\downloads\R. pre AO n°9\R. pre AO n°9.pdf
+2025-10-10 20:18:03,849 - INFO - Analyse terminée pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935177&orgAcronyme=j0w
+2025-10-10 21:28:34,714 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935169&orgAcronyme=j0w
+2025-10-10 21:28:44,140 - INFO - Téléchargement du fichier 1 depuis : https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDownloadAvisJAL&refConsultation=935169&orgAcronyme=j0w&idAvis=483426
+2025-10-10 21:28:51,612 - INFO - Traitement du fichier : R. présentation AO n°7 (1).zip
+2025-10-10 21:28:51,637 - INFO - Fichier ZIP extrait : R. présentation AO n°7 (1).zip
+2025-10-10 21:28:51,638 - INFO - Traitement du fichier : R. présentation AO n°7 (2).zip
+2025-10-10 21:28:51,651 - INFO - Fichier ZIP extrait : R. présentation AO n°7 (2).zip
+2025-10-10 21:28:51,653 - INFO - Traitement du fichier : R. présentation AO n°7.zip
+2025-10-10 21:28:51,691 - INFO - Fichier ZIP extrait : R. présentation AO n°7.zip
+2025-10-10 21:28:51,693 - INFO - Analyse terminée pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935169&orgAcronyme=j0w
+2025-10-10 21:28:56,832 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935084&orgAcronyme=g3h
+2025-10-10 21:29:04,467 - INFO - Téléchargement du fichier 1 depuis : https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDownloadAvisJAL&refConsultation=935084&orgAcronyme=g3h&idAvis=483385
+2025-10-10 21:29:13,553 - INFO - Traitement du fichier : Rapport de présentation 10-BG-2025.pdf
+2025-10-10 21:29:13,588 - INFO - Texte non détecté dans Rapport de présentation 10-BG-2025.pdf, utilisation OCR...
+2025-10-10 21:29:18,308 - INFO - Analyse AI terminée pour Rapport de présentation 10-BG-2025.pdf
+2025-10-10 21:29:18,309 - INFO - Fichier supprimé : Rapport de présentation 10-BG-2025.pdf
+2025-10-10 21:29:18,310 - INFO - Analyse terminée pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=935084&orgAcronyme=g3h
+2025-10-29 16:52:43,594 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=901383&orgAcronyme=g3h
+2025-10-29 16:54:04,220 - INFO - Téléchargement du fichier 1 depuis : https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDownloadAvisJAL&refConsultation=901383&orgAcronyme=g3h&idAvis=467282
+2025-10-29 16:54:12,006 - WARNING - Aucun fichier téléchargé.
+2025-10-29 17:03:03,390 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=901354&orgAcronyme=g3h
+2025-10-29 17:03:15,087 - INFO - Téléchargement du fichier 1 depuis : https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDownloadAvisJAL&refConsultation=901354&orgAcronyme=g3h&idAvis=467264
+2025-10-29 17:03:22,980 - INFO - Traitement du fichier : 027-E-027-25 rapport de presentation.pdf
+2025-10-29 17:03:23,043 - INFO - Texte non détecté dans 027-E-027-25 rapport de presentation.pdf, utilisation OCR...
+2025-10-29 17:03:31,583 - INFO - Analyse AI terminée pour 027-E-027-25 rapport de presentation.pdf
+2025-10-29 17:03:31,584 - INFO - Fichier supprimé : 027-E-027-25 rapport de presentation.pdf
+2025-10-29 17:03:31,584 - INFO - Analyse terminée pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=901354&orgAcronyme=g3h
+2025-10-30 11:19:30,249 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=919083&orgAcronyme=j8k
+2025-11-01 23:46:04,443 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=917385&orgAcronyme=s3z
+2025-11-01 23:46:16,622 - INFO - Téléchargement du fichier 1 depuis : https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDownloadAvisJAL&refConsultation=917385&orgAcronyme=s3z&idAvis=474822
+2025-11-01 23:46:26,213 - INFO - Traitement du fichier : R.P.MP 03-25.pdf
+2025-11-01 23:46:26,282 - INFO - Texte non détecté dans R.P.MP 03-25.pdf, utilisation OCR...
+2025-11-01 23:46:52,059 - INFO - Analyse AI terminée pour R.P.MP 03-25.pdf
+2025-11-01 23:46:52,064 - INFO - Fichier supprimé : R.P.MP 03-25.pdf
+2025-11-01 23:46:52,066 - INFO - Analyse terminée pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=917385&orgAcronyme=s3z
+2025-11-01 23:58:30,888 - INFO - Début de l'analyse pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=873810&orgAcronyme=d4q
+2025-11-01 23:58:42,922 - INFO - Téléchargement du fichier 1 depuis : https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDownloadAvisJAL&refConsultation=873810&orgAcronyme=d4q&idAvis=455285
+2025-11-01 23:58:51,206 - INFO - Traitement du fichier : Rapport de présentation AO 19.ENSMR.2024.pdf
+2025-11-01 23:58:51,266 - INFO - Texte non détecté dans Rapport de présentation AO 19.ENSMR.2024.pdf, utilisation OCR...
+2025-11-01 23:59:01,642 - INFO - Analyse AI terminée pour Rapport de présentation AO 19.ENSMR.2024.pdf
+2025-11-01 23:59:01,644 - INFO - Fichier supprimé : Rapport de présentation AO 19.ENSMR.2024.pdf
+2025-11-01 23:59:01,645 - INFO - Analyse terminée pour l'URL: https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailConsultation&refConsultation=873810&orgAcronyme=d4q

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE document [
+    <!ELEMENT document (title?)>
+    <!ELEMENT title (#PCDATA)>
+    <!ATTLIST title num ID #REQUIRED
+                    info CDATA #IMPLIED>
+]>
+<document>
+    <title num="doc-1" > Bases de données et sites Web </title>
+</document>

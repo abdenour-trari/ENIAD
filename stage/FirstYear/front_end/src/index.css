@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@layer components {
+  .btn-ao {
+    @apply text-white px-4 py-2 rounded w-[200px] 
+           transition-colors duration-200 cursor-pointer;
+  }
+}
+
+.Loader,
+.loader-2,
+.bg {
+  background-color: rgba(0, 0, 0, 0.705);
+  backdrop-filter: blur(4px);
+}

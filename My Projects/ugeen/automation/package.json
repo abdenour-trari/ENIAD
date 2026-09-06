@@ -1,0 +1,19 @@
+{
+  "name": "ugeen-automation",
+  "version": "1.0.0",
+  "description": "Playwright Automation Engine for UGeen",
+  "main": "dist/engine.js",
+  "scripts": {
+    "dev": "tsx watch src/engine.ts",
+    "build": "tsc",
+    "start": "node dist/engine.js"
+  },
+  "dependencies": {
+    "playwright": "^1.49.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

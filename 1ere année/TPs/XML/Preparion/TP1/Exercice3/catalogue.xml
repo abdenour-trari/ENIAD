@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE catalogue SYSTEM "catalogue.dtd">
+
+<catalogue>
+    <film realis="Christopher McQuarrie" date="2000">
+        <titre>MI: Rogue Nation</titre>
+        
+        <acteur>Tom Cruise</acteur>
+        <acteur>Jeremy Renner</acteur>
+        <acteur>Simon Pegg</acteur>
+    </film>
+    <film realis="Asger Leth" date="2011">
+        <titre>Man on a Ledge</titre>
+        <acteur>Sam Worthington</acteur>
+    </film>
+    <film realis="Danny Boyle" date="2010">
+        <titre>127 Hours</titre>
+        <acteur>James Franco</acteur>
+    </film>
+</catalogue>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="menus" type="menustype"/>
+    <xs:complexType name="menustype">
+        <xs:sequence>
+            <xs:element ref="menu" minOccurs="1" maxOccurs="5"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="menu" type="menutype" />
+    <xs:complexType name="menutype">
+        <xs:sequence>
+            <xs:element name="entree" type="xs:string" maxOccurs="1" />
+            <xs:element ref="plat"  maxOccurs="1" />
+            <xs:element name="dessert" type="xs:string" maxOccurs="1" />
+        </xs:sequence>
+        <xs:attribute ref="jour" use="required" />
+    </xs:complexType>
+
+    <xs:attribute name="jour" type="jourType" />
+    <xs:simpleType name="jourType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Lundi" />
+            <xs:enumeration value="Mardi" />
+            <xs:enumeration value="Mercredi" />
+            <xs:enumeration value="Jeudi" />
+            <xs:enumeration value="Vendredi" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="plat" type="plattype" />
+    <xs:complexType name="plattype">
+        <xs:choice>
+            <xs:element name="plat_unique" type="xs:string" />
+            <xs:element ref="plat_compose" />
+        </xs:choice>
+    </xs:complexType>
+    
+    <xs:element name="plat_compose" type="plat_composeType" />
+    <xs:complexType name="plat_composeType">
+        <xs:sequence>
+            <xs:element name="viande" type="xs:string" />
+            <xs:element name="accompagnement" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+
+</xs:schema>

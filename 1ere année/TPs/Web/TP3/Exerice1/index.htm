@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animations CSS</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      }
+      /* Animation 1: Ouverture des carrés */
+      .main {
+        width: 200px;
+        height: 200px;
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+      }
+      .square {
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        transition: transform 0.5s ease-in-out;
+      }
+      .red {
+        background: red;
+        top: 0;
+        left: 0;
+        transform-origin: left top;
+      }
+      .yellow {
+        background: yellow;
+        top: 0;
+        right: 0;
+        transform-origin: right top;
+      }
+      .blue {
+        background: blue;
+        bottom: 0;
+        left: 0;
+        transform-origin: bottom left;
+      }
+      .green {
+        background: green;
+        bottom: 0;
+        right: 0;
+        transform-origin: bottom right;
+      }
+
+      .main:hover .red {
+        transform: rotate(90deg);
+      }
+      .main:hover .yellow {
+        transform: rotate(-90deg);
+      }
+      .main:hover .blue {
+        transform: rotate(-90deg);
+      }
+      .main:hover .green {
+        transform: rotate(90deg);
+      }
+
+      /* Animation 2: Feux de signalisation */
+      .traffic-light {
+        width: 60px;
+        height: 180px;
+        background: gray;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        border-radius: 10px;
+        position: relative;
+      }
+      .light {
+        width: 40px;
+        height: 40px;
+        margin: 5px;
+        border-radius: 50%;
+        background: black;
+      }
+
+      @keyframes redCycle {
+        0%,
+        100% {
+          background: red;
+          box-shadow: 0 0 10px red;
+        }
+        33% {
+          background: black;
+        }
+        66% {
+          background: black;
+        }
+      }
+
+      @keyframes yellowCycle {
+        0%,
+        33% {
+          background: black;
+        }
+        50% {
+          background: yellow;
+          box-shadow: 0 0 10px yellow;
+        }
+        66%,
+        100% {
+          background: black;
+        }
+      }
+
+      @keyframes greenCycle {
+        0%,
+        66% {
+          background: black;
+        }
+        100% {
+          background: green;
+          box-shadow: 0 0 10px green;
+        }
+      }
+
+      .red-light {
+        animation: redCycle 12s infinite;
+      }
+      .yellow-light {
+        animation: yellowCycle 10s infinite;
+      }
+      .green-light {
+        animation: greenCycle 8s infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Animation des carrés</h2>
+    <div
+      class="main"
+      style="display: flex; justify-content: center; align-items: center"
+    >
+      <p>Hi!</p>
+      <div class="square red"></div>
+      <div class="square yellow"></div>
+      <div class="square blue"></div>
+      <div class="square green"></div>
+    </div>
+
+    <h2>Feux de circulation</h2>
+    <div
+      class="feu"
+      style="display: flex; justify-content: space-around; width: 100%"
+    >
+      <div class="traffic-light">
+        <div class="light red-light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+      </div>
+      <div class="traffic-light">
+        <div class="light"></div>
+        <div class="light yellow-light"></div>
+        <div class="light"></div>
+      </div>
+      <div class="traffic-light">
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light green-light"></div>
+      </div>
+    </div>
+  </body>
+</html>

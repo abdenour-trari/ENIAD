@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE annuaire [
+  <!ELEMENT annuaire (personne*)>
+  <!ELEMENT personne (nom, prenom+, date, telephone, societe?)>
+  <!ELEMENT nom (#PCDATA)>
+  <!ELEMENT prenom (#PCDATA)>
+  <!ATTLIST prenom usuel (Vrai|Faux) "Faux" >
+  <!ELEMENT date (#PCDATA)>
+  <!ATTLIST date format (ANSI | ISO | EN-exp | FR-exp) #REQUIRED>
+  <!ELEMENT telephone (indicatif, num)? >
+  <!ELEMENT indicatif (#PCDATA)>
+  <!ELEMENT num (#PCDATA)>
+  <!ELEMENT societe (#PCDATA)>
+]>
+<annuaire>
+  <personne>
+    <nom>Dupont</nom>
+    <prenom usuel="Vrai">abdenou</prenom>
+    <prenom>trari</prenom>
+    <date format="ISO">2025-04-22</date>
+    <telephone>
+      <indicatif>+212</indicatif>
+      <num>123456789</num>
+    </telephone>
+    <societe>OpenAI France</societe>
+  </personne>
+  <personne>
+    <nom>Martin</nom>
+    <prenom>Claire</prenom>
+    <date format="FR-exp">22/04/2025</date>
+  </personne>
+</annuaire>

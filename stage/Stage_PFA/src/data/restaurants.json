@@ -1,0 +1,64 @@
+[
+  {
+    "id": "pizza-hut",
+    "name": "Pizza Hut",
+    "isVerified": true,
+    "status": "Ouvert",
+    "categories": ["Italienne", "Pizza", "Fast Food"],
+    "rating": 4.6,
+    "totalReviews": 892,
+    "deliveryTime": "20-30 min",
+    "distance": "1.2 km",
+    "priceLevel": "$$",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/sco/thumb/d/d2/Pizza_Hut_logo.svg/1088px-Pizza_Hut_logo.svg.png",
+    "coverUrl": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=400&fit=crop",
+    "groupOrderDiscountText": "-25% sur les commandes collectives",
+    "groupOrderValidUntil": "Valable aujourd'hui jusqu'à 14:00",
+    "aboutText": "Les meilleures pizzas, préparées avec des ingrédients frais et une pâte faite maison.",
+    "infoPills": [
+      { "label": "Livraison", "value": "20-30 min", "icon": "bicycle-outline" },
+      { "label": "Frais de livraison", "value": "Gratuit dès 50 DH", "icon": "basket-outline" },
+      { "label": "Commande min.", "value": "25 DH", "icon": "bag-handle-outline" },
+      { "label": "Note livreur", "value": "4.8", "icon": "star-outline" }
+    ],
+    "offers": [
+      {
+        "id": "offer_1",
+        "badge": "Populaire",
+        "badgeColor": "orange",
+        "title": "Pizza + Boisson",
+        "discountText": "-25%",
+        "imageKey": "pizzaCover"
+      },
+      {
+        "id": "offer_2",
+        "badge": "Étudiants",
+        "badgeColor": "green",
+        "title": "Pâtes + Boisson",
+        "discountText": "-20%",
+        "imageKey": "penne"
+      }
+    ],
+    "reviewSummary": {
+      "average": 4.6,
+      "totalReviews": 892,
+      "breakdown": {
+        "5": 75,
+        "4": 15,
+        "3": 5,
+        "2": 3,
+        "1": 2
+      }
+    },
+    "customerReviews": [
+      {
+        "id": "rev_1",
+        "userName": "Yassine E.",
+        "userAvatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop",
+        "rating": 5,
+        "dateText": "Il y a 2 jours",
+        "comment": "Excellente pizza ! La pâte était parfaite et la livraison très rapide."
+      }
+    ]
+  }
+]

@@ -1,0 +1,25 @@
+table {
+  margin-top: 20px;
+  width: 1500px;
+  font-size: 20px;
+}
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 8px;
+}
+#voitureTable {
+  margin-top: 20px;
+}
+
+input {
+  height: 50px;
+  width: 300px;
+  padding: 0 10px;
+  font-size: 20px;
+}
+button {
+  height: 50px;
+}

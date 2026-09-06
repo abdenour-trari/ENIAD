@@ -1,0 +1,92 @@
+{
+  "spinnerPrizes": [
+    { "id": "p1", "label": "Pizza Offerte 🍕", "code": "FREEPIZZA", "color": "#16a34a" },
+    { "id": "p2", "label": "-50% sur le Total 🏷", "code": "HALFPRICE", "color": "#ea580c" },
+    { "id": "p3", "label": "+200 Pts Jiblina ⭐", "code": "BONUS200", "color": "#9333ea" },
+    { "id": "p4", "label": "Livraison Gratuite 🛵", "code": "FREEDELIV", "color": "#0284c7" },
+    { "id": "p5", "label": "-15% Spécial 🎟", "code": "SUPER15", "color": "#d97706" },
+    { "id": "p6", "label": "Boisson Offerte 🥤", "code": "FREEDRINK", "color": "#dc2626" }
+  ],
+  "bestChefCompetition": {
+    "prize": "iPhone 15 Pro Max 256 Go",
+    "title": "Compétition Best Chef ENIAD (Édition 3 Mois)",
+    "subtitle": "Soumets ta meilleure recette ou vote pour les chefs cuisiniers de l'école !",
+    "endDateText": "Fin dans 42 jours",
+    "entries": [
+      {
+        "id": "c1",
+        "chefName": "Yassine E.",
+        "dishName": "Tacos Gourmet ENIAD",
+        "school": "ENIAD Berkane",
+        "votes": 342,
+        "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop",
+        "imageKey": "burgerCover"
+      },
+      {
+        "id": "c2",
+        "chefName": "Sara K.",
+        "dishName": "Penne Carbonara Maison",
+        "school": "ENIAD Berkane",
+        "votes": 289,
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+        "imageKey": "penne"
+      },
+      {
+        "id": "c3",
+        "chefName": "Amine B.",
+        "dishName": "Pizza Quattro Supreme",
+        "school": "ENIAD Berkane",
+        "votes": 215,
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+        "imageKey": "margherita"
+      }
+    ]
+  },
+  "monthlyTopOrderers": {
+    "title": "Top 3 Commandeurs du Mois",
+    "prizeText": "Code Promo -15% sur TOUT pendant 1 Semaine !",
+    "myRank": 4,
+    "myRankText": "4ème - Plus que 2 commandes pour entrer au Top 3 !",
+    "topOrderers": [
+      {
+        "rank": 1,
+        "name": "Sara K.",
+        "orderCount": 24,
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+        "reward": "-15% Actif 🎟"
+      },
+      {
+        "rank": 2,
+        "name": "Yassine E.",
+        "orderCount": 21,
+        "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop",
+        "reward": "-15% Actif 🎟"
+      },
+      {
+        "rank": 3,
+        "name": "Amine B.",
+        "orderCount": 19,
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+        "reward": "-15% Actif 🎟"
+      }
+    ]
+  },
+  "restaurantOfTheWeek": {
+    "restaurantId": "pizza-hut",
+    "name": "Pizza Hut Berkane",
+    "badge": "N°1 des ventes de la semaine 🏆",
+    "salesCount": "450 commandes cette semaine",
+    "specialDiscount": "-30% sur toutes les pizzas",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/sco/thumb/d/d2/Pizza_Hut_logo.svg/1088px-Pizza_Hut_logo.svg.png",
+    "coverUrl": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=400&fit=crop"
+  },
+  "urgentGroupAlert": {
+    "groupId": "g_pizzahut_1",
+    "restaurantName": "Pizza Hut",
+    "restaurantLogo": "https://upload.wikimedia.org/wikipedia/sco/thumb/d/d2/Pizza_Hut_logo.svg/1088px-Pizza_Hut_logo.svg.png",
+    "missingCount": 1,
+    "discountText": "-25% sur le total",
+    "alertText": "⚡ Plus que 1 personne pour débloquer la réduction !",
+    "creatorName": "Yassine"
+  }
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Exercice</title>
+  </head>
+  <body>
+    <form id="form" onsubmit="event.preventDefault()">
+      <table>
+        <tr>
+          <td><label for="nom">Nom :</label></td>
+          <td>
+            <input type="text" id="nom" name="nom" /><span id="nomS"></span>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="prenom">Prénom :</label></td>
+          <td>
+            <input type="text" id="prenom" name="prenom" /><span
+              id="prenomS"
+            ></span>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="telephone0">Téléphone :</label></td>
+          <td>
+            <input type="text" id="telephone0" />
+            <span id="teleS"></span>
+          </td>
+        </tr>
+        <tbody id="tbody"></tbody>
+        <tr>
+          <td colspan="2">
+            <button type="button" id="addPhone">Ajouter un num</button>
+            <button type="submit" onclick="handleClick()">Envoyer</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+
+    <script src="./index.js"></script>
+  </body>
+</html>

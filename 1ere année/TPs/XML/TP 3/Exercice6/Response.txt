@@ -1,0 +1,12 @@
+⚠️ Éléments probablement en cause dans livre.xml :
+1. <auteur> — Multiplicité ou contraintes d’attribut
+Il y a trois éléments <auteur>, dont un seul avec un attribut idAuteur.
+👉 Si le schéma impose que tous les auteurs aient un attribut idAuteur requis ou que leur nombre soit limité (par exemple maxOccurs="2"), cela déclenche une erreur de validation.
+
+2. <resume/> — Élément vide
+Le résumé est présent mais vide : <resume/>.
+👉 Si le schéma impose un contenu non vide (via minLength ou xs:string sans minOccurs="0"), cela entraîne une erreur.
+
+3. Attribut isbn placé sur <livre>
+Attribut isbn="978-2-7177-2113-4" est sur l’élément <livre>.
+👉 Si le schéma ne définit pas d’attribut isbn pour l’élément livre, ou impose un pattern spécifique, cela peut aussi causer une erreur.

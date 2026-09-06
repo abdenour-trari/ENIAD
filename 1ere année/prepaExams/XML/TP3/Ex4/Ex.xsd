@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- Élément racine -->
+  <xs:element name="magasin">
+    <xs:complexType>
+      <xs:sequence>
+
+        <!-- Liste des clients -->
+        <xs:element name="clients">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="client" type="ClientType" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- Liste des commandes -->
+        <xs:element name="commandes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="commande" type="CommandeType" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Type complexe pour client -->
+  <xs:complexType name="ClientType">
+    <xs:sequence>
+      <xs:element name="nom" type="xs:string" minOccurs="0"/>
+      <xs:element name="prenom" type="xs:string" minOccurs="0"/>
+      <xs:element name="dateNaissance" type="xs:string" minOccurs="0"/>
+      <xs:choice>
+        <xs:element name="telephone" type="xs:string" minOccurs="0"/>
+        <xs:element name="email" type="xs:string" minOccurs="0"/>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="clientID" type="xs:ID" use="required"/>
+  </xs:complexType>
+
+  <!-- Type complexe pour commande -->
+  <xs:complexType name="CommandeType">
+    <xs:sequence>
+      <xs:element name="clientID">
+        <xs:complexType>
+          <xs:attribute name="ID" type="xs:IDREF" use="required"/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="dateCommande" type="xs:date"/>
+      <xs:element name="dateLivraison" type="xs:date"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

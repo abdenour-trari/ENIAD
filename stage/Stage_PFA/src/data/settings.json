@@ -1,0 +1,57 @@
+{
+  "user": {
+    "name": "Abdenour Trari",
+    "badge": "Étudiant ENIAD",
+    "email": "abdenour.trari@eniad.ac.ma",
+    "phone": "+212 6 12 34 56 78",
+    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop"
+  },
+  "languages": [
+    { "id": "fr", "name": "Français", "isSelected": true },
+    { "id": "en", "name": "English", "isSelected": false },
+    { "id": "ar", "name": "العربية", "isSelected": false }
+  ],
+  "themes": [
+    { "id": "light", "name": "Clair", "icon": "sunny-outline", "isSelected": true },
+    { "id": "dark", "name": "Sombre", "icon": "moon-outline", "isSelected": false }
+  ],
+  "account": [
+    { "id": "acc_info", "title": "Informations personnelles", "subtitle": "Gère tes infos et photo de profil", "icon": "person-outline" },
+    { "id": "acc_sec", "title": "Sécurité", "subtitle": "Mot de passe, empreinte, sessions", "icon": "lock-closed-outline" },
+    { "id": "acc_pay", "title": "Moyens de paiement", "subtitle": "Cartes, Jiblina Wallet", "icon": "card-outline" },
+    { "id": "acc_addr", "title": "Adresses enregistrées", "subtitle": "Domicile, campus, autres...", "icon": "location-outline" }
+  ],
+  "preferences": [
+    { "id": "pref_notif", "title": "Notifications", "subtitle": "Choisis ce que tu souhaites recevoir", "icon": "notifications-outline", "route": "/notifications" },
+    { "id": "pref_lang", "title": "Langue", "subtitle": "Français", "icon": "globe-outline", "value": "Français" },
+    { "id": "pref_theme", "title": "Thème de l'application", "subtitle": "Clair", "icon": "sunny-outline", "value": "Clair" },
+    { "id": "pref_curr", "title": "Devise", "subtitle": "Dirham (DH)", "icon": "wallet-outline", "value": "Dirham (DH)" }
+  ],
+  "appData": [
+    { "id": "app_saver", "title": "Économiseur de données", "subtitle": "Réduire l'utilisation des données", "icon": "water-outline", "isSwitch": true, "enabled": false },
+    { "id": "app_storage", "title": "Stockage", "subtitle": "Gérer le cache de l'application", "icon": "hardware-chip-outline", "value": "32,4 Mo" },
+    { "id": "app_privacy", "title": "Confidentialité", "subtitle": "Comment nous protégeons tes données", "icon": "shield-checkmark-outline" },
+    { "id": "app_devices", "title": "Appareils connectés", "subtitle": "Gérer tes sessions actives", "icon": "desktop-outline" }
+  ],
+  "securitySettings": [
+    { "id": "sec_fingerprint", "title": "Verrouillage par empreinte", "subtitle": "Utiliser ton empreinte pour te connecter", "icon": "finger-print-outline", "isSwitch": true, "enabled": true },
+    { "id": "sec_pin", "title": "Verrouillage par code", "subtitle": "Définir un code PIN", "icon": "keypad-outline" },
+    { "id": "sec_2fa", "title": "Authentification à deux facteurs", "subtitle": "Renforcer la sécurité de ton compte", "icon": "shield-outline" }
+  ],
+  "otherPreferences": [
+    { "id": "oth_startup", "title": "Démarrage de l'application", "subtitle": "Choisir l'écran affiché au démarrage", "icon": "rocket-outline", "value": "Accueil" },
+    { "id": "oth_vibration", "title": "Vibration", "subtitle": "Activer les vibrations", "icon": "phone-portrait-outline", "isSwitch": true, "enabled": true },
+    { "id": "oth_sounds", "title": "Sons", "subtitle": "Activer les sons de l'application", "icon": "volume-high-outline", "isSwitch": true, "enabled": true },
+    { "id": "oth_reminder", "title": "Rappels de commande", "subtitle": "Ne jamais oublier de manger 😋", "icon": "alarm-outline", "isSwitch": true, "enabled": true }
+  ],
+  "community": [
+    { "id": "com_invite", "title": "Inviter des amis", "subtitle": "Gagne des points en invitant tes amis", "icon": "gift-outline" },
+    { "id": "com_follow", "title": "Nous suivre", "subtitle": "Instagram, TikTok, LinkedIn...", "icon": "heart-outline" }
+  ],
+  "support": [
+    { "id": "sup_help", "title": "Aide & Support", "subtitle": "FAQ, nous contacter", "icon": "help-circle-outline" },
+    { "id": "sup_about", "title": "À propos de Jiblina", "subtitle": "Version 1.2.0", "icon": "information-circle-outline", "value": "v1.2.0" }
+  ],
+  "storageSizeText": "32,4 Mo",
+  "appVersion": "Version 1.2.0"
+}

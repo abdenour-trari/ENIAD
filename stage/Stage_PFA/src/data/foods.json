@@ -1,0 +1,66 @@
+{
+  "categories": [
+    { "id": "pizzas", "name": "Pizzas", "icon": "pizza" },
+    { "id": "pates", "name": "Pâtes", "icon": "restaurant" },
+    { "id": "entrees", "name": "Entrées", "icon": "fast-food" },
+    { "id": "boissons", "name": "Boissons", "icon": "wine" },
+    { "id": "desserts", "name": "Desserts", "icon": "ice-cream" }
+  ],
+  "foods": [
+    {
+      "id": "food_1",
+      "restaurantId": "pizza-hut",
+      "categoryId": "pizzas",
+      "name": "Margherita",
+      "description": "Sauce tomate, mozzarella fraîche, basilic.",
+      "price": 59,
+      "imageKey": "margherita"
+    },
+    {
+      "id": "food_2",
+      "restaurantId": "pizza-hut",
+      "categoryId": "pizzas",
+      "name": "Pepperoni",
+      "description": "Sauce tomate, mozzarella, pepperoni, origan.",
+      "price": 69,
+      "imageKey": "pizzaCover"
+    },
+    {
+      "id": "food_3",
+      "restaurantId": "pizza-hut",
+      "categoryId": "pizzas",
+      "name": "Chicken BBQ",
+      "badge": "Populaire",
+      "description": "Sauce BBQ, poulet grillé, oignons rouges, mozzarella.",
+      "price": 75,
+      "imageKey": "burgerCover"
+    },
+    {
+      "id": "food_4",
+      "restaurantId": "pizza-hut",
+      "categoryId": "pizzas",
+      "name": "4 Fromages",
+      "description": "Mozzarella, cheddar, gorgonzola, parmesan.",
+      "price": 72,
+      "imageKey": "fourCheese"
+    },
+    {
+      "id": "food_5",
+      "restaurantId": "pizza-hut",
+      "categoryId": "pates",
+      "name": "Penne Arrabbiata",
+      "description": "Sauce tomate épicée, ail, basilic, parmesan.",
+      "price": 55,
+      "imageKey": "penne"
+    },
+    {
+      "id": "food_6",
+      "restaurantId": "pizza-hut",
+      "categoryId": "boissons",
+      "name": "Coca Cola",
+      "description": "33cl",
+      "price": 12,
+      "imageUrl": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300&h=300&fit=crop"
+    }
+  ]
+}

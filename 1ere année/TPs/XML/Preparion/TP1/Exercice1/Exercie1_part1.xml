@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<flux>
+    <depeche numero="1" type= "Sport">
+        <titre>Nantes éliminé</titre>
+        <date>2008-09-24</date>
+        <contenu ref="oui">
+            Nantes a été éliminée en Coupe de la Ligue <ref depeche="2"/> hier par l'équipe de Créteil ...
+        </contenu>
+    </depeche>
+    <depeche numero="2" type="Sport">
+        <titre>Coupe de la Ligue</titre>
+        <soustitre>Résultats complets</soustitre>
+        <date>2008-09-24</date> 
+        <contenu>
+            Créteil &lt; &gt; Nantes: 1-0 ...
+        </contenu>
+    </depeche>
+</flux>

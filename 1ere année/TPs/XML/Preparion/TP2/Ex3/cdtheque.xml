@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cdtheque SYSTEM "cdtheque.dtd">
+<cdtheque date="2020" auteur="Jean Smith">
+    <cd>
+        <titre></titre>
+        <artiste></artiste>
+        <style></style>
+    </cd>
+</cdtheque>
